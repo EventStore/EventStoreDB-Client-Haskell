@@ -38,6 +38,8 @@ dependencies:
   - safe
   - streaming
   - vector
+  - proto-lens-runtime
+  - proto-lens
 
 extra-source-files:
   - README.md

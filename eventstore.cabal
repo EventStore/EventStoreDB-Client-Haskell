@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 3b97bdc68a0186ca928feda80ac90a5388a50f784eaf1ef43fd18fdd9c0bdf9d
+-- hash: fbc15695e5b439835113a9696c101065b272a23033af84e64b03e9b62f4c3d57
 
 name:           eventstore
 version:        1.4.1
@@ -33,9 +33,14 @@ library
       Database.EventStore.Streaming
       Database.EventStore.Internal.Test
   other-modules:
-      Database.EventStore.Grpc.Persistent
-      Database.EventStore.Grpc.Shared
-      Database.EventStore.Grpc.Streams
+      Database.EventStore.Grpc.Wire.Gossip
+      Database.EventStore.Grpc.Wire.Gossip_Fields
+      Database.EventStore.Grpc.Wire.Persistent
+      Database.EventStore.Grpc.Wire.Persistent_Fields
+      Database.EventStore.Grpc.Wire.Shared
+      Database.EventStore.Grpc.Wire.Shared_Fields
+      Database.EventStore.Grpc.Wire.Streams
+      Database.EventStore.Grpc.Wire.Streams_Fields
       Database.EventStore.Internal
       Database.EventStore.Internal.Command
       Database.EventStore.Internal.Communication
@@ -112,6 +117,8 @@ library
     , monad-logger >=0.3.20
     , mono-traversable ==1.*
     , mtl
+    , proto-lens
+    , proto-lens-runtime
     , protobuf >=0.2.1.1 && <0.3
     , random ==1.*
     , safe
@@ -162,6 +169,8 @@ test-suite eventstore-tests
     , lifted-base
     , monad-control
     , mono-traversable ==1.*
+    , proto-lens
+    , proto-lens-runtime
     , protobuf
     , safe
     , safe-exceptions
