@@ -1,5 +1,7 @@
+{-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE NumericUnderscores #-}
 {-# LANGUAGE StrictData #-}
+{-# LANGUAGE ExistentialQuantification #-}
 --------------------------------------------------------------------------------
 -- |
 -- Module : Database.EventStore.Grpc
@@ -14,6 +16,7 @@
 module Database.EventStore.Grpc where
 
 --------------------------------------------------------------------------------
+import Control.Exception (Exception(..), throwIO)
 import Control.Monad.IO.Class (liftIO)
 import Data.String (fromString)
 import Prelude
@@ -32,6 +35,7 @@ import qualified Network.HTTP2.Client as Client
 import qualified Network.GRPC.Client.Helpers as Client
 import qualified Network.GRPC.HTTP2.Types as Http2Types
 import qualified Network.GRPC.HTTP2.Encoding as Http2Types
+import qualified Network.GRPC.HTTP2.ProtoLens as ProtoLens
 
 --------------------------------------------------------------------------------
 import qualified Database.EventStore.Grpc.Types as Types
@@ -39,6 +43,16 @@ import qualified Database.EventStore.Grpc.Wire.Shared as Shared
 import qualified Database.EventStore.Grpc.Wire.Shared_Fields as Shared_Fields
 import qualified Database.EventStore.Grpc.Wire.Streams as Streams
 import qualified Database.EventStore.Grpc.Wire.Streams_Fields as Streams_Fields
+
+--------------------------------------------------------------------------------
+data ShowableException = forall e. Show e => ShowableException e 
+
+deriving instance Show ShowableException
+instance Exception ShowableException
+
+--------------------------------------------------------------------------------
+appendReqRPC :: ProtoLens.RPC Streams.Streams  "append"
+appendReqRPC = ProtoLens.RPC
 
 --------------------------------------------------------------------------------
 data Client =
@@ -63,12 +77,28 @@ createConn hostname port = Client.runClientIO $ do
     pure $ Client client (fromString $ hostname ++ ":" ++ show port)
 
 --------------------------------------------------------------------------------
-executeCall :: Http2Types.IsRPC r => Client -> RPCCall r a -> Client.ClientIO (Either Client.TooMuchConcurrency a)
-executeCall c = open (_clientInner c) (_clientAuthority c) [] (Timeout maxBound) (Http2Types.Encoding uncompressed) (Http2Types.Decoding uncompressed) 
+executeCall :: Http2Types.IsRPC r => Client -> RPCCall r a -> IO a
+executeCall c call = do
+  res <- Client.runClientIO $
+    open
+      (_clientInner c)
+      (_clientAuthority c)
+      []
+      (Timeout maxBound)
+      (Http2Types.Encoding uncompressed)
+      (Http2Types.Decoding uncompressed) call
+  
+  case res of
+    Left e -> throwIO e
+    Right res2 ->
+      case res2 of
+        Left e -> throwIO $ ShowableException e
+        Right a -> pure a
 
 --------------------------------------------------------------------------------
 appendToStream :: Client -> Text -> [Types.ProposedMessage] -> AppendStreamOptions -> IO Types.WriteResult
-appendToStream _ streamName events opts = undefined
+appendToStream c streamName events opts = do
+    executeCall c (streamRequest Streams_Fields.)
   where
     expectation =
       case appendStreamOptionsExpectedRevision opts of

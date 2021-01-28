@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0821d9d1f91c7d68c650b2cf85b6abe36318a7b41fc3b4f6472b2e7f188e2cb7
+-- hash: e2066863ea1eaeb64635b118502cb4a01df1dc7b5faf9062fd582764ebf3daf4
 
 name:           eventstore
 version:        1.4.1
@@ -116,6 +116,7 @@ library
     , http2 >=1.6
     , http2-client >=0.9
     , http2-client-grpc >=0.8
+    , http2-grpc-proto-lens
     , http2-grpc-types >=0.5
     , interpolate
     , lifted-async
@@ -125,7 +126,7 @@ library
     , monad-logger >=0.3.20
     , mono-traversable ==1.*
     , mtl
-    , proto-lens
+    , proto-lens ==0.6.*
     , proto-lens-runtime
     , protobuf >=0.2.1.1 && <0.3
     , random ==1.*
@@ -177,13 +178,14 @@ test-suite eventstore-tests
     , http2 >=1.6
     , http2-client >=0.9
     , http2-client-grpc >=0.8
+    , http2-grpc-proto-lens
     , http2-grpc-types >=0.5
     , lifted-async
     , lifted-base
     , microlens
     , monad-control
     , mono-traversable ==1.*
-    , proto-lens
+    , proto-lens ==0.6.*
     , proto-lens-runtime
     , protobuf
     , safe

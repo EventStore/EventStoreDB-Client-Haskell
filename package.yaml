@@ -38,14 +38,15 @@ dependencies:
   - safe
   - streaming
   - vector
-  - proto-lens-runtime
-  - proto-lens
+  - proto-lens-runtime # <0.7
+  - proto-lens ==0.6.*
   - http2-grpc-types >= 0.5
   - http2 >= 1.6
   - http2-client >= 0.9
   - http2-client-grpc >= 0.8
   - microlens
   - base64-bytestring >= 1.2
+  - http2-grpc-proto-lens #==0.1.*
 
 extra-source-files:
   - README.md
