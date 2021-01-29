@@ -1,5 +1,5 @@
 {- This file was auto-generated from streams.proto by the proto-lens-protoc program. -}
-{-# LANGUAGE ScopedTypeVariables, DataKinds, TypeFamilies, UndecidableInstances, GeneralizedNewtypeDeriving, MultiParamTypeClasses, FlexibleContexts, FlexibleInstances, PatternSynonyms, MagicHash, NoImplicitPrelude, DataKinds, BangPatterns, TypeApplications, OverloadedStrings, DerivingStrategies#-}
+{-# LANGUAGE ScopedTypeVariables, DataKinds, TypeFamilies, UndecidableInstances, GeneralizedNewtypeDeriving, MultiParamTypeClasses, FlexibleContexts, FlexibleInstances, PatternSynonyms, MagicHash, NoImplicitPrelude, DataKinds, BangPatterns, TypeApplications#-}
 {-# OPTIONS_GHC -Wno-unused-imports#-}
 {-# OPTIONS_GHC -Wno-duplicate-exports#-}
 {-# OPTIONS_GHC -Wno-dodgy-exports#-}
@@ -112,7 +112,7 @@ import qualified Database.EventStore.Grpc.Wire.Shared
 data AppendReq
   = AppendReq'_constructor {_AppendReq'content :: !(Prelude.Maybe AppendReq'Content),
                             _AppendReq'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show AppendReq where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -122,7 +122,7 @@ instance Prelude.Show AppendReq where
 data AppendReq'Content
   = AppendReq'Options' !AppendReq'Options |
     AppendReq'ProposedMessage' !AppendReq'ProposedMessage
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 instance Data.ProtoLens.Field.HasField AppendReq "maybe'content" (Prelude.Maybe AppendReq'Content) where
   fieldOf _
     = (Prelude..)
@@ -182,28 +182,6 @@ instance Data.ProtoLens.Field.HasField AppendReq "proposedMessage" AppendReq'Pro
 instance Data.ProtoLens.Message AppendReq where
   messageName _
     = Data.Text.pack "event_store.client.streams.AppendReq"
-  packedMessageDescriptor _
-    = "\n\
-      \\tAppendReq\DC2I\n\
-      \\aoptions\CAN\SOH \SOH(\v2-.event_store.client.streams.AppendReq.OptionsH\NULR\aoptions\DC2b\n\
-      \\DLEproposed_message\CAN\STX \SOH(\v25.event_store.client.streams.AppendReq.ProposedMessageH\NULR\SIproposedMessage\SUB\221\STX\n\
-      \\aOptions\DC2X\n\
-      \\DC1stream_identifier\CAN\SOH \SOH(\v2+.event_store.client.shared.StreamIdentifierR\DLEstreamIdentifier\DC2\FS\n\
-      \\brevision\CAN\STX \SOH(\EOTH\NULR\brevision\DC2?\n\
-      \\tno_stream\CAN\ETX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\bnoStream\DC24\n\
-      \\ETXany\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ETXany\DC2G\n\
-      \\rstream_exists\CAN\ENQ \SOH(\v2 .event_store.client.shared.EmptyH\NULR\fstreamExistsB\SUB\n\
-      \\CANexpected_stream_revision\SUB\157\STX\n\
-      \\SIProposedMessage\DC2/\n\
-      \\STXid\CAN\SOH \SOH(\v2\US.event_store.client.shared.UUIDR\STXid\DC2_\n\
-      \\bmetadata\CAN\STX \ETX(\v2C.event_store.client.streams.AppendReq.ProposedMessage.MetadataEntryR\bmetadata\DC2'\n\
-      \\SIcustom_metadata\CAN\ETX \SOH(\fR\SOcustomMetadata\DC2\DC2\n\
-      \\EOTdata\CAN\EOT \SOH(\fR\EOTdata\SUB;\n\
-      \\rMetadataEntry\DC2\DLE\n\
-      \\ETXkey\CAN\SOH \SOH(\tR\ETXkey\DC2\DC4\n\
-      \\ENQvalue\CAN\STX \SOH(\tR\ENQvalue:\STX8\SOHB\t\n\
-      \\acontent"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         options__field_descriptor
@@ -355,7 +333,7 @@ data AppendReq'Options
   = AppendReq'Options'_constructor {_AppendReq'Options'streamIdentifier :: !(Prelude.Maybe Database.EventStore.Grpc.Wire.Shared.StreamIdentifier),
                                     _AppendReq'Options'expectedStreamRevision :: !(Prelude.Maybe AppendReq'Options'ExpectedStreamRevision),
                                     _AppendReq'Options'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show AppendReq'Options where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -367,7 +345,7 @@ data AppendReq'Options'ExpectedStreamRevision
     AppendReq'Options'NoStream !Database.EventStore.Grpc.Wire.Shared.Empty |
     AppendReq'Options'Any !Database.EventStore.Grpc.Wire.Shared.Empty |
     AppendReq'Options'StreamExists !Database.EventStore.Grpc.Wire.Shared.Empty
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 instance Data.ProtoLens.Field.HasField AppendReq'Options "streamIdentifier" Database.EventStore.Grpc.Wire.Shared.StreamIdentifier where
   fieldOf _
     = (Prelude..)
@@ -513,16 +491,6 @@ instance Data.ProtoLens.Field.HasField AppendReq'Options "streamExists" Database
 instance Data.ProtoLens.Message AppendReq'Options where
   messageName _
     = Data.Text.pack "event_store.client.streams.AppendReq.Options"
-  packedMessageDescriptor _
-    = "\n\
-      \\aOptions\DC2X\n\
-      \\DC1stream_identifier\CAN\SOH \SOH(\v2+.event_store.client.shared.StreamIdentifierR\DLEstreamIdentifier\DC2\FS\n\
-      \\brevision\CAN\STX \SOH(\EOTH\NULR\brevision\DC2?\n\
-      \\tno_stream\CAN\ETX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\bnoStream\DC24\n\
-      \\ETXany\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ETXany\DC2G\n\
-      \\rstream_exists\CAN\ENQ \SOH(\v2 .event_store.client.shared.EmptyH\NULR\fstreamExistsB\SUB\n\
-      \\CANexpected_stream_revision"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         streamIdentifier__field_descriptor
@@ -778,7 +746,7 @@ data AppendReq'ProposedMessage
                                             _AppendReq'ProposedMessage'customMetadata :: !Data.ByteString.ByteString,
                                             _AppendReq'ProposedMessage'data' :: !Data.ByteString.ByteString,
                                             _AppendReq'ProposedMessage'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show AppendReq'ProposedMessage where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -825,17 +793,6 @@ instance Data.ProtoLens.Message AppendReq'ProposedMessage where
   messageName _
     = Data.Text.pack
         "event_store.client.streams.AppendReq.ProposedMessage"
-  packedMessageDescriptor _
-    = "\n\
-      \\SIProposedMessage\DC2/\n\
-      \\STXid\CAN\SOH \SOH(\v2\US.event_store.client.shared.UUIDR\STXid\DC2_\n\
-      \\bmetadata\CAN\STX \ETX(\v2C.event_store.client.streams.AppendReq.ProposedMessage.MetadataEntryR\bmetadata\DC2'\n\
-      \\SIcustom_metadata\CAN\ETX \SOH(\fR\SOcustomMetadata\DC2\DC2\n\
-      \\EOTdata\CAN\EOT \SOH(\fR\EOTdata\SUB;\n\
-      \\rMetadataEntry\DC2\DLE\n\
-      \\ETXkey\CAN\SOH \SOH(\tR\ETXkey\DC2\DC4\n\
-      \\ENQvalue\CAN\STX \SOH(\tR\ENQvalue:\STX8\SOH"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         id__field_descriptor
@@ -1060,7 +1017,7 @@ data AppendReq'ProposedMessage'MetadataEntry
   = AppendReq'ProposedMessage'MetadataEntry'_constructor {_AppendReq'ProposedMessage'MetadataEntry'key :: !Data.Text.Text,
                                                           _AppendReq'ProposedMessage'MetadataEntry'value :: !Data.Text.Text,
                                                           _AppendReq'ProposedMessage'MetadataEntry'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show AppendReq'ProposedMessage'MetadataEntry where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -1087,12 +1044,6 @@ instance Data.ProtoLens.Message AppendReq'ProposedMessage'MetadataEntry where
   messageName _
     = Data.Text.pack
         "event_store.client.streams.AppendReq.ProposedMessage.MetadataEntry"
-  packedMessageDescriptor _
-    = "\n\
-      \\rMetadataEntry\DC2\DLE\n\
-      \\ETXkey\CAN\SOH \SOH(\tR\ETXkey\DC2\DC4\n\
-      \\ENQvalue\CAN\STX \SOH(\tR\ENQvalue:\STX8\SOH"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         key__field_descriptor
@@ -1238,7 +1189,7 @@ instance Control.DeepSeq.NFData AppendReq'ProposedMessage'MetadataEntry where
 data AppendResp
   = AppendResp'_constructor {_AppendResp'result :: !(Prelude.Maybe AppendResp'Result),
                              _AppendResp'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show AppendResp where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -1248,7 +1199,7 @@ instance Prelude.Show AppendResp where
 data AppendResp'Result
   = AppendResp'Success' !AppendResp'Success |
     AppendResp'WrongExpectedVersion' !AppendResp'WrongExpectedVersion
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 instance Data.ProtoLens.Field.HasField AppendResp "maybe'result" (Prelude.Maybe AppendResp'Result) where
   fieldOf _
     = (Prelude..)
@@ -1308,33 +1259,6 @@ instance Data.ProtoLens.Field.HasField AppendResp "wrongExpectedVersion" AppendR
 instance Data.ProtoLens.Message AppendResp where
   messageName _
     = Data.Text.pack "event_store.client.streams.AppendResp"
-  packedMessageDescriptor _
-    = "\n\
-      \\n\
-      \AppendResp\DC2J\n\
-      \\asuccess\CAN\SOH \SOH(\v2..event_store.client.streams.AppendResp.SuccessH\NULR\asuccess\DC2s\n\
-      \\SYNwrong_expected_version\CAN\STX \SOH(\v2;.event_store.client.streams.AppendResp.WrongExpectedVersionH\NULR\DC4wrongExpectedVersion\SUB^\n\
-      \\bPosition\DC2'\n\
-      \\SIcommit_position\CAN\SOH \SOH(\EOTR\SOcommitPosition\DC2)\n\
-      \\DLEprepare_position\CAN\STX \SOH(\EOTR\SIpreparePosition\SUB\185\STX\n\
-      \\aSuccess\DC2+\n\
-      \\DLEcurrent_revision\CAN\SOH \SOH(\EOTH\NULR\SIcurrentRevision\DC2?\n\
-      \\tno_stream\CAN\STX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\bnoStream\DC2M\n\
-      \\bposition\CAN\ETX \SOH(\v2/.event_store.client.streams.AppendResp.PositionH\SOHR\bposition\DC2C\n\
-      \\vno_position\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\SOHR\n\
-      \noPositionB\EM\n\
-      \\ETBcurrent_revision_optionB\DC1\n\
-      \\SIposition_option\SUB\233\STX\n\
-      \\DC4WrongExpectedVersion\DC2+\n\
-      \\DLEcurrent_revision\CAN\SOH \SOH(\EOTH\NULR\SIcurrentRevision\DC2?\n\
-      \\tno_stream\CAN\STX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\bnoStream\DC2-\n\
-      \\DC1expected_revision\CAN\ETX \SOH(\EOTH\SOHR\DLEexpectedRevision\DC24\n\
-      \\ETXany\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\SOHR\ETXany\DC2G\n\
-      \\rstream_exists\CAN\ENQ \SOH(\v2 .event_store.client.shared.EmptyH\SOHR\fstreamExistsB\EM\n\
-      \\ETBcurrent_revision_optionB\SUB\n\
-      \\CANexpected_revision_optionB\b\n\
-      \\ACKresult"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         success__field_descriptor
@@ -1479,7 +1403,7 @@ data AppendResp'Position
   = AppendResp'Position'_constructor {_AppendResp'Position'commitPosition :: !Data.Word.Word64,
                                       _AppendResp'Position'preparePosition :: !Data.Word.Word64,
                                       _AppendResp'Position'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show AppendResp'Position where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -1503,12 +1427,6 @@ instance Data.ProtoLens.Field.HasField AppendResp'Position "preparePosition" Dat
 instance Data.ProtoLens.Message AppendResp'Position where
   messageName _
     = Data.Text.pack "event_store.client.streams.AppendResp.Position"
-  packedMessageDescriptor _
-    = "\n\
-      \\bPosition\DC2'\n\
-      \\SIcommit_position\CAN\SOH \SOH(\EOTR\SOcommitPosition\DC2)\n\
-      \\DLEprepare_position\CAN\STX \SOH(\EOTR\SIpreparePosition"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         commitPosition__field_descriptor
@@ -1638,7 +1556,7 @@ data AppendResp'Success
   = AppendResp'Success'_constructor {_AppendResp'Success'currentRevisionOption :: !(Prelude.Maybe AppendResp'Success'CurrentRevisionOption),
                                      _AppendResp'Success'positionOption :: !(Prelude.Maybe AppendResp'Success'PositionOption),
                                      _AppendResp'Success'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show AppendResp'Success where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -1648,11 +1566,11 @@ instance Prelude.Show AppendResp'Success where
 data AppendResp'Success'CurrentRevisionOption
   = AppendResp'Success'CurrentRevision !Data.Word.Word64 |
     AppendResp'Success'NoStream !Database.EventStore.Grpc.Wire.Shared.Empty
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 data AppendResp'Success'PositionOption
   = AppendResp'Success'Position !AppendResp'Position |
     AppendResp'Success'NoPosition !Database.EventStore.Grpc.Wire.Shared.Empty
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 instance Data.ProtoLens.Field.HasField AppendResp'Success "maybe'currentRevisionOption" (Prelude.Maybe AppendResp'Success'CurrentRevisionOption) where
   fieldOf _
     = (Prelude..)
@@ -1787,17 +1705,6 @@ instance Data.ProtoLens.Field.HasField AppendResp'Success "noPosition" Database.
 instance Data.ProtoLens.Message AppendResp'Success where
   messageName _
     = Data.Text.pack "event_store.client.streams.AppendResp.Success"
-  packedMessageDescriptor _
-    = "\n\
-      \\aSuccess\DC2+\n\
-      \\DLEcurrent_revision\CAN\SOH \SOH(\EOTH\NULR\SIcurrentRevision\DC2?\n\
-      \\tno_stream\CAN\STX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\bnoStream\DC2M\n\
-      \\bposition\CAN\ETX \SOH(\v2/.event_store.client.streams.AppendResp.PositionH\SOHR\bposition\DC2C\n\
-      \\vno_position\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\SOHR\n\
-      \noPositionB\EM\n\
-      \\ETBcurrent_revision_optionB\DC1\n\
-      \\SIposition_option"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         currentRevision__field_descriptor
@@ -2031,7 +1938,7 @@ data AppendResp'WrongExpectedVersion
   = AppendResp'WrongExpectedVersion'_constructor {_AppendResp'WrongExpectedVersion'currentRevisionOption :: !(Prelude.Maybe AppendResp'WrongExpectedVersion'CurrentRevisionOption),
                                                   _AppendResp'WrongExpectedVersion'expectedRevisionOption :: !(Prelude.Maybe AppendResp'WrongExpectedVersion'ExpectedRevisionOption),
                                                   _AppendResp'WrongExpectedVersion'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show AppendResp'WrongExpectedVersion where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -2041,12 +1948,12 @@ instance Prelude.Show AppendResp'WrongExpectedVersion where
 data AppendResp'WrongExpectedVersion'CurrentRevisionOption
   = AppendResp'WrongExpectedVersion'CurrentRevision !Data.Word.Word64 |
     AppendResp'WrongExpectedVersion'NoStream !Database.EventStore.Grpc.Wire.Shared.Empty
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 data AppendResp'WrongExpectedVersion'ExpectedRevisionOption
   = AppendResp'WrongExpectedVersion'ExpectedRevision !Data.Word.Word64 |
     AppendResp'WrongExpectedVersion'Any !Database.EventStore.Grpc.Wire.Shared.Empty |
     AppendResp'WrongExpectedVersion'StreamExists !Database.EventStore.Grpc.Wire.Shared.Empty
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 instance Data.ProtoLens.Field.HasField AppendResp'WrongExpectedVersion "maybe'currentRevisionOption" (Prelude.Maybe AppendResp'WrongExpectedVersion'CurrentRevisionOption) where
   fieldOf _
     = (Prelude..)
@@ -2241,17 +2148,6 @@ instance Data.ProtoLens.Message AppendResp'WrongExpectedVersion where
   messageName _
     = Data.Text.pack
         "event_store.client.streams.AppendResp.WrongExpectedVersion"
-  packedMessageDescriptor _
-    = "\n\
-      \\DC4WrongExpectedVersion\DC2+\n\
-      \\DLEcurrent_revision\CAN\SOH \SOH(\EOTH\NULR\SIcurrentRevision\DC2?\n\
-      \\tno_stream\CAN\STX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\bnoStream\DC2-\n\
-      \\DC1expected_revision\CAN\ETX \SOH(\EOTH\SOHR\DLEexpectedRevision\DC24\n\
-      \\ETXany\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\SOHR\ETXany\DC2G\n\
-      \\rstream_exists\CAN\ENQ \SOH(\v2 .event_store.client.shared.EmptyH\SOHR\fstreamExistsB\EM\n\
-      \\ETBcurrent_revision_optionB\SUB\n\
-      \\CANexpected_revision_option"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         currentRevision__field_descriptor
@@ -2512,7 +2408,7 @@ _AppendResp'WrongExpectedVersion'StreamExists
 data DeleteReq
   = DeleteReq'_constructor {_DeleteReq'options :: !(Prelude.Maybe DeleteReq'Options),
                             _DeleteReq'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show DeleteReq where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -2534,18 +2430,6 @@ instance Data.ProtoLens.Field.HasField DeleteReq "maybe'options" (Prelude.Maybe 
 instance Data.ProtoLens.Message DeleteReq where
   messageName _
     = Data.Text.pack "event_store.client.streams.DeleteReq"
-  packedMessageDescriptor _
-    = "\n\
-      \\tDeleteReq\DC2G\n\
-      \\aoptions\CAN\SOH \SOH(\v2-.event_store.client.streams.DeleteReq.OptionsR\aoptions\SUB\221\STX\n\
-      \\aOptions\DC2X\n\
-      \\DC1stream_identifier\CAN\SOH \SOH(\v2+.event_store.client.shared.StreamIdentifierR\DLEstreamIdentifier\DC2\FS\n\
-      \\brevision\CAN\STX \SOH(\EOTH\NULR\brevision\DC2?\n\
-      \\tno_stream\CAN\ETX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\bnoStream\DC24\n\
-      \\ETXany\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ETXany\DC2G\n\
-      \\rstream_exists\CAN\ENQ \SOH(\v2 .event_store.client.shared.EmptyH\NULR\fstreamExistsB\SUB\n\
-      \\CANexpected_stream_revision"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         options__field_descriptor
@@ -2647,7 +2531,7 @@ data DeleteReq'Options
   = DeleteReq'Options'_constructor {_DeleteReq'Options'streamIdentifier :: !(Prelude.Maybe Database.EventStore.Grpc.Wire.Shared.StreamIdentifier),
                                     _DeleteReq'Options'expectedStreamRevision :: !(Prelude.Maybe DeleteReq'Options'ExpectedStreamRevision),
                                     _DeleteReq'Options'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show DeleteReq'Options where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -2659,7 +2543,7 @@ data DeleteReq'Options'ExpectedStreamRevision
     DeleteReq'Options'NoStream !Database.EventStore.Grpc.Wire.Shared.Empty |
     DeleteReq'Options'Any !Database.EventStore.Grpc.Wire.Shared.Empty |
     DeleteReq'Options'StreamExists !Database.EventStore.Grpc.Wire.Shared.Empty
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 instance Data.ProtoLens.Field.HasField DeleteReq'Options "streamIdentifier" Database.EventStore.Grpc.Wire.Shared.StreamIdentifier where
   fieldOf _
     = (Prelude..)
@@ -2805,16 +2689,6 @@ instance Data.ProtoLens.Field.HasField DeleteReq'Options "streamExists" Database
 instance Data.ProtoLens.Message DeleteReq'Options where
   messageName _
     = Data.Text.pack "event_store.client.streams.DeleteReq.Options"
-  packedMessageDescriptor _
-    = "\n\
-      \\aOptions\DC2X\n\
-      \\DC1stream_identifier\CAN\SOH \SOH(\v2+.event_store.client.shared.StreamIdentifierR\DLEstreamIdentifier\DC2\FS\n\
-      \\brevision\CAN\STX \SOH(\EOTH\NULR\brevision\DC2?\n\
-      \\tno_stream\CAN\ETX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\bnoStream\DC24\n\
-      \\ETXany\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ETXany\DC2G\n\
-      \\rstream_exists\CAN\ENQ \SOH(\v2 .event_store.client.shared.EmptyH\NULR\fstreamExistsB\SUB\n\
-      \\CANexpected_stream_revision"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         streamIdentifier__field_descriptor
@@ -3067,7 +2941,7 @@ _DeleteReq'Options'StreamExists
 data DeleteResp
   = DeleteResp'_constructor {_DeleteResp'positionOption :: !(Prelude.Maybe DeleteResp'PositionOption),
                              _DeleteResp'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show DeleteResp where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -3077,7 +2951,7 @@ instance Prelude.Show DeleteResp where
 data DeleteResp'PositionOption
   = DeleteResp'Position' !DeleteResp'Position |
     DeleteResp'NoPosition !Database.EventStore.Grpc.Wire.Shared.Empty
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 instance Data.ProtoLens.Field.HasField DeleteResp "maybe'positionOption" (Prelude.Maybe DeleteResp'PositionOption) where
   fieldOf _
     = (Prelude..)
@@ -3142,18 +3016,6 @@ instance Data.ProtoLens.Field.HasField DeleteResp "noPosition" Database.EventSto
 instance Data.ProtoLens.Message DeleteResp where
   messageName _
     = Data.Text.pack "event_store.client.streams.DeleteResp"
-  packedMessageDescriptor _
-    = "\n\
-      \\n\
-      \DeleteResp\DC2M\n\
-      \\bposition\CAN\SOH \SOH(\v2/.event_store.client.streams.DeleteResp.PositionH\NULR\bposition\DC2C\n\
-      \\vno_position\CAN\STX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\n\
-      \noPosition\SUB^\n\
-      \\bPosition\DC2'\n\
-      \\SIcommit_position\CAN\SOH \SOH(\EOTR\SOcommitPosition\DC2)\n\
-      \\DLEprepare_position\CAN\STX \SOH(\EOTR\SIpreparePositionB\DC1\n\
-      \\SIposition_option"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         position__field_descriptor
@@ -3298,7 +3160,7 @@ data DeleteResp'Position
   = DeleteResp'Position'_constructor {_DeleteResp'Position'commitPosition :: !Data.Word.Word64,
                                       _DeleteResp'Position'preparePosition :: !Data.Word.Word64,
                                       _DeleteResp'Position'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show DeleteResp'Position where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -3322,12 +3184,6 @@ instance Data.ProtoLens.Field.HasField DeleteResp'Position "preparePosition" Dat
 instance Data.ProtoLens.Message DeleteResp'Position where
   messageName _
     = Data.Text.pack "event_store.client.streams.DeleteResp.Position"
-  packedMessageDescriptor _
-    = "\n\
-      \\bPosition\DC2'\n\
-      \\SIcommit_position\CAN\SOH \SOH(\EOTR\SOcommitPosition\DC2)\n\
-      \\DLEprepare_position\CAN\STX \SOH(\EOTR\SIpreparePosition"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         commitPosition__field_descriptor
@@ -3448,7 +3304,7 @@ instance Control.DeepSeq.NFData DeleteResp'Position where
 data ReadReq
   = ReadReq'_constructor {_ReadReq'options :: !(Prelude.Maybe ReadReq'Options),
                           _ReadReq'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show ReadReq where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -3469,65 +3325,6 @@ instance Data.ProtoLens.Field.HasField ReadReq "maybe'options" (Prelude.Maybe Re
         Prelude.id
 instance Data.ProtoLens.Message ReadReq where
   messageName _ = Data.Text.pack "event_store.client.streams.ReadReq"
-  packedMessageDescriptor _
-    = "\n\
-      \\aReadReq\DC2E\n\
-      \\aoptions\CAN\SOH \SOH(\v2+.event_store.client.streams.ReadReq.OptionsR\aoptions\SUB\206\SI\n\
-      \\aOptions\DC2S\n\
-      \\ACKstream\CAN\SOH \SOH(\v29.event_store.client.streams.ReadReq.Options.StreamOptionsH\NULR\ACKstream\DC2J\n\
-      \\ETXall\CAN\STX \SOH(\v26.event_store.client.streams.ReadReq.Options.AllOptionsH\NULR\ETXall\DC2`\n\
-      \\SOread_direction\CAN\ETX \SOH(\SO29.event_store.client.streams.ReadReq.Options.ReadDirectionR\rreadDirection\DC2#\n\
-      \\rresolve_links\CAN\EOT \SOH(\bR\fresolveLinks\DC2\SYN\n\
-      \\ENQcount\CAN\ENQ \SOH(\EOTH\SOHR\ENQcount\DC2e\n\
-      \\fsubscription\CAN\ACK \SOH(\v2?.event_store.client.streams.ReadReq.Options.SubscriptionOptionsH\SOHR\fsubscription\DC2S\n\
-      \\ACKfilter\CAN\a \SOH(\v29.event_store.client.streams.ReadReq.Options.FilterOptionsH\STXR\ACKfilter\DC2?\n\
-      \\tno_filter\CAN\b \SOH(\v2 .event_store.client.shared.EmptyH\STXR\bnoFilter\DC2W\n\
-      \\vuuid_option\CAN\t \SOH(\v26.event_store.client.streams.ReadReq.Options.UUIDOptionR\n\
-      \uuidOption\SUB\138\STX\n\
-      \\rStreamOptions\DC2X\n\
-      \\DC1stream_identifier\CAN\SOH \SOH(\v2+.event_store.client.shared.StreamIdentifierR\DLEstreamIdentifier\DC2\FS\n\
-      \\brevision\CAN\STX \SOH(\EOTH\NULR\brevision\DC28\n\
-      \\ENQstart\CAN\ETX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ENQstart\DC24\n\
-      \\ETXend\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ETXendB\DC1\n\
-      \\SIrevision_option\SUB\222\SOH\n\
-      \\n\
-      \AllOptions\DC2R\n\
-      \\bposition\CAN\SOH \SOH(\v24.event_store.client.streams.ReadReq.Options.PositionH\NULR\bposition\DC28\n\
-      \\ENQstart\CAN\STX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ENQstart\DC24\n\
-      \\ETXend\CAN\ETX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ETXendB\f\n\
-      \\n\
-      \all_option\SUB\NAK\n\
-      \\DC3SubscriptionOptions\SUB^\n\
-      \\bPosition\DC2'\n\
-      \\SIcommit_position\CAN\SOH \SOH(\EOTR\SOcommitPosition\DC2)\n\
-      \\DLEprepare_position\CAN\STX \SOH(\EOTR\SIpreparePosition\SUB\205\ETX\n\
-      \\rFilterOptions\DC2s\n\
-      \\DC1stream_identifier\CAN\SOH \SOH(\v2D.event_store.client.streams.ReadReq.Options.FilterOptions.ExpressionH\NULR\DLEstreamIdentifier\DC2e\n\
-      \\n\
-      \event_type\CAN\STX \SOH(\v2D.event_store.client.streams.ReadReq.Options.FilterOptions.ExpressionH\NULR\teventType\DC2\DC2\n\
-      \\ETXmax\CAN\ETX \SOH(\rH\SOHR\ETXmax\DC28\n\
-      \\ENQcount\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\SOHR\ENQcount\DC2B\n\
-      \\FScheckpointIntervalMultiplier\CAN\ENQ \SOH(\rR\FScheckpointIntervalMultiplier\SUB:\n\
-      \\n\
-      \Expression\DC2\DC4\n\
-      \\ENQregex\CAN\SOH \SOH(\tR\ENQregex\DC2\SYN\n\
-      \\ACKprefix\CAN\STX \ETX(\tR\ACKprefixB\b\n\
-      \\ACKfilterB\b\n\
-      \\ACKwindow\SUB\151\SOH\n\
-      \\n\
-      \UUIDOption\DC2B\n\
-      \\n\
-      \structured\CAN\SOH \SOH(\v2 .event_store.client.shared.EmptyH\NULR\n\
-      \structured\DC2:\n\
-      \\ACKstring\CAN\STX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ACKstringB\t\n\
-      \\acontent\",\n\
-      \\rReadDirection\DC2\f\n\
-      \\bForwards\DLE\NUL\DC2\r\n\
-      \\tBackwards\DLE\SOHB\SI\n\
-      \\rstream_optionB\SO\n\
-      \\fcount_optionB\SI\n\
-      \\rfilter_option"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         options__field_descriptor
@@ -3640,7 +3437,7 @@ data ReadReq'Options
                                   _ReadReq'Options'countOption :: !(Prelude.Maybe ReadReq'Options'CountOption),
                                   _ReadReq'Options'filterOption :: !(Prelude.Maybe ReadReq'Options'FilterOption),
                                   _ReadReq'Options'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show ReadReq'Options where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -3650,15 +3447,15 @@ instance Prelude.Show ReadReq'Options where
 data ReadReq'Options'StreamOption
   = ReadReq'Options'Stream !ReadReq'Options'StreamOptions |
     ReadReq'Options'All !ReadReq'Options'AllOptions
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 data ReadReq'Options'CountOption
   = ReadReq'Options'Count !Data.Word.Word64 |
     ReadReq'Options'Subscription !ReadReq'Options'SubscriptionOptions
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 data ReadReq'Options'FilterOption
   = ReadReq'Options'Filter !ReadReq'Options'FilterOptions |
     ReadReq'Options'NoFilter !Database.EventStore.Grpc.Wire.Shared.Empty
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 instance Data.ProtoLens.Field.HasField ReadReq'Options "readDirection" ReadReq'Options'ReadDirection where
   fieldOf _
     = (Prelude..)
@@ -3877,63 +3674,6 @@ instance Data.ProtoLens.Field.HasField ReadReq'Options "noFilter" Database.Event
 instance Data.ProtoLens.Message ReadReq'Options where
   messageName _
     = Data.Text.pack "event_store.client.streams.ReadReq.Options"
-  packedMessageDescriptor _
-    = "\n\
-      \\aOptions\DC2S\n\
-      \\ACKstream\CAN\SOH \SOH(\v29.event_store.client.streams.ReadReq.Options.StreamOptionsH\NULR\ACKstream\DC2J\n\
-      \\ETXall\CAN\STX \SOH(\v26.event_store.client.streams.ReadReq.Options.AllOptionsH\NULR\ETXall\DC2`\n\
-      \\SOread_direction\CAN\ETX \SOH(\SO29.event_store.client.streams.ReadReq.Options.ReadDirectionR\rreadDirection\DC2#\n\
-      \\rresolve_links\CAN\EOT \SOH(\bR\fresolveLinks\DC2\SYN\n\
-      \\ENQcount\CAN\ENQ \SOH(\EOTH\SOHR\ENQcount\DC2e\n\
-      \\fsubscription\CAN\ACK \SOH(\v2?.event_store.client.streams.ReadReq.Options.SubscriptionOptionsH\SOHR\fsubscription\DC2S\n\
-      \\ACKfilter\CAN\a \SOH(\v29.event_store.client.streams.ReadReq.Options.FilterOptionsH\STXR\ACKfilter\DC2?\n\
-      \\tno_filter\CAN\b \SOH(\v2 .event_store.client.shared.EmptyH\STXR\bnoFilter\DC2W\n\
-      \\vuuid_option\CAN\t \SOH(\v26.event_store.client.streams.ReadReq.Options.UUIDOptionR\n\
-      \uuidOption\SUB\138\STX\n\
-      \\rStreamOptions\DC2X\n\
-      \\DC1stream_identifier\CAN\SOH \SOH(\v2+.event_store.client.shared.StreamIdentifierR\DLEstreamIdentifier\DC2\FS\n\
-      \\brevision\CAN\STX \SOH(\EOTH\NULR\brevision\DC28\n\
-      \\ENQstart\CAN\ETX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ENQstart\DC24\n\
-      \\ETXend\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ETXendB\DC1\n\
-      \\SIrevision_option\SUB\222\SOH\n\
-      \\n\
-      \AllOptions\DC2R\n\
-      \\bposition\CAN\SOH \SOH(\v24.event_store.client.streams.ReadReq.Options.PositionH\NULR\bposition\DC28\n\
-      \\ENQstart\CAN\STX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ENQstart\DC24\n\
-      \\ETXend\CAN\ETX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ETXendB\f\n\
-      \\n\
-      \all_option\SUB\NAK\n\
-      \\DC3SubscriptionOptions\SUB^\n\
-      \\bPosition\DC2'\n\
-      \\SIcommit_position\CAN\SOH \SOH(\EOTR\SOcommitPosition\DC2)\n\
-      \\DLEprepare_position\CAN\STX \SOH(\EOTR\SIpreparePosition\SUB\205\ETX\n\
-      \\rFilterOptions\DC2s\n\
-      \\DC1stream_identifier\CAN\SOH \SOH(\v2D.event_store.client.streams.ReadReq.Options.FilterOptions.ExpressionH\NULR\DLEstreamIdentifier\DC2e\n\
-      \\n\
-      \event_type\CAN\STX \SOH(\v2D.event_store.client.streams.ReadReq.Options.FilterOptions.ExpressionH\NULR\teventType\DC2\DC2\n\
-      \\ETXmax\CAN\ETX \SOH(\rH\SOHR\ETXmax\DC28\n\
-      \\ENQcount\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\SOHR\ENQcount\DC2B\n\
-      \\FScheckpointIntervalMultiplier\CAN\ENQ \SOH(\rR\FScheckpointIntervalMultiplier\SUB:\n\
-      \\n\
-      \Expression\DC2\DC4\n\
-      \\ENQregex\CAN\SOH \SOH(\tR\ENQregex\DC2\SYN\n\
-      \\ACKprefix\CAN\STX \ETX(\tR\ACKprefixB\b\n\
-      \\ACKfilterB\b\n\
-      \\ACKwindow\SUB\151\SOH\n\
-      \\n\
-      \UUIDOption\DC2B\n\
-      \\n\
-      \structured\CAN\SOH \SOH(\v2 .event_store.client.shared.EmptyH\NULR\n\
-      \structured\DC2:\n\
-      \\ACKstring\CAN\STX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ACKstringB\t\n\
-      \\acontent\",\n\
-      \\rReadDirection\DC2\f\n\
-      \\bForwards\DLE\NUL\DC2\r\n\
-      \\tBackwards\DLE\SOHB\SI\n\
-      \\rstream_optionB\SO\n\
-      \\fcount_optionB\SI\n\
-      \\rfilter_option"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         readDirection__field_descriptor
@@ -4357,7 +4097,7 @@ _ReadReq'Options'NoFilter
 data ReadReq'Options'AllOptions
   = ReadReq'Options'AllOptions'_constructor {_ReadReq'Options'AllOptions'allOption :: !(Prelude.Maybe ReadReq'Options'AllOptions'AllOption),
                                              _ReadReq'Options'AllOptions'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show ReadReq'Options'AllOptions where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -4368,7 +4108,7 @@ data ReadReq'Options'AllOptions'AllOption
   = ReadReq'Options'AllOptions'Position !ReadReq'Options'Position |
     ReadReq'Options'AllOptions'Start !Database.EventStore.Grpc.Wire.Shared.Empty |
     ReadReq'Options'AllOptions'End !Database.EventStore.Grpc.Wire.Shared.Empty
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 instance Data.ProtoLens.Field.HasField ReadReq'Options'AllOptions "maybe'allOption" (Prelude.Maybe ReadReq'Options'AllOptions'AllOption) where
   fieldOf _
     = (Prelude..)
@@ -4464,16 +4204,6 @@ instance Data.ProtoLens.Message ReadReq'Options'AllOptions where
   messageName _
     = Data.Text.pack
         "event_store.client.streams.ReadReq.Options.AllOptions"
-  packedMessageDescriptor _
-    = "\n\
-      \\n\
-      \AllOptions\DC2R\n\
-      \\bposition\CAN\SOH \SOH(\v24.event_store.client.streams.ReadReq.Options.PositionH\NULR\bposition\DC28\n\
-      \\ENQstart\CAN\STX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ENQstart\DC24\n\
-      \\ETXend\CAN\ETX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ETXendB\f\n\
-      \\n\
-      \all_option"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         position__field_descriptor
@@ -4669,7 +4399,7 @@ data ReadReq'Options'FilterOptions
                                                 _ReadReq'Options'FilterOptions'filter :: !(Prelude.Maybe ReadReq'Options'FilterOptions'Filter),
                                                 _ReadReq'Options'FilterOptions'window :: !(Prelude.Maybe ReadReq'Options'FilterOptions'Window),
                                                 _ReadReq'Options'FilterOptions'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show ReadReq'Options'FilterOptions where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -4679,11 +4409,11 @@ instance Prelude.Show ReadReq'Options'FilterOptions where
 data ReadReq'Options'FilterOptions'Filter
   = ReadReq'Options'FilterOptions'StreamIdentifier !ReadReq'Options'FilterOptions'Expression |
     ReadReq'Options'FilterOptions'EventType !ReadReq'Options'FilterOptions'Expression
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 data ReadReq'Options'FilterOptions'Window
   = ReadReq'Options'FilterOptions'Max !Data.Word.Word32 |
     ReadReq'Options'FilterOptions'Count !Database.EventStore.Grpc.Wire.Shared.Empty
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 instance Data.ProtoLens.Field.HasField ReadReq'Options'FilterOptions "checkpointIntervalMultiplier" Data.Word.Word32 where
   fieldOf _
     = (Prelude..)
@@ -4829,22 +4559,6 @@ instance Data.ProtoLens.Message ReadReq'Options'FilterOptions where
   messageName _
     = Data.Text.pack
         "event_store.client.streams.ReadReq.Options.FilterOptions"
-  packedMessageDescriptor _
-    = "\n\
-      \\rFilterOptions\DC2s\n\
-      \\DC1stream_identifier\CAN\SOH \SOH(\v2D.event_store.client.streams.ReadReq.Options.FilterOptions.ExpressionH\NULR\DLEstreamIdentifier\DC2e\n\
-      \\n\
-      \event_type\CAN\STX \SOH(\v2D.event_store.client.streams.ReadReq.Options.FilterOptions.ExpressionH\NULR\teventType\DC2\DC2\n\
-      \\ETXmax\CAN\ETX \SOH(\rH\SOHR\ETXmax\DC28\n\
-      \\ENQcount\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\SOHR\ENQcount\DC2B\n\
-      \\FScheckpointIntervalMultiplier\CAN\ENQ \SOH(\rR\FScheckpointIntervalMultiplier\SUB:\n\
-      \\n\
-      \Expression\DC2\DC4\n\
-      \\ENQregex\CAN\SOH \SOH(\tR\ENQregex\DC2\SYN\n\
-      \\ACKprefix\CAN\STX \ETX(\tR\ACKprefixB\b\n\
-      \\ACKfilterB\b\n\
-      \\ACKwindow"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         checkpointIntervalMultiplier__field_descriptor
@@ -5114,7 +4828,7 @@ data ReadReq'Options'FilterOptions'Expression
   = ReadReq'Options'FilterOptions'Expression'_constructor {_ReadReq'Options'FilterOptions'Expression'regex :: !Data.Text.Text,
                                                            _ReadReq'Options'FilterOptions'Expression'prefix :: !(Data.Vector.Vector Data.Text.Text),
                                                            _ReadReq'Options'FilterOptions'Expression'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show ReadReq'Options'FilterOptions'Expression where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -5151,13 +4865,6 @@ instance Data.ProtoLens.Message ReadReq'Options'FilterOptions'Expression where
   messageName _
     = Data.Text.pack
         "event_store.client.streams.ReadReq.Options.FilterOptions.Expression"
-  packedMessageDescriptor _
-    = "\n\
-      \\n\
-      \Expression\DC2\DC4\n\
-      \\ENQregex\CAN\SOH \SOH(\tR\ENQregex\DC2\SYN\n\
-      \\ACKprefix\CAN\STX \ETX(\tR\ACKprefix"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         regex__field_descriptor
@@ -5314,7 +5021,7 @@ data ReadReq'Options'Position
   = ReadReq'Options'Position'_constructor {_ReadReq'Options'Position'commitPosition :: !Data.Word.Word64,
                                            _ReadReq'Options'Position'preparePosition :: !Data.Word.Word64,
                                            _ReadReq'Options'Position'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show ReadReq'Options'Position where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -5341,12 +5048,6 @@ instance Data.ProtoLens.Message ReadReq'Options'Position where
   messageName _
     = Data.Text.pack
         "event_store.client.streams.ReadReq.Options.Position"
-  packedMessageDescriptor _
-    = "\n\
-      \\bPosition\DC2'\n\
-      \\SIcommit_position\CAN\SOH \SOH(\EOTR\SOcommitPosition\DC2)\n\
-      \\DLEprepare_position\CAN\STX \SOH(\EOTR\SIpreparePosition"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         commitPosition__field_descriptor
@@ -5462,12 +5163,12 @@ instance Control.DeepSeq.NFData ReadReq'Options'Position where
                    (_ReadReq'Options'Position'preparePosition x__) ()))
 newtype ReadReq'Options'ReadDirection'UnrecognizedValue
   = ReadReq'Options'ReadDirection'UnrecognizedValue Data.Int.Int32
-  deriving stock (Prelude.Eq, Prelude.Ord, Prelude.Show)
+  deriving (Prelude.Eq, Prelude.Ord, Prelude.Show)
 data ReadReq'Options'ReadDirection
   = ReadReq'Options'Forwards |
     ReadReq'Options'Backwards |
     ReadReq'Options'ReadDirection'Unrecognized !ReadReq'Options'ReadDirection'UnrecognizedValue
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 instance Data.ProtoLens.MessageEnum ReadReq'Options'ReadDirection where
   maybeToEnum 0 = Prelude.Just ReadReq'Options'Forwards
   maybeToEnum 1 = Prelude.Just ReadReq'Options'Backwards
@@ -5541,7 +5242,7 @@ data ReadReq'Options'StreamOptions
   = ReadReq'Options'StreamOptions'_constructor {_ReadReq'Options'StreamOptions'streamIdentifier :: !(Prelude.Maybe Database.EventStore.Grpc.Wire.Shared.StreamIdentifier),
                                                 _ReadReq'Options'StreamOptions'revisionOption :: !(Prelude.Maybe ReadReq'Options'StreamOptions'RevisionOption),
                                                 _ReadReq'Options'StreamOptions'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show ReadReq'Options'StreamOptions where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -5552,7 +5253,7 @@ data ReadReq'Options'StreamOptions'RevisionOption
   = ReadReq'Options'StreamOptions'Revision !Data.Word.Word64 |
     ReadReq'Options'StreamOptions'Start !Database.EventStore.Grpc.Wire.Shared.Empty |
     ReadReq'Options'StreamOptions'End !Database.EventStore.Grpc.Wire.Shared.Empty
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 instance Data.ProtoLens.Field.HasField ReadReq'Options'StreamOptions "streamIdentifier" Database.EventStore.Grpc.Wire.Shared.StreamIdentifier where
   fieldOf _
     = (Prelude..)
@@ -5673,15 +5374,6 @@ instance Data.ProtoLens.Message ReadReq'Options'StreamOptions where
   messageName _
     = Data.Text.pack
         "event_store.client.streams.ReadReq.Options.StreamOptions"
-  packedMessageDescriptor _
-    = "\n\
-      \\rStreamOptions\DC2X\n\
-      \\DC1stream_identifier\CAN\SOH \SOH(\v2+.event_store.client.shared.StreamIdentifierR\DLEstreamIdentifier\DC2\FS\n\
-      \\brevision\CAN\STX \SOH(\EOTH\NULR\brevision\DC28\n\
-      \\ENQstart\CAN\ETX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ENQstart\DC24\n\
-      \\ETXend\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ETXendB\DC1\n\
-      \\SIrevision_option"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         streamIdentifier__field_descriptor
@@ -5893,7 +5585,7 @@ _ReadReq'Options'StreamOptions'End
       -}
 data ReadReq'Options'SubscriptionOptions
   = ReadReq'Options'SubscriptionOptions'_constructor {_ReadReq'Options'SubscriptionOptions'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show ReadReq'Options'SubscriptionOptions where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -5904,10 +5596,6 @@ instance Data.ProtoLens.Message ReadReq'Options'SubscriptionOptions where
   messageName _
     = Data.Text.pack
         "event_store.client.streams.ReadReq.Options.SubscriptionOptions"
-  packedMessageDescriptor _
-    = "\n\
-      \\DC3SubscriptionOptions"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag = let in Data.Map.fromList []
   unknownFields
     = Lens.Family2.Unchecked.lens
@@ -5968,7 +5656,7 @@ instance Control.DeepSeq.NFData ReadReq'Options'SubscriptionOptions where
 data ReadReq'Options'UUIDOption
   = ReadReq'Options'UUIDOption'_constructor {_ReadReq'Options'UUIDOption'content :: !(Prelude.Maybe ReadReq'Options'UUIDOption'Content),
                                              _ReadReq'Options'UUIDOption'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show ReadReq'Options'UUIDOption where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -5978,7 +5666,7 @@ instance Prelude.Show ReadReq'Options'UUIDOption where
 data ReadReq'Options'UUIDOption'Content
   = ReadReq'Options'UUIDOption'Structured !Database.EventStore.Grpc.Wire.Shared.Empty |
     ReadReq'Options'UUIDOption'String !Database.EventStore.Grpc.Wire.Shared.Empty
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 instance Data.ProtoLens.Field.HasField ReadReq'Options'UUIDOption "maybe'content" (Prelude.Maybe ReadReq'Options'UUIDOption'Content) where
   fieldOf _
     = (Prelude..)
@@ -6048,16 +5736,6 @@ instance Data.ProtoLens.Message ReadReq'Options'UUIDOption where
   messageName _
     = Data.Text.pack
         "event_store.client.streams.ReadReq.Options.UUIDOption"
-  packedMessageDescriptor _
-    = "\n\
-      \\n\
-      \UUIDOption\DC2B\n\
-      \\n\
-      \structured\CAN\SOH \SOH(\v2 .event_store.client.shared.EmptyH\NULR\n\
-      \structured\DC2:\n\
-      \\ACKstring\CAN\STX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ACKstringB\t\n\
-      \\acontent"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         structured__field_descriptor
@@ -6212,7 +5890,7 @@ _ReadReq'Options'UUIDOption'String
 data ReadResp
   = ReadResp'_constructor {_ReadResp'content :: !(Prelude.Maybe ReadResp'Content),
                            _ReadResp'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show ReadResp where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -6224,7 +5902,7 @@ data ReadResp'Content
     ReadResp'Confirmation !ReadResp'SubscriptionConfirmation |
     ReadResp'Checkpoint' !ReadResp'Checkpoint |
     ReadResp'StreamNotFound' !ReadResp'StreamNotFound
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 instance Data.ProtoLens.Field.HasField ReadResp "maybe'content" (Prelude.Maybe ReadResp'Content) where
   fieldOf _
     = (Prelude..)
@@ -6334,45 +6012,6 @@ instance Data.ProtoLens.Field.HasField ReadResp "streamNotFound" ReadResp'Stream
 instance Data.ProtoLens.Message ReadResp where
   messageName _
     = Data.Text.pack "event_store.client.streams.ReadResp"
-  packedMessageDescriptor _
-    = "\n\
-      \\bReadResp\DC2F\n\
-      \\ENQevent\CAN\SOH \SOH(\v2..event_store.client.streams.ReadResp.ReadEventH\NULR\ENQevent\DC2c\n\
-      \\fconfirmation\CAN\STX \SOH(\v2=.event_store.client.streams.ReadResp.SubscriptionConfirmationH\NULR\fconfirmation\DC2Q\n\
-      \\n\
-      \checkpoint\CAN\ETX \SOH(\v2/.event_store.client.streams.ReadResp.CheckpointH\NULR\n\
-      \checkpoint\DC2_\n\
-      \\DLEstream_not_found\CAN\EOT \SOH(\v23.event_store.client.streams.ReadResp.StreamNotFoundH\NULR\SOstreamNotFound\SUB\169\ACK\n\
-      \\tReadEvent\DC2R\n\
-      \\ENQevent\CAN\SOH \SOH(\v2<.event_store.client.streams.ReadResp.ReadEvent.RecordedEventR\ENQevent\DC2P\n\
-      \\EOTlink\CAN\STX \SOH(\v2<.event_store.client.streams.ReadResp.ReadEvent.RecordedEventR\EOTlink\DC2)\n\
-      \\SIcommit_position\CAN\ETX \SOH(\EOTH\NULR\SOcommitPosition\DC2C\n\
-      \\vno_position\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\NULR\n\
-      \noPosition\SUB\249\ETX\n\
-      \\rRecordedEvent\DC2/\n\
-      \\STXid\CAN\SOH \SOH(\v2\US.event_store.client.shared.UUIDR\STXid\DC2X\n\
-      \\DC1stream_identifier\CAN\STX \SOH(\v2+.event_store.client.shared.StreamIdentifierR\DLEstreamIdentifier\DC2'\n\
-      \\SIstream_revision\CAN\ETX \SOH(\EOTR\SOstreamRevision\DC2)\n\
-      \\DLEprepare_position\CAN\EOT \SOH(\EOTR\SIpreparePosition\DC2'\n\
-      \\SIcommit_position\CAN\ENQ \SOH(\EOTR\SOcommitPosition\DC2f\n\
-      \\bmetadata\CAN\ACK \ETX(\v2J.event_store.client.streams.ReadResp.ReadEvent.RecordedEvent.MetadataEntryR\bmetadata\DC2'\n\
-      \\SIcustom_metadata\CAN\a \SOH(\fR\SOcustomMetadata\DC2\DC2\n\
-      \\EOTdata\CAN\b \SOH(\fR\EOTdata\SUB;\n\
-      \\rMetadataEntry\DC2\DLE\n\
-      \\ETXkey\CAN\SOH \SOH(\tR\ETXkey\DC2\DC4\n\
-      \\ENQvalue\CAN\STX \SOH(\tR\ENQvalue:\STX8\SOHB\n\
-      \\n\
-      \\bposition\SUBC\n\
-      \\CANSubscriptionConfirmation\DC2'\n\
-      \\SIsubscription_id\CAN\SOH \SOH(\tR\SOsubscriptionId\SUB`\n\
-      \\n\
-      \Checkpoint\DC2'\n\
-      \\SIcommit_position\CAN\SOH \SOH(\EOTR\SOcommitPosition\DC2)\n\
-      \\DLEprepare_position\CAN\STX \SOH(\EOTR\SIpreparePosition\SUBj\n\
-      \\SOStreamNotFound\DC2X\n\
-      \\DC1stream_identifier\CAN\SOH \SOH(\v2+.event_store.client.shared.StreamIdentifierR\DLEstreamIdentifierB\t\n\
-      \\acontent"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         event__field_descriptor
@@ -6592,7 +6231,7 @@ data ReadResp'Checkpoint
   = ReadResp'Checkpoint'_constructor {_ReadResp'Checkpoint'commitPosition :: !Data.Word.Word64,
                                       _ReadResp'Checkpoint'preparePosition :: !Data.Word.Word64,
                                       _ReadResp'Checkpoint'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show ReadResp'Checkpoint where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -6616,13 +6255,6 @@ instance Data.ProtoLens.Field.HasField ReadResp'Checkpoint "preparePosition" Dat
 instance Data.ProtoLens.Message ReadResp'Checkpoint where
   messageName _
     = Data.Text.pack "event_store.client.streams.ReadResp.Checkpoint"
-  packedMessageDescriptor _
-    = "\n\
-      \\n\
-      \Checkpoint\DC2'\n\
-      \\SIcommit_position\CAN\SOH \SOH(\EOTR\SOcommitPosition\DC2)\n\
-      \\DLEprepare_position\CAN\STX \SOH(\EOTR\SIpreparePosition"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         commitPosition__field_descriptor
@@ -6752,7 +6384,7 @@ data ReadResp'ReadEvent
                                      _ReadResp'ReadEvent'link :: !(Prelude.Maybe ReadResp'ReadEvent'RecordedEvent),
                                      _ReadResp'ReadEvent'position :: !(Prelude.Maybe ReadResp'ReadEvent'Position),
                                      _ReadResp'ReadEvent'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show ReadResp'ReadEvent where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -6762,7 +6394,7 @@ instance Prelude.Show ReadResp'ReadEvent where
 data ReadResp'ReadEvent'Position
   = ReadResp'ReadEvent'CommitPosition !Data.Word.Word64 |
     ReadResp'ReadEvent'NoPosition !Database.EventStore.Grpc.Wire.Shared.Empty
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 instance Data.ProtoLens.Field.HasField ReadResp'ReadEvent "event" ReadResp'ReadEvent'RecordedEvent where
   fieldOf _
     = (Prelude..)
@@ -6857,29 +6489,6 @@ instance Data.ProtoLens.Field.HasField ReadResp'ReadEvent "noPosition" Database.
 instance Data.ProtoLens.Message ReadResp'ReadEvent where
   messageName _
     = Data.Text.pack "event_store.client.streams.ReadResp.ReadEvent"
-  packedMessageDescriptor _
-    = "\n\
-      \\tReadEvent\DC2R\n\
-      \\ENQevent\CAN\SOH \SOH(\v2<.event_store.client.streams.ReadResp.ReadEvent.RecordedEventR\ENQevent\DC2P\n\
-      \\EOTlink\CAN\STX \SOH(\v2<.event_store.client.streams.ReadResp.ReadEvent.RecordedEventR\EOTlink\DC2)\n\
-      \\SIcommit_position\CAN\ETX \SOH(\EOTH\NULR\SOcommitPosition\DC2C\n\
-      \\vno_position\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\NULR\n\
-      \noPosition\SUB\249\ETX\n\
-      \\rRecordedEvent\DC2/\n\
-      \\STXid\CAN\SOH \SOH(\v2\US.event_store.client.shared.UUIDR\STXid\DC2X\n\
-      \\DC1stream_identifier\CAN\STX \SOH(\v2+.event_store.client.shared.StreamIdentifierR\DLEstreamIdentifier\DC2'\n\
-      \\SIstream_revision\CAN\ETX \SOH(\EOTR\SOstreamRevision\DC2)\n\
-      \\DLEprepare_position\CAN\EOT \SOH(\EOTR\SIpreparePosition\DC2'\n\
-      \\SIcommit_position\CAN\ENQ \SOH(\EOTR\SOcommitPosition\DC2f\n\
-      \\bmetadata\CAN\ACK \ETX(\v2J.event_store.client.streams.ReadResp.ReadEvent.RecordedEvent.MetadataEntryR\bmetadata\DC2'\n\
-      \\SIcustom_metadata\CAN\a \SOH(\fR\SOcustomMetadata\DC2\DC2\n\
-      \\EOTdata\CAN\b \SOH(\fR\EOTdata\SUB;\n\
-      \\rMetadataEntry\DC2\DLE\n\
-      \\ETXkey\CAN\SOH \SOH(\tR\ETXkey\DC2\DC4\n\
-      \\ENQvalue\CAN\STX \SOH(\tR\ENQvalue:\STX8\SOHB\n\
-      \\n\
-      \\bposition"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         event__field_descriptor
@@ -7100,7 +6709,7 @@ data ReadResp'ReadEvent'RecordedEvent
                                                    _ReadResp'ReadEvent'RecordedEvent'customMetadata :: !Data.ByteString.ByteString,
                                                    _ReadResp'ReadEvent'RecordedEvent'data' :: !Data.ByteString.ByteString,
                                                    _ReadResp'ReadEvent'RecordedEvent'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show ReadResp'ReadEvent'RecordedEvent where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -7188,21 +6797,6 @@ instance Data.ProtoLens.Message ReadResp'ReadEvent'RecordedEvent where
   messageName _
     = Data.Text.pack
         "event_store.client.streams.ReadResp.ReadEvent.RecordedEvent"
-  packedMessageDescriptor _
-    = "\n\
-      \\rRecordedEvent\DC2/\n\
-      \\STXid\CAN\SOH \SOH(\v2\US.event_store.client.shared.UUIDR\STXid\DC2X\n\
-      \\DC1stream_identifier\CAN\STX \SOH(\v2+.event_store.client.shared.StreamIdentifierR\DLEstreamIdentifier\DC2'\n\
-      \\SIstream_revision\CAN\ETX \SOH(\EOTR\SOstreamRevision\DC2)\n\
-      \\DLEprepare_position\CAN\EOT \SOH(\EOTR\SIpreparePosition\DC2'\n\
-      \\SIcommit_position\CAN\ENQ \SOH(\EOTR\SOcommitPosition\DC2f\n\
-      \\bmetadata\CAN\ACK \ETX(\v2J.event_store.client.streams.ReadResp.ReadEvent.RecordedEvent.MetadataEntryR\bmetadata\DC2'\n\
-      \\SIcustom_metadata\CAN\a \SOH(\fR\SOcustomMetadata\DC2\DC2\n\
-      \\EOTdata\CAN\b \SOH(\fR\EOTdata\SUB;\n\
-      \\rMetadataEntry\DC2\DLE\n\
-      \\ETXkey\CAN\SOH \SOH(\tR\ETXkey\DC2\DC4\n\
-      \\ENQvalue\CAN\STX \SOH(\tR\ENQvalue:\STX8\SOH"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         id__field_descriptor
@@ -7562,7 +7156,7 @@ data ReadResp'ReadEvent'RecordedEvent'MetadataEntry
   = ReadResp'ReadEvent'RecordedEvent'MetadataEntry'_constructor {_ReadResp'ReadEvent'RecordedEvent'MetadataEntry'key :: !Data.Text.Text,
                                                                  _ReadResp'ReadEvent'RecordedEvent'MetadataEntry'value :: !Data.Text.Text,
                                                                  _ReadResp'ReadEvent'RecordedEvent'MetadataEntry'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show ReadResp'ReadEvent'RecordedEvent'MetadataEntry where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -7591,12 +7185,6 @@ instance Data.ProtoLens.Message ReadResp'ReadEvent'RecordedEvent'MetadataEntry w
   messageName _
     = Data.Text.pack
         "event_store.client.streams.ReadResp.ReadEvent.RecordedEvent.MetadataEntry"
-  packedMessageDescriptor _
-    = "\n\
-      \\rMetadataEntry\DC2\DLE\n\
-      \\ETXkey\CAN\SOH \SOH(\tR\ETXkey\DC2\DC4\n\
-      \\ENQvalue\CAN\STX \SOH(\tR\ENQvalue:\STX8\SOH"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         key__field_descriptor
@@ -7740,7 +7328,7 @@ instance Control.DeepSeq.NFData ReadResp'ReadEvent'RecordedEvent'MetadataEntry w
 data ReadResp'StreamNotFound
   = ReadResp'StreamNotFound'_constructor {_ReadResp'StreamNotFound'streamIdentifier :: !(Prelude.Maybe Database.EventStore.Grpc.Wire.Shared.StreamIdentifier),
                                           _ReadResp'StreamNotFound'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show ReadResp'StreamNotFound where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -7767,11 +7355,6 @@ instance Data.ProtoLens.Message ReadResp'StreamNotFound where
   messageName _
     = Data.Text.pack
         "event_store.client.streams.ReadResp.StreamNotFound"
-  packedMessageDescriptor _
-    = "\n\
-      \\SOStreamNotFound\DC2X\n\
-      \\DC1stream_identifier\CAN\SOH \SOH(\v2+.event_store.client.shared.StreamIdentifierR\DLEstreamIdentifier"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         streamIdentifier__field_descriptor
@@ -7868,7 +7451,7 @@ instance Control.DeepSeq.NFData ReadResp'StreamNotFound where
 data ReadResp'SubscriptionConfirmation
   = ReadResp'SubscriptionConfirmation'_constructor {_ReadResp'SubscriptionConfirmation'subscriptionId :: !Data.Text.Text,
                                                     _ReadResp'SubscriptionConfirmation'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show ReadResp'SubscriptionConfirmation where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -7887,11 +7470,6 @@ instance Data.ProtoLens.Message ReadResp'SubscriptionConfirmation where
   messageName _
     = Data.Text.pack
         "event_store.client.streams.ReadResp.SubscriptionConfirmation"
-  packedMessageDescriptor _
-    = "\n\
-      \\CANSubscriptionConfirmation\DC2'\n\
-      \\SIsubscription_id\CAN\SOH \SOH(\tR\SOsubscriptionId"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         subscriptionId__field_descriptor
@@ -7998,7 +7576,7 @@ instance Control.DeepSeq.NFData ReadResp'SubscriptionConfirmation where
 data TombstoneReq
   = TombstoneReq'_constructor {_TombstoneReq'options :: !(Prelude.Maybe TombstoneReq'Options),
                                _TombstoneReq'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show TombstoneReq where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -8022,18 +7600,6 @@ instance Data.ProtoLens.Field.HasField TombstoneReq "maybe'options" (Prelude.May
 instance Data.ProtoLens.Message TombstoneReq where
   messageName _
     = Data.Text.pack "event_store.client.streams.TombstoneReq"
-  packedMessageDescriptor _
-    = "\n\
-      \\fTombstoneReq\DC2J\n\
-      \\aoptions\CAN\SOH \SOH(\v20.event_store.client.streams.TombstoneReq.OptionsR\aoptions\SUB\221\STX\n\
-      \\aOptions\DC2X\n\
-      \\DC1stream_identifier\CAN\SOH \SOH(\v2+.event_store.client.shared.StreamIdentifierR\DLEstreamIdentifier\DC2\FS\n\
-      \\brevision\CAN\STX \SOH(\EOTH\NULR\brevision\DC2?\n\
-      \\tno_stream\CAN\ETX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\bnoStream\DC24\n\
-      \\ETXany\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ETXany\DC2G\n\
-      \\rstream_exists\CAN\ENQ \SOH(\v2 .event_store.client.shared.EmptyH\NULR\fstreamExistsB\SUB\n\
-      \\CANexpected_stream_revision"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         options__field_descriptor
@@ -8136,7 +7702,7 @@ data TombstoneReq'Options
   = TombstoneReq'Options'_constructor {_TombstoneReq'Options'streamIdentifier :: !(Prelude.Maybe Database.EventStore.Grpc.Wire.Shared.StreamIdentifier),
                                        _TombstoneReq'Options'expectedStreamRevision :: !(Prelude.Maybe TombstoneReq'Options'ExpectedStreamRevision),
                                        _TombstoneReq'Options'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show TombstoneReq'Options where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -8148,7 +7714,7 @@ data TombstoneReq'Options'ExpectedStreamRevision
     TombstoneReq'Options'NoStream !Database.EventStore.Grpc.Wire.Shared.Empty |
     TombstoneReq'Options'Any !Database.EventStore.Grpc.Wire.Shared.Empty |
     TombstoneReq'Options'StreamExists !Database.EventStore.Grpc.Wire.Shared.Empty
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 instance Data.ProtoLens.Field.HasField TombstoneReq'Options "streamIdentifier" Database.EventStore.Grpc.Wire.Shared.StreamIdentifier where
   fieldOf _
     = (Prelude..)
@@ -8294,16 +7860,6 @@ instance Data.ProtoLens.Field.HasField TombstoneReq'Options "streamExists" Datab
 instance Data.ProtoLens.Message TombstoneReq'Options where
   messageName _
     = Data.Text.pack "event_store.client.streams.TombstoneReq.Options"
-  packedMessageDescriptor _
-    = "\n\
-      \\aOptions\DC2X\n\
-      \\DC1stream_identifier\CAN\SOH \SOH(\v2+.event_store.client.shared.StreamIdentifierR\DLEstreamIdentifier\DC2\FS\n\
-      \\brevision\CAN\STX \SOH(\EOTH\NULR\brevision\DC2?\n\
-      \\tno_stream\CAN\ETX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\bnoStream\DC24\n\
-      \\ETXany\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ETXany\DC2G\n\
-      \\rstream_exists\CAN\ENQ \SOH(\v2 .event_store.client.shared.EmptyH\NULR\fstreamExistsB\SUB\n\
-      \\CANexpected_stream_revision"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         streamIdentifier__field_descriptor
@@ -8557,7 +8113,7 @@ _TombstoneReq'Options'StreamExists
 data TombstoneResp
   = TombstoneResp'_constructor {_TombstoneResp'positionOption :: !(Prelude.Maybe TombstoneResp'PositionOption),
                                 _TombstoneResp'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show TombstoneResp where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -8567,7 +8123,7 @@ instance Prelude.Show TombstoneResp where
 data TombstoneResp'PositionOption
   = TombstoneResp'Position' !TombstoneResp'Position |
     TombstoneResp'NoPosition !Database.EventStore.Grpc.Wire.Shared.Empty
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 instance Data.ProtoLens.Field.HasField TombstoneResp "maybe'positionOption" (Prelude.Maybe TombstoneResp'PositionOption) where
   fieldOf _
     = (Prelude..)
@@ -8634,17 +8190,6 @@ instance Data.ProtoLens.Field.HasField TombstoneResp "noPosition" Database.Event
 instance Data.ProtoLens.Message TombstoneResp where
   messageName _
     = Data.Text.pack "event_store.client.streams.TombstoneResp"
-  packedMessageDescriptor _
-    = "\n\
-      \\rTombstoneResp\DC2P\n\
-      \\bposition\CAN\SOH \SOH(\v22.event_store.client.streams.TombstoneResp.PositionH\NULR\bposition\DC2C\n\
-      \\vno_position\CAN\STX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\n\
-      \noPosition\SUB^\n\
-      \\bPosition\DC2'\n\
-      \\SIcommit_position\CAN\SOH \SOH(\EOTR\SOcommitPosition\DC2)\n\
-      \\DLEprepare_position\CAN\STX \SOH(\EOTR\SIpreparePositionB\DC1\n\
-      \\SIposition_option"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         position__field_descriptor
@@ -8789,7 +8334,7 @@ data TombstoneResp'Position
   = TombstoneResp'Position'_constructor {_TombstoneResp'Position'commitPosition :: !Data.Word.Word64,
                                          _TombstoneResp'Position'preparePosition :: !Data.Word.Word64,
                                          _TombstoneResp'Position'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show TombstoneResp'Position where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -8814,12 +8359,6 @@ instance Data.ProtoLens.Message TombstoneResp'Position where
   messageName _
     = Data.Text.pack
         "event_store.client.streams.TombstoneResp.Position"
-  packedMessageDescriptor _
-    = "\n\
-      \\bPosition\DC2'\n\
-      \\SIcommit_position\CAN\SOH \SOH(\EOTR\SOcommitPosition\DC2)\n\
-      \\DLEprepare_position\CAN\STX \SOH(\EOTR\SIpreparePosition"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         commitPosition__field_descriptor
@@ -8961,1205 +8500,3 @@ instance Data.ProtoLens.Service.Types.HasMethodImpl Streams "tombstone" where
   type MethodInput Streams "tombstone" = TombstoneReq
   type MethodOutput Streams "tombstone" = TombstoneResp
   type MethodStreamingType Streams "tombstone" = 'Data.ProtoLens.Service.Types.NonStreaming
-packedFileDescriptor :: Data.ByteString.ByteString
-packedFileDescriptor
-  = "\n\
-    \\rstreams.proto\DC2\SUBevent_store.client.streams\SUB\fshared.proto\"\161\DLE\n\
-    \\aReadReq\DC2E\n\
-    \\aoptions\CAN\SOH \SOH(\v2+.event_store.client.streams.ReadReq.OptionsR\aoptions\SUB\206\SI\n\
-    \\aOptions\DC2S\n\
-    \\ACKstream\CAN\SOH \SOH(\v29.event_store.client.streams.ReadReq.Options.StreamOptionsH\NULR\ACKstream\DC2J\n\
-    \\ETXall\CAN\STX \SOH(\v26.event_store.client.streams.ReadReq.Options.AllOptionsH\NULR\ETXall\DC2`\n\
-    \\SOread_direction\CAN\ETX \SOH(\SO29.event_store.client.streams.ReadReq.Options.ReadDirectionR\rreadDirection\DC2#\n\
-    \\rresolve_links\CAN\EOT \SOH(\bR\fresolveLinks\DC2\SYN\n\
-    \\ENQcount\CAN\ENQ \SOH(\EOTH\SOHR\ENQcount\DC2e\n\
-    \\fsubscription\CAN\ACK \SOH(\v2?.event_store.client.streams.ReadReq.Options.SubscriptionOptionsH\SOHR\fsubscription\DC2S\n\
-    \\ACKfilter\CAN\a \SOH(\v29.event_store.client.streams.ReadReq.Options.FilterOptionsH\STXR\ACKfilter\DC2?\n\
-    \\tno_filter\CAN\b \SOH(\v2 .event_store.client.shared.EmptyH\STXR\bnoFilter\DC2W\n\
-    \\vuuid_option\CAN\t \SOH(\v26.event_store.client.streams.ReadReq.Options.UUIDOptionR\n\
-    \uuidOption\SUB\138\STX\n\
-    \\rStreamOptions\DC2X\n\
-    \\DC1stream_identifier\CAN\SOH \SOH(\v2+.event_store.client.shared.StreamIdentifierR\DLEstreamIdentifier\DC2\FS\n\
-    \\brevision\CAN\STX \SOH(\EOTH\NULR\brevision\DC28\n\
-    \\ENQstart\CAN\ETX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ENQstart\DC24\n\
-    \\ETXend\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ETXendB\DC1\n\
-    \\SIrevision_option\SUB\222\SOH\n\
-    \\n\
-    \AllOptions\DC2R\n\
-    \\bposition\CAN\SOH \SOH(\v24.event_store.client.streams.ReadReq.Options.PositionH\NULR\bposition\DC28\n\
-    \\ENQstart\CAN\STX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ENQstart\DC24\n\
-    \\ETXend\CAN\ETX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ETXendB\f\n\
-    \\n\
-    \all_option\SUB\NAK\n\
-    \\DC3SubscriptionOptions\SUB^\n\
-    \\bPosition\DC2'\n\
-    \\SIcommit_position\CAN\SOH \SOH(\EOTR\SOcommitPosition\DC2)\n\
-    \\DLEprepare_position\CAN\STX \SOH(\EOTR\SIpreparePosition\SUB\205\ETX\n\
-    \\rFilterOptions\DC2s\n\
-    \\DC1stream_identifier\CAN\SOH \SOH(\v2D.event_store.client.streams.ReadReq.Options.FilterOptions.ExpressionH\NULR\DLEstreamIdentifier\DC2e\n\
-    \\n\
-    \event_type\CAN\STX \SOH(\v2D.event_store.client.streams.ReadReq.Options.FilterOptions.ExpressionH\NULR\teventType\DC2\DC2\n\
-    \\ETXmax\CAN\ETX \SOH(\rH\SOHR\ETXmax\DC28\n\
-    \\ENQcount\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\SOHR\ENQcount\DC2B\n\
-    \\FScheckpointIntervalMultiplier\CAN\ENQ \SOH(\rR\FScheckpointIntervalMultiplier\SUB:\n\
-    \\n\
-    \Expression\DC2\DC4\n\
-    \\ENQregex\CAN\SOH \SOH(\tR\ENQregex\DC2\SYN\n\
-    \\ACKprefix\CAN\STX \ETX(\tR\ACKprefixB\b\n\
-    \\ACKfilterB\b\n\
-    \\ACKwindow\SUB\151\SOH\n\
-    \\n\
-    \UUIDOption\DC2B\n\
-    \\n\
-    \structured\CAN\SOH \SOH(\v2 .event_store.client.shared.EmptyH\NULR\n\
-    \structured\DC2:\n\
-    \\ACKstring\CAN\STX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ACKstringB\t\n\
-    \\acontent\",\n\
-    \\rReadDirection\DC2\f\n\
-    \\bForwards\DLE\NUL\DC2\r\n\
-    \\tBackwards\DLE\SOHB\SI\n\
-    \\rstream_optionB\SO\n\
-    \\fcount_optionB\SI\n\
-    \\rfilter_option\"\181\v\n\
-    \\bReadResp\DC2F\n\
-    \\ENQevent\CAN\SOH \SOH(\v2..event_store.client.streams.ReadResp.ReadEventH\NULR\ENQevent\DC2c\n\
-    \\fconfirmation\CAN\STX \SOH(\v2=.event_store.client.streams.ReadResp.SubscriptionConfirmationH\NULR\fconfirmation\DC2Q\n\
-    \\n\
-    \checkpoint\CAN\ETX \SOH(\v2/.event_store.client.streams.ReadResp.CheckpointH\NULR\n\
-    \checkpoint\DC2_\n\
-    \\DLEstream_not_found\CAN\EOT \SOH(\v23.event_store.client.streams.ReadResp.StreamNotFoundH\NULR\SOstreamNotFound\SUB\169\ACK\n\
-    \\tReadEvent\DC2R\n\
-    \\ENQevent\CAN\SOH \SOH(\v2<.event_store.client.streams.ReadResp.ReadEvent.RecordedEventR\ENQevent\DC2P\n\
-    \\EOTlink\CAN\STX \SOH(\v2<.event_store.client.streams.ReadResp.ReadEvent.RecordedEventR\EOTlink\DC2)\n\
-    \\SIcommit_position\CAN\ETX \SOH(\EOTH\NULR\SOcommitPosition\DC2C\n\
-    \\vno_position\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\NULR\n\
-    \noPosition\SUB\249\ETX\n\
-    \\rRecordedEvent\DC2/\n\
-    \\STXid\CAN\SOH \SOH(\v2\US.event_store.client.shared.UUIDR\STXid\DC2X\n\
-    \\DC1stream_identifier\CAN\STX \SOH(\v2+.event_store.client.shared.StreamIdentifierR\DLEstreamIdentifier\DC2'\n\
-    \\SIstream_revision\CAN\ETX \SOH(\EOTR\SOstreamRevision\DC2)\n\
-    \\DLEprepare_position\CAN\EOT \SOH(\EOTR\SIpreparePosition\DC2'\n\
-    \\SIcommit_position\CAN\ENQ \SOH(\EOTR\SOcommitPosition\DC2f\n\
-    \\bmetadata\CAN\ACK \ETX(\v2J.event_store.client.streams.ReadResp.ReadEvent.RecordedEvent.MetadataEntryR\bmetadata\DC2'\n\
-    \\SIcustom_metadata\CAN\a \SOH(\fR\SOcustomMetadata\DC2\DC2\n\
-    \\EOTdata\CAN\b \SOH(\fR\EOTdata\SUB;\n\
-    \\rMetadataEntry\DC2\DLE\n\
-    \\ETXkey\CAN\SOH \SOH(\tR\ETXkey\DC2\DC4\n\
-    \\ENQvalue\CAN\STX \SOH(\tR\ENQvalue:\STX8\SOHB\n\
-    \\n\
-    \\bposition\SUBC\n\
-    \\CANSubscriptionConfirmation\DC2'\n\
-    \\SIsubscription_id\CAN\SOH \SOH(\tR\SOsubscriptionId\SUB`\n\
-    \\n\
-    \Checkpoint\DC2'\n\
-    \\SIcommit_position\CAN\SOH \SOH(\EOTR\SOcommitPosition\DC2)\n\
-    \\DLEprepare_position\CAN\STX \SOH(\EOTR\SIpreparePosition\SUBj\n\
-    \\SOStreamNotFound\DC2X\n\
-    \\DC1stream_identifier\CAN\SOH \SOH(\v2+.event_store.client.shared.StreamIdentifierR\DLEstreamIdentifierB\t\n\
-    \\acontent\"\197\ACK\n\
-    \\tAppendReq\DC2I\n\
-    \\aoptions\CAN\SOH \SOH(\v2-.event_store.client.streams.AppendReq.OptionsH\NULR\aoptions\DC2b\n\
-    \\DLEproposed_message\CAN\STX \SOH(\v25.event_store.client.streams.AppendReq.ProposedMessageH\NULR\SIproposedMessage\SUB\221\STX\n\
-    \\aOptions\DC2X\n\
-    \\DC1stream_identifier\CAN\SOH \SOH(\v2+.event_store.client.shared.StreamIdentifierR\DLEstreamIdentifier\DC2\FS\n\
-    \\brevision\CAN\STX \SOH(\EOTH\NULR\brevision\DC2?\n\
-    \\tno_stream\CAN\ETX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\bnoStream\DC24\n\
-    \\ETXany\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ETXany\DC2G\n\
-    \\rstream_exists\CAN\ENQ \SOH(\v2 .event_store.client.shared.EmptyH\NULR\fstreamExistsB\SUB\n\
-    \\CANexpected_stream_revision\SUB\157\STX\n\
-    \\SIProposedMessage\DC2/\n\
-    \\STXid\CAN\SOH \SOH(\v2\US.event_store.client.shared.UUIDR\STXid\DC2_\n\
-    \\bmetadata\CAN\STX \ETX(\v2C.event_store.client.streams.AppendReq.ProposedMessage.MetadataEntryR\bmetadata\DC2'\n\
-    \\SIcustom_metadata\CAN\ETX \SOH(\fR\SOcustomMetadata\DC2\DC2\n\
-    \\EOTdata\CAN\EOT \SOH(\fR\EOTdata\SUB;\n\
-    \\rMetadataEntry\DC2\DLE\n\
-    \\ETXkey\CAN\SOH \SOH(\tR\ETXkey\DC2\DC4\n\
-    \\ENQvalue\CAN\STX \SOH(\tR\ENQvalue:\STX8\SOHB\t\n\
-    \\acontent\"\223\a\n\
-    \\n\
-    \AppendResp\DC2J\n\
-    \\asuccess\CAN\SOH \SOH(\v2..event_store.client.streams.AppendResp.SuccessH\NULR\asuccess\DC2s\n\
-    \\SYNwrong_expected_version\CAN\STX \SOH(\v2;.event_store.client.streams.AppendResp.WrongExpectedVersionH\NULR\DC4wrongExpectedVersion\SUB^\n\
-    \\bPosition\DC2'\n\
-    \\SIcommit_position\CAN\SOH \SOH(\EOTR\SOcommitPosition\DC2)\n\
-    \\DLEprepare_position\CAN\STX \SOH(\EOTR\SIpreparePosition\SUB\185\STX\n\
-    \\aSuccess\DC2+\n\
-    \\DLEcurrent_revision\CAN\SOH \SOH(\EOTH\NULR\SIcurrentRevision\DC2?\n\
-    \\tno_stream\CAN\STX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\bnoStream\DC2M\n\
-    \\bposition\CAN\ETX \SOH(\v2/.event_store.client.streams.AppendResp.PositionH\SOHR\bposition\DC2C\n\
-    \\vno_position\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\SOHR\n\
-    \noPositionB\EM\n\
-    \\ETBcurrent_revision_optionB\DC1\n\
-    \\SIposition_option\SUB\233\STX\n\
-    \\DC4WrongExpectedVersion\DC2+\n\
-    \\DLEcurrent_revision\CAN\SOH \SOH(\EOTH\NULR\SIcurrentRevision\DC2?\n\
-    \\tno_stream\CAN\STX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\bnoStream\DC2-\n\
-    \\DC1expected_revision\CAN\ETX \SOH(\EOTH\SOHR\DLEexpectedRevision\DC24\n\
-    \\ETXany\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\SOHR\ETXany\DC2G\n\
-    \\rstream_exists\CAN\ENQ \SOH(\v2 .event_store.client.shared.EmptyH\SOHR\fstreamExistsB\EM\n\
-    \\ETBcurrent_revision_optionB\SUB\n\
-    \\CANexpected_revision_optionB\b\n\
-    \\ACKresult\"\180\ETX\n\
-    \\tDeleteReq\DC2G\n\
-    \\aoptions\CAN\SOH \SOH(\v2-.event_store.client.streams.DeleteReq.OptionsR\aoptions\SUB\221\STX\n\
-    \\aOptions\DC2X\n\
-    \\DC1stream_identifier\CAN\SOH \SOH(\v2+.event_store.client.shared.StreamIdentifierR\DLEstreamIdentifier\DC2\FS\n\
-    \\brevision\CAN\STX \SOH(\EOTH\NULR\brevision\DC2?\n\
-    \\tno_stream\CAN\ETX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\bnoStream\DC24\n\
-    \\ETXany\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ETXany\DC2G\n\
-    \\rstream_exists\CAN\ENQ \SOH(\v2 .event_store.client.shared.EmptyH\NULR\fstreamExistsB\SUB\n\
-    \\CANexpected_stream_revision\"\147\STX\n\
-    \\n\
-    \DeleteResp\DC2M\n\
-    \\bposition\CAN\SOH \SOH(\v2/.event_store.client.streams.DeleteResp.PositionH\NULR\bposition\DC2C\n\
-    \\vno_position\CAN\STX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\n\
-    \noPosition\SUB^\n\
-    \\bPosition\DC2'\n\
-    \\SIcommit_position\CAN\SOH \SOH(\EOTR\SOcommitPosition\DC2)\n\
-    \\DLEprepare_position\CAN\STX \SOH(\EOTR\SIpreparePositionB\DC1\n\
-    \\SIposition_option\"\186\ETX\n\
-    \\fTombstoneReq\DC2J\n\
-    \\aoptions\CAN\SOH \SOH(\v20.event_store.client.streams.TombstoneReq.OptionsR\aoptions\SUB\221\STX\n\
-    \\aOptions\DC2X\n\
-    \\DC1stream_identifier\CAN\SOH \SOH(\v2+.event_store.client.shared.StreamIdentifierR\DLEstreamIdentifier\DC2\FS\n\
-    \\brevision\CAN\STX \SOH(\EOTH\NULR\brevision\DC2?\n\
-    \\tno_stream\CAN\ETX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\bnoStream\DC24\n\
-    \\ETXany\CAN\EOT \SOH(\v2 .event_store.client.shared.EmptyH\NULR\ETXany\DC2G\n\
-    \\rstream_exists\CAN\ENQ \SOH(\v2 .event_store.client.shared.EmptyH\NULR\fstreamExistsB\SUB\n\
-    \\CANexpected_stream_revision\"\153\STX\n\
-    \\rTombstoneResp\DC2P\n\
-    \\bposition\CAN\SOH \SOH(\v22.event_store.client.streams.TombstoneResp.PositionH\NULR\bposition\DC2C\n\
-    \\vno_position\CAN\STX \SOH(\v2 .event_store.client.shared.EmptyH\NULR\n\
-    \noPosition\SUB^\n\
-    \\bPosition\DC2'\n\
-    \\SIcommit_position\CAN\SOH \SOH(\EOTR\SOcommitPosition\DC2)\n\
-    \\DLEprepare_position\CAN\STX \SOH(\EOTR\SIpreparePositionB\DC1\n\
-    \\SIposition_option2\244\STX\n\
-    \\aStreams\DC2S\n\
-    \\EOTRead\DC2#.event_store.client.streams.ReadReq\SUB$.event_store.client.streams.ReadResp0\SOH\DC2Y\n\
-    \\ACKAppend\DC2%.event_store.client.streams.AppendReq\SUB&.event_store.client.streams.AppendResp(\SOH\DC2W\n\
-    \\ACKDelete\DC2%.event_store.client.streams.DeleteReq\SUB&.event_store.client.streams.DeleteResp\DC2`\n\
-    \\tTombstone\DC2(.event_store.client.streams.TombstoneReq\SUB).event_store.client.streams.TombstoneRespB'\n\
-    \%com.eventstore.dbclient.proto.streamsJ\212?\n\
-    \\a\DC2\ENQ\NUL\NUL\230\SOH\SOH\n\
-    \\b\n\
-    \\SOH\f\DC2\ETX\NUL\NUL\DC2\n\
-    \\b\n\
-    \\SOH\STX\DC2\ETX\SOH\NUL#\n\
-    \\b\n\
-    \\SOH\b\DC2\ETX\STX\NUL>\n\
-    \\t\n\
-    \\STX\b\SOH\DC2\ETX\STX\NUL>\n\
-    \\t\n\
-    \\STX\ETX\NUL\DC2\ETX\EOT\NUL\SYN\n\
-    \\n\
-    \\n\
-    \\STX\ACK\NUL\DC2\EOT\ACK\NUL\v\SOH\n\
-    \\n\
-    \\n\
-    \\ETX\ACK\NUL\SOH\DC2\ETX\ACK\b\SI\n\
-    \\v\n\
-    \\EOT\ACK\NUL\STX\NUL\DC2\ETX\a\b5\n\
-    \\f\n\
-    \\ENQ\ACK\NUL\STX\NUL\SOH\DC2\ETX\a\f\DLE\n\
-    \\f\n\
-    \\ENQ\ACK\NUL\STX\NUL\STX\DC2\ETX\a\DC2\EM\n\
-    \\f\n\
-    \\ENQ\ACK\NUL\STX\NUL\ACK\DC2\ETX\a$*\n\
-    \\f\n\
-    \\ENQ\ACK\NUL\STX\NUL\ETX\DC2\ETX\a+3\n\
-    \\v\n\
-    \\EOT\ACK\NUL\STX\SOH\DC2\ETX\b\b;\n\
-    \\f\n\
-    \\ENQ\ACK\NUL\STX\SOH\SOH\DC2\ETX\b\f\DC2\n\
-    \\f\n\
-    \\ENQ\ACK\NUL\STX\SOH\ENQ\DC2\ETX\b\DC4\SUB\n\
-    \\f\n\
-    \\ENQ\ACK\NUL\STX\SOH\STX\DC2\ETX\b\ESC$\n\
-    \\f\n\
-    \\ENQ\ACK\NUL\STX\SOH\ETX\DC2\ETX\b/9\n\
-    \\v\n\
-    \\EOT\ACK\NUL\STX\STX\DC2\ETX\t\b4\n\
-    \\f\n\
-    \\ENQ\ACK\NUL\STX\STX\SOH\DC2\ETX\t\f\DC2\n\
-    \\f\n\
-    \\ENQ\ACK\NUL\STX\STX\STX\DC2\ETX\t\DC4\GS\n\
-    \\f\n\
-    \\ENQ\ACK\NUL\STX\STX\ETX\DC2\ETX\t(2\n\
-    \\v\n\
-    \\EOT\ACK\NUL\STX\ETX\DC2\ETX\n\
-    \\b=\n\
-    \\f\n\
-    \\ENQ\ACK\NUL\STX\ETX\SOH\DC2\ETX\n\
-    \\f\NAK\n\
-    \\f\n\
-    \\ENQ\ACK\NUL\STX\ETX\STX\DC2\ETX\n\
-    \\ETB#\n\
-    \\f\n\
-    \\ENQ\ACK\NUL\STX\ETX\ETX\DC2\ETX\n\
-    \.;\n\
-    \\n\
-    \\n\
-    \\STX\EOT\NUL\DC2\EOT\r\NULQ\SOH\n\
-    \\n\
-    \\n\
-    \\ETX\EOT\NUL\SOH\DC2\ETX\r\b\SI\n\
-    \\v\n\
-    \\EOT\EOT\NUL\STX\NUL\DC2\ETX\SO\b\FS\n\
-    \\f\n\
-    \\ENQ\EOT\NUL\STX\NUL\ACK\DC2\ETX\SO\b\SI\n\
-    \\f\n\
-    \\ENQ\EOT\NUL\STX\NUL\SOH\DC2\ETX\SO\DLE\ETB\n\
-    \\f\n\
-    \\ENQ\EOT\NUL\STX\NUL\ETX\DC2\ETX\SO\SUB\ESC\n\
-    \\f\n\
-    \\EOT\EOT\NUL\ETX\NUL\DC2\EOT\DLE\bP\t\n\
-    \\f\n\
-    \\ENQ\EOT\NUL\ETX\NUL\SOH\DC2\ETX\DLE\DLE\ETB\n\
-    \\SO\n\
-    \\ACK\EOT\NUL\ETX\NUL\b\NUL\DC2\EOT\DC1\DLE\DC4\DC1\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\b\NUL\SOH\DC2\ETX\DC1\SYN#\n\
-    \\r\n\
-    \\ACK\EOT\NUL\ETX\NUL\STX\NUL\DC2\ETX\DC2\CAN1\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\NUL\ACK\DC2\ETX\DC2\CAN%\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\NUL\SOH\DC2\ETX\DC2&,\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\NUL\ETX\DC2\ETX\DC2/0\n\
-    \\r\n\
-    \\ACK\EOT\NUL\ETX\NUL\STX\SOH\DC2\ETX\DC3\CAN+\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\SOH\ACK\DC2\ETX\DC3\CAN\"\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\SOH\SOH\DC2\ETX\DC3#&\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\SOH\ETX\DC2\ETX\DC3)*\n\
-    \\r\n\
-    \\ACK\EOT\NUL\ETX\NUL\STX\STX\DC2\ETX\NAK\DLE1\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\STX\ACK\DC2\ETX\NAK\DLE\GS\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\STX\SOH\DC2\ETX\NAK\RS,\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\STX\ETX\DC2\ETX\NAK/0\n\
-    \\r\n\
-    \\ACK\EOT\NUL\ETX\NUL\STX\ETX\DC2\ETX\SYN\DLE'\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\ETX\ENQ\DC2\ETX\SYN\DLE\DC4\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\ETX\SOH\DC2\ETX\SYN\NAK\"\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\ETX\ETX\DC2\ETX\SYN%&\n\
-    \\SO\n\
-    \\ACK\EOT\NUL\ETX\NUL\b\SOH\DC2\EOT\ETB\DLE\SUB\DC1\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\b\SOH\SOH\DC2\ETX\ETB\SYN\"\n\
-    \\r\n\
-    \\ACK\EOT\NUL\ETX\NUL\STX\EOT\DC2\ETX\CAN\CAN)\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\EOT\ENQ\DC2\ETX\CAN\CAN\RS\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\EOT\SOH\DC2\ETX\CAN\US$\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\EOT\ETX\DC2\ETX\CAN'(\n\
-    \\r\n\
-    \\ACK\EOT\NUL\ETX\NUL\STX\ENQ\DC2\ETX\EM\CAN=\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\ENQ\ACK\DC2\ETX\EM\CAN+\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\ENQ\SOH\DC2\ETX\EM,8\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\ENQ\ETX\DC2\ETX\EM;<\n\
-    \\SO\n\
-    \\ACK\EOT\NUL\ETX\NUL\b\STX\DC2\EOT\ESC\DLE\RS\DC1\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\b\STX\SOH\DC2\ETX\ESC\SYN#\n\
-    \\r\n\
-    \\ACK\EOT\NUL\ETX\NUL\STX\ACK\DC2\ETX\FS\CAN1\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\ACK\ACK\DC2\ETX\FS\CAN%\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\ACK\SOH\DC2\ETX\FS&,\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\ACK\ETX\DC2\ETX\FS/0\n\
-    \\r\n\
-    \\ACK\EOT\NUL\ETX\NUL\STX\a\DC2\ETX\GS\CANF\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\a\ACK\DC2\ETX\GS\CAN7\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\a\SOH\DC2\ETX\GS8A\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\a\ETX\DC2\ETX\GSDE\n\
-    \\r\n\
-    \\ACK\EOT\NUL\ETX\NUL\STX\b\DC2\ETX\US\DLE+\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\b\ACK\DC2\ETX\US\DLE\SUB\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\b\SOH\DC2\ETX\US\ESC&\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\b\ETX\DC2\ETX\US)*\n\
-    \\SO\n\
-    \\ACK\EOT\NUL\ETX\NUL\EOT\NUL\DC2\EOT!\DLE$\DC1\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\EOT\NUL\SOH\DC2\ETX!\NAK\"\n\
-    \\SI\n\
-    \\b\EOT\NUL\ETX\NUL\EOT\NUL\STX\NUL\DC2\ETX\"\CAN%\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\EOT\NUL\STX\NUL\SOH\DC2\ETX\"\CAN \n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\EOT\NUL\STX\NUL\STX\DC2\ETX\"#$\n\
-    \\SI\n\
-    \\b\EOT\NUL\ETX\NUL\EOT\NUL\STX\SOH\DC2\ETX#\CAN&\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\EOT\NUL\STX\SOH\SOH\DC2\ETX#\CAN!\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\EOT\NUL\STX\SOH\STX\DC2\ETX#$%\n\
-    \\SO\n\
-    \\ACK\EOT\NUL\ETX\NUL\ETX\NUL\DC2\EOT%\DLE,\DC1\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\ETX\NUL\SOH\DC2\ETX%\CAN%\n\
-    \\SI\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\NUL\STX\NUL\DC2\ETX&\CANY\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\NUL\STX\NUL\ACK\DC2\ETX&\CANB\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\NUL\STX\NUL\SOH\DC2\ETX&CT\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\NUL\STX\NUL\ETX\DC2\ETX&WX\n\
-    \\DLE\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\NUL\b\NUL\DC2\EOT'\CAN+\EM\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\NUL\b\NUL\SOH\DC2\ETX'\RS-\n\
-    \\SI\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\NUL\STX\SOH\DC2\ETX( 4\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\NUL\STX\SOH\ENQ\DC2\ETX( &\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\NUL\STX\SOH\SOH\DC2\ETX('/\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\NUL\STX\SOH\ETX\DC2\ETX(23\n\
-    \\SI\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\NUL\STX\STX\DC2\ETX) J\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\NUL\STX\STX\ACK\DC2\ETX) ?\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\NUL\STX\STX\SOH\DC2\ETX)@E\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\NUL\STX\STX\ETX\DC2\ETX)HI\n\
-    \\SI\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\NUL\STX\ETX\DC2\ETX* H\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\NUL\STX\ETX\ACK\DC2\ETX* ?\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\NUL\STX\ETX\SOH\DC2\ETX*@C\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\NUL\STX\ETX\ETX\DC2\ETX*FG\n\
-    \\SO\n\
-    \\ACK\EOT\NUL\ETX\NUL\ETX\SOH\DC2\EOT-\DLE3\DC1\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\ETX\SOH\SOH\DC2\ETX-\CAN\"\n\
-    \\DLE\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\SOH\b\NUL\DC2\EOT.\CAN2\EM\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\SOH\b\NUL\SOH\DC2\ETX.\RS(\n\
-    \\SI\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\SOH\STX\NUL\DC2\ETX/ 6\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\SOH\STX\NUL\ACK\DC2\ETX/ (\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\SOH\STX\NUL\SOH\DC2\ETX/)1\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\SOH\STX\NUL\ETX\DC2\ETX/45\n\
-    \\SI\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\SOH\STX\SOH\DC2\ETX0 J\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\SOH\STX\SOH\ACK\DC2\ETX0 ?\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\SOH\STX\SOH\SOH\DC2\ETX0@E\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\SOH\STX\SOH\ETX\DC2\ETX0HI\n\
-    \\SI\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\SOH\STX\STX\DC2\ETX1 H\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\SOH\STX\STX\ACK\DC2\ETX1 ?\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\SOH\STX\STX\SOH\DC2\ETX1@C\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\SOH\STX\STX\ETX\DC2\ETX1FG\n\
-    \\SO\n\
-    \\ACK\EOT\NUL\ETX\NUL\ETX\STX\DC2\EOT4\DLE5\DC1\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\ETX\STX\SOH\DC2\ETX4\CAN+\n\
-    \\SO\n\
-    \\ACK\EOT\NUL\ETX\NUL\ETX\ETX\DC2\EOT6\DLE9\DC1\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\ETX\ETX\SOH\DC2\ETX6\CAN \n\
-    \\SI\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\ETX\STX\NUL\DC2\ETX7\CAN3\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\ETX\STX\NUL\ENQ\DC2\ETX7\CAN\RS\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\ETX\STX\NUL\SOH\DC2\ETX7\US.\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\ETX\STX\NUL\ETX\DC2\ETX712\n\
-    \\SI\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\ETX\STX\SOH\DC2\ETX8\CAN4\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\ETX\STX\SOH\ENQ\DC2\ETX8\CAN\RS\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\ETX\STX\SOH\SOH\DC2\ETX8\US/\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\ETX\STX\SOH\ETX\DC2\ETX823\n\
-    \\SO\n\
-    \\ACK\EOT\NUL\ETX\NUL\ETX\EOT\DC2\EOT:\DLEI\DC1\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\ETX\EOT\SOH\DC2\ETX:\CAN%\n\
-    \\DLE\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\EOT\b\NUL\DC2\EOT;\CAN>\EM\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\EOT\b\NUL\SOH\DC2\ETX;\RS$\n\
-    \\SI\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\EOT\STX\NUL\DC2\ETX< A\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\EOT\STX\NUL\ACK\DC2\ETX< *\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\EOT\STX\NUL\SOH\DC2\ETX<+<\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\EOT\STX\NUL\ETX\DC2\ETX<?@\n\
-    \\SI\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\EOT\STX\SOH\DC2\ETX= :\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\EOT\STX\SOH\ACK\DC2\ETX= *\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\EOT\STX\SOH\SOH\DC2\ETX=+5\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\EOT\STX\SOH\ETX\DC2\ETX=89\n\
-    \\DLE\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\EOT\b\SOH\DC2\EOT?\CANB\EM\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\EOT\b\SOH\SOH\DC2\ETX?\RS$\n\
-    \\SI\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\EOT\STX\STX\DC2\ETX@ /\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\EOT\STX\STX\ENQ\DC2\ETX@ &\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\EOT\STX\STX\SOH\DC2\ETX@'*\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\EOT\STX\STX\ETX\DC2\ETX@-.\n\
-    \\SI\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\EOT\STX\ETX\DC2\ETXA J\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\EOT\STX\ETX\ACK\DC2\ETXA ?\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\EOT\STX\ETX\SOH\DC2\ETXA@E\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\EOT\STX\ETX\ETX\DC2\ETXAHI\n\
-    \\SI\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\EOT\STX\EOT\DC2\ETXC\CAN@\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\EOT\STX\EOT\ENQ\DC2\ETXC\CAN\RS\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\EOT\STX\EOT\SOH\DC2\ETXC\US;\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\EOT\STX\EOT\ETX\DC2\ETXC>?\n\
-    \\DLE\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\EOT\ETX\NUL\DC2\EOTE\CANH\EM\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\EOT\ETX\NUL\SOH\DC2\ETXE *\n\
-    \\DC1\n\
-    \\n\
-    \\EOT\NUL\ETX\NUL\ETX\EOT\ETX\NUL\STX\NUL\DC2\ETXF 1\n\
-    \\DC2\n\
-    \\v\EOT\NUL\ETX\NUL\ETX\EOT\ETX\NUL\STX\NUL\ENQ\DC2\ETXF &\n\
-    \\DC2\n\
-    \\v\EOT\NUL\ETX\NUL\ETX\EOT\ETX\NUL\STX\NUL\SOH\DC2\ETXF',\n\
-    \\DC2\n\
-    \\v\EOT\NUL\ETX\NUL\ETX\EOT\ETX\NUL\STX\NUL\ETX\DC2\ETXF/0\n\
-    \\DC1\n\
-    \\n\
-    \\EOT\NUL\ETX\NUL\ETX\EOT\ETX\NUL\STX\SOH\DC2\ETXG ;\n\
-    \\DC2\n\
-    \\v\EOT\NUL\ETX\NUL\ETX\EOT\ETX\NUL\STX\SOH\EOT\DC2\ETXG (\n\
-    \\DC2\n\
-    \\v\EOT\NUL\ETX\NUL\ETX\EOT\ETX\NUL\STX\SOH\ENQ\DC2\ETXG)/\n\
-    \\DC2\n\
-    \\v\EOT\NUL\ETX\NUL\ETX\EOT\ETX\NUL\STX\SOH\SOH\DC2\ETXG06\n\
-    \\DC2\n\
-    \\v\EOT\NUL\ETX\NUL\ETX\EOT\ETX\NUL\STX\SOH\ETX\DC2\ETXG9:\n\
-    \\SO\n\
-    \\ACK\EOT\NUL\ETX\NUL\ETX\ENQ\DC2\EOTJ\DLEO\DC1\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\ETX\ENQ\SOH\DC2\ETXJ\CAN\"\n\
-    \\DLE\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\ENQ\b\NUL\DC2\EOTK\CANN\EM\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\ENQ\b\NUL\SOH\DC2\ETXK\RS%\n\
-    \\SI\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\ENQ\STX\NUL\DC2\ETXL O\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\ENQ\STX\NUL\ACK\DC2\ETXL ?\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\ENQ\STX\NUL\SOH\DC2\ETXL@J\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\ENQ\STX\NUL\ETX\DC2\ETXLMN\n\
-    \\SI\n\
-    \\b\EOT\NUL\ETX\NUL\ETX\ENQ\STX\SOH\DC2\ETXM K\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\ENQ\STX\SOH\ACK\DC2\ETXM ?\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\ENQ\STX\SOH\SOH\DC2\ETXM@F\n\
-    \\DLE\n\
-    \\t\EOT\NUL\ETX\NUL\ETX\ENQ\STX\SOH\ETX\DC2\ETXMIJ\n\
-    \\n\
-    \\n\
-    \\STX\EOT\SOH\DC2\EOTS\NULx\SOH\n\
-    \\n\
-    \\n\
-    \\ETX\EOT\SOH\SOH\DC2\ETXS\b\DLE\n\
-    \\f\n\
-    \\EOT\EOT\SOH\b\NUL\DC2\EOTT\bY\t\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\b\NUL\SOH\DC2\ETXT\SO\NAK\n\
-    \\v\n\
-    \\EOT\EOT\SOH\STX\NUL\DC2\ETXU\DLE$\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\STX\NUL\ACK\DC2\ETXU\DLE\EM\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\STX\NUL\SOH\DC2\ETXU\SUB\US\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\STX\NUL\ETX\DC2\ETXU\"#\n\
-    \\v\n\
-    \\EOT\EOT\SOH\STX\SOH\DC2\ETXV\DLE:\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\STX\SOH\ACK\DC2\ETXV\DLE(\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\STX\SOH\SOH\DC2\ETXV)5\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\STX\SOH\ETX\DC2\ETXV89\n\
-    \\v\n\
-    \\EOT\EOT\SOH\STX\STX\DC2\ETXW\DLE*\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\STX\STX\ACK\DC2\ETXW\DLE\SUB\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\STX\STX\SOH\DC2\ETXW\ESC%\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\STX\STX\ETX\DC2\ETXW()\n\
-    \\v\n\
-    \\EOT\EOT\SOH\STX\ETX\DC2\ETXX\DLE4\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\STX\ETX\ACK\DC2\ETXX\DLE\RS\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\STX\ETX\SOH\DC2\ETXX\US/\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\STX\ETX\ETX\DC2\ETXX23\n\
-    \\f\n\
-    \\EOT\EOT\SOH\ETX\NUL\DC2\EOT[\bm\t\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\ETX\NUL\SOH\DC2\ETX[\DLE\EM\n\
-    \\r\n\
-    \\ACK\EOT\SOH\ETX\NUL\STX\NUL\DC2\ETX\\\DLE(\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\NUL\STX\NUL\ACK\DC2\ETX\\\DLE\GS\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\NUL\STX\NUL\SOH\DC2\ETX\\\RS#\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\NUL\STX\NUL\ETX\DC2\ETX\\&'\n\
-    \\r\n\
-    \\ACK\EOT\SOH\ETX\NUL\STX\SOH\DC2\ETX]\DLE'\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\NUL\STX\SOH\ACK\DC2\ETX]\DLE\GS\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\NUL\STX\SOH\SOH\DC2\ETX]\RS\"\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\NUL\STX\SOH\ETX\DC2\ETX]%&\n\
-    \\SO\n\
-    \\ACK\EOT\SOH\ETX\NUL\b\NUL\DC2\EOT^\DLEa\DC1\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\NUL\b\NUL\SOH\DC2\ETX^\SYN\RS\n\
-    \\r\n\
-    \\ACK\EOT\SOH\ETX\NUL\STX\STX\DC2\ETX_\CAN3\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\NUL\STX\STX\ENQ\DC2\ETX_\CAN\RS\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\NUL\STX\STX\SOH\DC2\ETX_\US.\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\NUL\STX\STX\ETX\DC2\ETX_12\n\
-    \\r\n\
-    \\ACK\EOT\SOH\ETX\NUL\STX\ETX\DC2\ETX`\CANH\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\NUL\STX\ETX\ACK\DC2\ETX`\CAN7\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\NUL\STX\ETX\SOH\DC2\ETX`8C\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\NUL\STX\ETX\ETX\DC2\ETX`FG\n\
-    \\SO\n\
-    \\ACK\EOT\SOH\ETX\NUL\ETX\NUL\DC2\EOTc\DLEl\DC1\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\NUL\ETX\NUL\SOH\DC2\ETXc\CAN%\n\
-    \\SI\n\
-    \\b\EOT\SOH\ETX\NUL\ETX\NUL\STX\NUL\DC2\ETXd\CAN>\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\NUL\ACK\DC2\ETXd\CAN6\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\NUL\SOH\DC2\ETXd79\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\NUL\ETX\DC2\ETXd<=\n\
-    \\SI\n\
-    \\b\EOT\SOH\ETX\NUL\ETX\NUL\STX\SOH\DC2\ETXe\CANY\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\SOH\ACK\DC2\ETXe\CANB\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\SOH\SOH\DC2\ETXeCT\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\SOH\ETX\DC2\ETXeWX\n\
-    \\SI\n\
-    \\b\EOT\SOH\ETX\NUL\ETX\NUL\STX\STX\DC2\ETXf\CAN3\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\STX\ENQ\DC2\ETXf\CAN\RS\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\STX\SOH\DC2\ETXf\US.\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\STX\ETX\DC2\ETXf12\n\
-    \\SI\n\
-    \\b\EOT\SOH\ETX\NUL\ETX\NUL\STX\ETX\DC2\ETXg\CAN4\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\ETX\ENQ\DC2\ETXg\CAN\RS\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\ETX\SOH\DC2\ETXg\US/\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\ETX\ETX\DC2\ETXg23\n\
-    \\SI\n\
-    \\b\EOT\SOH\ETX\NUL\ETX\NUL\STX\EOT\DC2\ETXh\CAN3\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\EOT\ENQ\DC2\ETXh\CAN\RS\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\EOT\SOH\DC2\ETXh\US.\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\EOT\ETX\DC2\ETXh12\n\
-    \\SI\n\
-    \\b\EOT\SOH\ETX\NUL\ETX\NUL\STX\ENQ\DC2\ETXi\CAN9\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\ENQ\ACK\DC2\ETXi\CAN+\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\ENQ\SOH\DC2\ETXi,4\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\ENQ\ETX\DC2\ETXi78\n\
-    \\SI\n\
-    \\b\EOT\SOH\ETX\NUL\ETX\NUL\STX\ACK\DC2\ETXj\CAN2\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\ACK\ENQ\DC2\ETXj\CAN\GS\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\ACK\SOH\DC2\ETXj\RS-\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\ACK\ETX\DC2\ETXj01\n\
-    \\SI\n\
-    \\b\EOT\SOH\ETX\NUL\ETX\NUL\STX\a\DC2\ETXk\CAN'\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\a\ENQ\DC2\ETXk\CAN\GS\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\a\SOH\DC2\ETXk\RS\"\n\
-    \\DLE\n\
-    \\t\EOT\SOH\ETX\NUL\ETX\NUL\STX\a\ETX\DC2\ETXk%&\n\
-    \\f\n\
-    \\EOT\EOT\SOH\ETX\SOH\DC2\EOTn\bp\t\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\ETX\SOH\SOH\DC2\ETXn\DLE(\n\
-    \\r\n\
-    \\ACK\EOT\SOH\ETX\SOH\STX\NUL\DC2\ETXo\DLE+\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\SOH\STX\NUL\ENQ\DC2\ETXo\DLE\SYN\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\SOH\STX\NUL\SOH\DC2\ETXo\ETB&\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\SOH\STX\NUL\ETX\DC2\ETXo)*\n\
-    \\f\n\
-    \\EOT\EOT\SOH\ETX\STX\DC2\EOTq\bt\t\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\ETX\STX\SOH\DC2\ETXq\DLE\SUB\n\
-    \\r\n\
-    \\ACK\EOT\SOH\ETX\STX\STX\NUL\DC2\ETXr\DLE+\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\STX\STX\NUL\ENQ\DC2\ETXr\DLE\SYN\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\STX\STX\NUL\SOH\DC2\ETXr\ETB&\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\STX\STX\NUL\ETX\DC2\ETXr)*\n\
-    \\r\n\
-    \\ACK\EOT\SOH\ETX\STX\STX\SOH\DC2\ETXs\DLE,\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\STX\STX\SOH\ENQ\DC2\ETXs\DLE\SYN\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\STX\STX\SOH\SOH\DC2\ETXs\ETB'\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\STX\STX\SOH\ETX\DC2\ETXs*+\n\
-    \\f\n\
-    \\EOT\EOT\SOH\ETX\ETX\DC2\EOTu\bw\t\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\ETX\ETX\SOH\DC2\ETXu\DLE\RS\n\
-    \\r\n\
-    \\ACK\EOT\SOH\ETX\ETX\STX\NUL\DC2\ETXv\DLEQ\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\ETX\STX\NUL\ACK\DC2\ETXv\DLE:\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\ETX\STX\NUL\SOH\DC2\ETXv;L\n\
-    \\SO\n\
-    \\a\EOT\SOH\ETX\ETX\STX\NUL\ETX\DC2\ETXvOP\n\
-    \\v\n\
-    \\STX\EOT\STX\DC2\ENQz\NUL\143\SOH\SOH\n\
-    \\n\
-    \\n\
-    \\ETX\EOT\STX\SOH\DC2\ETXz\b\DC1\n\
-    \\f\n\
-    \\EOT\EOT\STX\b\NUL\DC2\EOT{\b~\t\n\
-    \\f\n\
-    \\ENQ\EOT\STX\b\NUL\SOH\DC2\ETX{\SO\NAK\n\
-    \\v\n\
-    \\EOT\EOT\STX\STX\NUL\DC2\ETX|\DLE$\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\NUL\ACK\DC2\ETX|\DLE\ETB\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\NUL\SOH\DC2\ETX|\CAN\US\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\NUL\ETX\DC2\ETX|\"#\n\
-    \\v\n\
-    \\EOT\EOT\STX\STX\SOH\DC2\ETX}\DLE5\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\SOH\ACK\DC2\ETX}\DLE\US\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\SOH\SOH\DC2\ETX} 0\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\SOH\ETX\DC2\ETX}34\n\
-    \\SO\n\
-    \\EOT\EOT\STX\ETX\NUL\DC2\ACK\128\SOH\b\136\SOH\t\n\
-    \\r\n\
-    \\ENQ\EOT\STX\ETX\NUL\SOH\DC2\EOT\128\SOH\DLE\ETB\n\
-    \\SO\n\
-    \\ACK\EOT\STX\ETX\NUL\STX\NUL\DC2\EOT\129\SOH\DLEQ\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\NUL\STX\NUL\ACK\DC2\EOT\129\SOH\DLE:\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\NUL\STX\NUL\SOH\DC2\EOT\129\SOH;L\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\NUL\STX\NUL\ETX\DC2\EOT\129\SOHOP\n\
-    \\DLE\n\
-    \\ACK\EOT\STX\ETX\NUL\b\NUL\DC2\ACK\130\SOH\DLE\135\SOH\DC1\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\NUL\b\NUL\SOH\DC2\EOT\130\SOH\SYN.\n\
-    \\SO\n\
-    \\ACK\EOT\STX\ETX\NUL\STX\SOH\DC2\EOT\131\SOH\CAN,\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\NUL\STX\SOH\ENQ\DC2\EOT\131\SOH\CAN\RS\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\NUL\STX\SOH\SOH\DC2\EOT\131\SOH\US'\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\NUL\STX\SOH\ETX\DC2\EOT\131\SOH*+\n\
-    \\SO\n\
-    \\ACK\EOT\STX\ETX\NUL\STX\STX\DC2\EOT\132\SOH\CANF\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\NUL\STX\STX\ACK\DC2\EOT\132\SOH\CAN7\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\NUL\STX\STX\SOH\DC2\EOT\132\SOH8A\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\NUL\STX\STX\ETX\DC2\EOT\132\SOHDE\n\
-    \\SO\n\
-    \\ACK\EOT\STX\ETX\NUL\STX\ETX\DC2\EOT\133\SOH\CAN@\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\NUL\STX\ETX\ACK\DC2\EOT\133\SOH\CAN7\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\NUL\STX\ETX\SOH\DC2\EOT\133\SOH8;\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\NUL\STX\ETX\ETX\DC2\EOT\133\SOH>?\n\
-    \\SO\n\
-    \\ACK\EOT\STX\ETX\NUL\STX\EOT\DC2\EOT\134\SOH\CANJ\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\NUL\STX\EOT\ACK\DC2\EOT\134\SOH\CAN7\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\NUL\STX\EOT\SOH\DC2\EOT\134\SOH8E\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\NUL\STX\EOT\ETX\DC2\EOT\134\SOHHI\n\
-    \\SO\n\
-    \\EOT\EOT\STX\ETX\SOH\DC2\ACK\137\SOH\b\142\SOH\t\n\
-    \\r\n\
-    \\ENQ\EOT\STX\ETX\SOH\SOH\DC2\EOT\137\SOH\DLE\US\n\
-    \\SO\n\
-    \\ACK\EOT\STX\ETX\SOH\STX\NUL\DC2\EOT\138\SOH\DLE6\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\SOH\STX\NUL\ACK\DC2\EOT\138\SOH\DLE.\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\SOH\STX\NUL\SOH\DC2\EOT\138\SOH/1\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\SOH\STX\NUL\ETX\DC2\EOT\138\SOH45\n\
-    \\SO\n\
-    \\ACK\EOT\STX\ETX\SOH\STX\SOH\DC2\EOT\139\SOH\DLE1\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\SOH\STX\SOH\ACK\DC2\EOT\139\SOH\DLE#\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\SOH\STX\SOH\SOH\DC2\EOT\139\SOH$,\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\SOH\STX\SOH\ETX\DC2\EOT\139\SOH/0\n\
-    \\SO\n\
-    \\ACK\EOT\STX\ETX\SOH\STX\STX\DC2\EOT\140\SOH\DLE*\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\SOH\STX\STX\ENQ\DC2\EOT\140\SOH\DLE\NAK\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\SOH\STX\STX\SOH\DC2\EOT\140\SOH\SYN%\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\SOH\STX\STX\ETX\DC2\EOT\140\SOH()\n\
-    \\SO\n\
-    \\ACK\EOT\STX\ETX\SOH\STX\ETX\DC2\EOT\141\SOH\DLE\US\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\SOH\STX\ETX\ENQ\DC2\EOT\141\SOH\DLE\NAK\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\SOH\STX\ETX\SOH\DC2\EOT\141\SOH\SYN\SUB\n\
-    \\SI\n\
-    \\a\EOT\STX\ETX\SOH\STX\ETX\ETX\DC2\EOT\141\SOH\GS\RS\n\
-    \\f\n\
-    \\STX\EOT\ETX\DC2\ACK\145\SOH\NUL\178\SOH\SOH\n\
-    \\v\n\
-    \\ETX\EOT\ETX\SOH\DC2\EOT\145\SOH\b\DC2\n\
-    \\SO\n\
-    \\EOT\EOT\ETX\b\NUL\DC2\ACK\146\SOH\b\149\SOH\t\n\
-    \\r\n\
-    \\ENQ\EOT\ETX\b\NUL\SOH\DC2\EOT\146\SOH\SO\DC4\n\
-    \\f\n\
-    \\EOT\EOT\ETX\STX\NUL\DC2\EOT\147\SOH\DLE$\n\
-    \\r\n\
-    \\ENQ\EOT\ETX\STX\NUL\ACK\DC2\EOT\147\SOH\DLE\ETB\n\
-    \\r\n\
-    \\ENQ\EOT\ETX\STX\NUL\SOH\DC2\EOT\147\SOH\CAN\US\n\
-    \\r\n\
-    \\ENQ\EOT\ETX\STX\NUL\ETX\DC2\EOT\147\SOH\"#\n\
-    \\f\n\
-    \\EOT\EOT\ETX\STX\SOH\DC2\EOT\148\SOH\DLE@\n\
-    \\r\n\
-    \\ENQ\EOT\ETX\STX\SOH\ACK\DC2\EOT\148\SOH\DLE$\n\
-    \\r\n\
-    \\ENQ\EOT\ETX\STX\SOH\SOH\DC2\EOT\148\SOH%;\n\
-    \\r\n\
-    \\ENQ\EOT\ETX\STX\SOH\ETX\DC2\EOT\148\SOH>?\n\
-    \\SO\n\
-    \\EOT\EOT\ETX\ETX\NUL\DC2\ACK\151\SOH\b\154\SOH\t\n\
-    \\r\n\
-    \\ENQ\EOT\ETX\ETX\NUL\SOH\DC2\EOT\151\SOH\DLE\CAN\n\
-    \\SO\n\
-    \\ACK\EOT\ETX\ETX\NUL\STX\NUL\DC2\EOT\152\SOH\DLE+\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\NUL\STX\NUL\ENQ\DC2\EOT\152\SOH\DLE\SYN\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\NUL\STX\NUL\SOH\DC2\EOT\152\SOH\ETB&\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\NUL\STX\NUL\ETX\DC2\EOT\152\SOH)*\n\
-    \\SO\n\
-    \\ACK\EOT\ETX\ETX\NUL\STX\SOH\DC2\EOT\153\SOH\DLE,\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\NUL\STX\SOH\ENQ\DC2\EOT\153\SOH\DLE\SYN\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\NUL\STX\SOH\SOH\DC2\EOT\153\SOH\ETB'\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\NUL\STX\SOH\ETX\DC2\EOT\153\SOH*+\n\
-    \\SO\n\
-    \\EOT\EOT\ETX\ETX\SOH\DC2\ACK\156\SOH\b\165\SOH\t\n\
-    \\r\n\
-    \\ENQ\EOT\ETX\ETX\SOH\SOH\DC2\EOT\156\SOH\DLE\ETB\n\
-    \\DLE\n\
-    \\ACK\EOT\ETX\ETX\SOH\b\NUL\DC2\ACK\157\SOH\DLE\160\SOH\DC1\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\SOH\b\NUL\SOH\DC2\EOT\157\SOH\SYN-\n\
-    \\SO\n\
-    \\ACK\EOT\ETX\ETX\SOH\STX\NUL\DC2\EOT\158\SOH\CAN4\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\SOH\STX\NUL\ENQ\DC2\EOT\158\SOH\CAN\RS\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\SOH\STX\NUL\SOH\DC2\EOT\158\SOH\US/\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\SOH\STX\NUL\ETX\DC2\EOT\158\SOH23\n\
-    \\SO\n\
-    \\ACK\EOT\ETX\ETX\SOH\STX\SOH\DC2\EOT\159\SOH\CANF\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\SOH\STX\SOH\ACK\DC2\EOT\159\SOH\CAN7\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\SOH\STX\SOH\SOH\DC2\EOT\159\SOH8A\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\SOH\STX\SOH\ETX\DC2\EOT\159\SOHDE\n\
-    \\DLE\n\
-    \\ACK\EOT\ETX\ETX\SOH\b\SOH\DC2\ACK\161\SOH\DLE\164\SOH\DC1\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\SOH\b\SOH\SOH\DC2\EOT\161\SOH\SYN%\n\
-    \\SO\n\
-    \\ACK\EOT\ETX\ETX\SOH\STX\STX\DC2\EOT\162\SOH\CAN.\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\SOH\STX\STX\ACK\DC2\EOT\162\SOH\CAN \n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\SOH\STX\STX\SOH\DC2\EOT\162\SOH!)\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\SOH\STX\STX\ETX\DC2\EOT\162\SOH,-\n\
-    \\SO\n\
-    \\ACK\EOT\ETX\ETX\SOH\STX\ETX\DC2\EOT\163\SOH\CANH\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\SOH\STX\ETX\ACK\DC2\EOT\163\SOH\CAN7\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\SOH\STX\ETX\SOH\DC2\EOT\163\SOH8C\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\SOH\STX\ETX\ETX\DC2\EOT\163\SOHFG\n\
-    \\SO\n\
-    \\EOT\EOT\ETX\ETX\STX\DC2\ACK\167\SOH\b\177\SOH\t\n\
-    \\r\n\
-    \\ENQ\EOT\ETX\ETX\STX\SOH\DC2\EOT\167\SOH\DLE$\n\
-    \\DLE\n\
-    \\ACK\EOT\ETX\ETX\STX\b\NUL\DC2\ACK\168\SOH\DLE\171\SOH\DC1\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\STX\b\NUL\SOH\DC2\EOT\168\SOH\SYN-\n\
-    \\SO\n\
-    \\ACK\EOT\ETX\ETX\STX\STX\NUL\DC2\EOT\169\SOH\CAN4\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\STX\STX\NUL\ENQ\DC2\EOT\169\SOH\CAN\RS\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\STX\STX\NUL\SOH\DC2\EOT\169\SOH\US/\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\STX\STX\NUL\ETX\DC2\EOT\169\SOH23\n\
-    \\SO\n\
-    \\ACK\EOT\ETX\ETX\STX\STX\SOH\DC2\EOT\170\SOH\CANF\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\STX\STX\SOH\ACK\DC2\EOT\170\SOH\CAN7\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\STX\STX\SOH\SOH\DC2\EOT\170\SOH8A\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\STX\STX\SOH\ETX\DC2\EOT\170\SOHDE\n\
-    \\DLE\n\
-    \\ACK\EOT\ETX\ETX\STX\b\SOH\DC2\ACK\172\SOH\DLE\176\SOH\DC1\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\STX\b\SOH\SOH\DC2\EOT\172\SOH\SYN.\n\
-    \\SO\n\
-    \\ACK\EOT\ETX\ETX\STX\STX\STX\DC2\EOT\173\SOH\CAN5\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\STX\STX\STX\ENQ\DC2\EOT\173\SOH\CAN\RS\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\STX\STX\STX\SOH\DC2\EOT\173\SOH\US0\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\STX\STX\STX\ETX\DC2\EOT\173\SOH34\n\
-    \\SO\n\
-    \\ACK\EOT\ETX\ETX\STX\STX\ETX\DC2\EOT\174\SOH\CAN@\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\STX\STX\ETX\ACK\DC2\EOT\174\SOH\CAN7\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\STX\STX\ETX\SOH\DC2\EOT\174\SOH8;\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\STX\STX\ETX\ETX\DC2\EOT\174\SOH>?\n\
-    \\SO\n\
-    \\ACK\EOT\ETX\ETX\STX\STX\EOT\DC2\EOT\175\SOH\CANJ\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\STX\STX\EOT\ACK\DC2\EOT\175\SOH\CAN7\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\STX\STX\EOT\SOH\DC2\EOT\175\SOH8E\n\
-    \\SI\n\
-    \\a\EOT\ETX\ETX\STX\STX\EOT\ETX\DC2\EOT\175\SOHHI\n\
-    \\f\n\
-    \\STX\EOT\EOT\DC2\ACK\180\SOH\NUL\192\SOH\SOH\n\
-    \\v\n\
-    \\ETX\EOT\EOT\SOH\DC2\EOT\180\SOH\b\DC1\n\
-    \\f\n\
-    \\EOT\EOT\EOT\STX\NUL\DC2\EOT\181\SOH\b\FS\n\
-    \\r\n\
-    \\ENQ\EOT\EOT\STX\NUL\ACK\DC2\EOT\181\SOH\b\SI\n\
-    \\r\n\
-    \\ENQ\EOT\EOT\STX\NUL\SOH\DC2\EOT\181\SOH\DLE\ETB\n\
-    \\r\n\
-    \\ENQ\EOT\EOT\STX\NUL\ETX\DC2\EOT\181\SOH\SUB\ESC\n\
-    \\SO\n\
-    \\EOT\EOT\EOT\ETX\NUL\DC2\ACK\183\SOH\b\191\SOH\t\n\
-    \\r\n\
-    \\ENQ\EOT\EOT\ETX\NUL\SOH\DC2\EOT\183\SOH\DLE\ETB\n\
-    \\SO\n\
-    \\ACK\EOT\EOT\ETX\NUL\STX\NUL\DC2\EOT\184\SOH\DLEQ\n\
-    \\SI\n\
-    \\a\EOT\EOT\ETX\NUL\STX\NUL\ACK\DC2\EOT\184\SOH\DLE:\n\
-    \\SI\n\
-    \\a\EOT\EOT\ETX\NUL\STX\NUL\SOH\DC2\EOT\184\SOH;L\n\
-    \\SI\n\
-    \\a\EOT\EOT\ETX\NUL\STX\NUL\ETX\DC2\EOT\184\SOHOP\n\
-    \\DLE\n\
-    \\ACK\EOT\EOT\ETX\NUL\b\NUL\DC2\ACK\185\SOH\DLE\190\SOH\DC1\n\
-    \\SI\n\
-    \\a\EOT\EOT\ETX\NUL\b\NUL\SOH\DC2\EOT\185\SOH\SYN.\n\
-    \\SO\n\
-    \\ACK\EOT\EOT\ETX\NUL\STX\SOH\DC2\EOT\186\SOH\CAN,\n\
-    \\SI\n\
-    \\a\EOT\EOT\ETX\NUL\STX\SOH\ENQ\DC2\EOT\186\SOH\CAN\RS\n\
-    \\SI\n\
-    \\a\EOT\EOT\ETX\NUL\STX\SOH\SOH\DC2\EOT\186\SOH\US'\n\
-    \\SI\n\
-    \\a\EOT\EOT\ETX\NUL\STX\SOH\ETX\DC2\EOT\186\SOH*+\n\
-    \\SO\n\
-    \\ACK\EOT\EOT\ETX\NUL\STX\STX\DC2\EOT\187\SOH\CANF\n\
-    \\SI\n\
-    \\a\EOT\EOT\ETX\NUL\STX\STX\ACK\DC2\EOT\187\SOH\CAN7\n\
-    \\SI\n\
-    \\a\EOT\EOT\ETX\NUL\STX\STX\SOH\DC2\EOT\187\SOH8A\n\
-    \\SI\n\
-    \\a\EOT\EOT\ETX\NUL\STX\STX\ETX\DC2\EOT\187\SOHDE\n\
-    \\SO\n\
-    \\ACK\EOT\EOT\ETX\NUL\STX\ETX\DC2\EOT\188\SOH\CAN@\n\
-    \\SI\n\
-    \\a\EOT\EOT\ETX\NUL\STX\ETX\ACK\DC2\EOT\188\SOH\CAN7\n\
-    \\SI\n\
-    \\a\EOT\EOT\ETX\NUL\STX\ETX\SOH\DC2\EOT\188\SOH8;\n\
-    \\SI\n\
-    \\a\EOT\EOT\ETX\NUL\STX\ETX\ETX\DC2\EOT\188\SOH>?\n\
-    \\SO\n\
-    \\ACK\EOT\EOT\ETX\NUL\STX\EOT\DC2\EOT\189\SOH\CANJ\n\
-    \\SI\n\
-    \\a\EOT\EOT\ETX\NUL\STX\EOT\ACK\DC2\EOT\189\SOH\CAN7\n\
-    \\SI\n\
-    \\a\EOT\EOT\ETX\NUL\STX\EOT\SOH\DC2\EOT\189\SOH8E\n\
-    \\SI\n\
-    \\a\EOT\EOT\ETX\NUL\STX\EOT\ETX\DC2\EOT\189\SOHHI\n\
-    \\f\n\
-    \\STX\EOT\ENQ\DC2\ACK\194\SOH\NUL\204\SOH\SOH\n\
-    \\v\n\
-    \\ETX\EOT\ENQ\SOH\DC2\EOT\194\SOH\b\DC2\n\
-    \\SO\n\
-    \\EOT\EOT\ENQ\b\NUL\DC2\ACK\195\SOH\b\198\SOH\t\n\
-    \\r\n\
-    \\ENQ\EOT\ENQ\b\NUL\SOH\DC2\EOT\195\SOH\SO\GS\n\
-    \\f\n\
-    \\EOT\EOT\ENQ\STX\NUL\DC2\EOT\196\SOH\DLE&\n\
-    \\r\n\
-    \\ENQ\EOT\ENQ\STX\NUL\ACK\DC2\EOT\196\SOH\DLE\CAN\n\
-    \\r\n\
-    \\ENQ\EOT\ENQ\STX\NUL\SOH\DC2\EOT\196\SOH\EM!\n\
-    \\r\n\
-    \\ENQ\EOT\ENQ\STX\NUL\ETX\DC2\EOT\196\SOH$%\n\
-    \\f\n\
-    \\EOT\EOT\ENQ\STX\SOH\DC2\EOT\197\SOH\DLE@\n\
-    \\r\n\
-    \\ENQ\EOT\ENQ\STX\SOH\ACK\DC2\EOT\197\SOH\DLE/\n\
-    \\r\n\
-    \\ENQ\EOT\ENQ\STX\SOH\SOH\DC2\EOT\197\SOH0;\n\
-    \\r\n\
-    \\ENQ\EOT\ENQ\STX\SOH\ETX\DC2\EOT\197\SOH>?\n\
-    \\SO\n\
-    \\EOT\EOT\ENQ\ETX\NUL\DC2\ACK\200\SOH\b\203\SOH\t\n\
-    \\r\n\
-    \\ENQ\EOT\ENQ\ETX\NUL\SOH\DC2\EOT\200\SOH\DLE\CAN\n\
-    \\SO\n\
-    \\ACK\EOT\ENQ\ETX\NUL\STX\NUL\DC2\EOT\201\SOH\DLE+\n\
-    \\SI\n\
-    \\a\EOT\ENQ\ETX\NUL\STX\NUL\ENQ\DC2\EOT\201\SOH\DLE\SYN\n\
-    \\SI\n\
-    \\a\EOT\ENQ\ETX\NUL\STX\NUL\SOH\DC2\EOT\201\SOH\ETB&\n\
-    \\SI\n\
-    \\a\EOT\ENQ\ETX\NUL\STX\NUL\ETX\DC2\EOT\201\SOH)*\n\
-    \\SO\n\
-    \\ACK\EOT\ENQ\ETX\NUL\STX\SOH\DC2\EOT\202\SOH\DLE,\n\
-    \\SI\n\
-    \\a\EOT\ENQ\ETX\NUL\STX\SOH\ENQ\DC2\EOT\202\SOH\DLE\SYN\n\
-    \\SI\n\
-    \\a\EOT\ENQ\ETX\NUL\STX\SOH\SOH\DC2\EOT\202\SOH\ETB'\n\
-    \\SI\n\
-    \\a\EOT\ENQ\ETX\NUL\STX\SOH\ETX\DC2\EOT\202\SOH*+\n\
-    \\f\n\
-    \\STX\EOT\ACK\DC2\ACK\206\SOH\NUL\218\SOH\SOH\n\
-    \\v\n\
-    \\ETX\EOT\ACK\SOH\DC2\EOT\206\SOH\b\DC4\n\
-    \\f\n\
-    \\EOT\EOT\ACK\STX\NUL\DC2\EOT\207\SOH\b\FS\n\
-    \\r\n\
-    \\ENQ\EOT\ACK\STX\NUL\ACK\DC2\EOT\207\SOH\b\SI\n\
-    \\r\n\
-    \\ENQ\EOT\ACK\STX\NUL\SOH\DC2\EOT\207\SOH\DLE\ETB\n\
-    \\r\n\
-    \\ENQ\EOT\ACK\STX\NUL\ETX\DC2\EOT\207\SOH\SUB\ESC\n\
-    \\SO\n\
-    \\EOT\EOT\ACK\ETX\NUL\DC2\ACK\209\SOH\b\217\SOH\t\n\
-    \\r\n\
-    \\ENQ\EOT\ACK\ETX\NUL\SOH\DC2\EOT\209\SOH\DLE\ETB\n\
-    \\SO\n\
-    \\ACK\EOT\ACK\ETX\NUL\STX\NUL\DC2\EOT\210\SOH\DLEQ\n\
-    \\SI\n\
-    \\a\EOT\ACK\ETX\NUL\STX\NUL\ACK\DC2\EOT\210\SOH\DLE:\n\
-    \\SI\n\
-    \\a\EOT\ACK\ETX\NUL\STX\NUL\SOH\DC2\EOT\210\SOH;L\n\
-    \\SI\n\
-    \\a\EOT\ACK\ETX\NUL\STX\NUL\ETX\DC2\EOT\210\SOHOP\n\
-    \\DLE\n\
-    \\ACK\EOT\ACK\ETX\NUL\b\NUL\DC2\ACK\211\SOH\DLE\216\SOH\DC1\n\
-    \\SI\n\
-    \\a\EOT\ACK\ETX\NUL\b\NUL\SOH\DC2\EOT\211\SOH\SYN.\n\
-    \\SO\n\
-    \\ACK\EOT\ACK\ETX\NUL\STX\SOH\DC2\EOT\212\SOH\CAN,\n\
-    \\SI\n\
-    \\a\EOT\ACK\ETX\NUL\STX\SOH\ENQ\DC2\EOT\212\SOH\CAN\RS\n\
-    \\SI\n\
-    \\a\EOT\ACK\ETX\NUL\STX\SOH\SOH\DC2\EOT\212\SOH\US'\n\
-    \\SI\n\
-    \\a\EOT\ACK\ETX\NUL\STX\SOH\ETX\DC2\EOT\212\SOH*+\n\
-    \\SO\n\
-    \\ACK\EOT\ACK\ETX\NUL\STX\STX\DC2\EOT\213\SOH\CANF\n\
-    \\SI\n\
-    \\a\EOT\ACK\ETX\NUL\STX\STX\ACK\DC2\EOT\213\SOH\CAN7\n\
-    \\SI\n\
-    \\a\EOT\ACK\ETX\NUL\STX\STX\SOH\DC2\EOT\213\SOH8A\n\
-    \\SI\n\
-    \\a\EOT\ACK\ETX\NUL\STX\STX\ETX\DC2\EOT\213\SOHDE\n\
-    \\SO\n\
-    \\ACK\EOT\ACK\ETX\NUL\STX\ETX\DC2\EOT\214\SOH\CAN@\n\
-    \\SI\n\
-    \\a\EOT\ACK\ETX\NUL\STX\ETX\ACK\DC2\EOT\214\SOH\CAN7\n\
-    \\SI\n\
-    \\a\EOT\ACK\ETX\NUL\STX\ETX\SOH\DC2\EOT\214\SOH8;\n\
-    \\SI\n\
-    \\a\EOT\ACK\ETX\NUL\STX\ETX\ETX\DC2\EOT\214\SOH>?\n\
-    \\SO\n\
-    \\ACK\EOT\ACK\ETX\NUL\STX\EOT\DC2\EOT\215\SOH\CANJ\n\
-    \\SI\n\
-    \\a\EOT\ACK\ETX\NUL\STX\EOT\ACK\DC2\EOT\215\SOH\CAN7\n\
-    \\SI\n\
-    \\a\EOT\ACK\ETX\NUL\STX\EOT\SOH\DC2\EOT\215\SOH8E\n\
-    \\SI\n\
-    \\a\EOT\ACK\ETX\NUL\STX\EOT\ETX\DC2\EOT\215\SOHHI\n\
-    \\f\n\
-    \\STX\EOT\a\DC2\ACK\220\SOH\NUL\230\SOH\SOH\n\
-    \\v\n\
-    \\ETX\EOT\a\SOH\DC2\EOT\220\SOH\b\NAK\n\
-    \\SO\n\
-    \\EOT\EOT\a\b\NUL\DC2\ACK\221\SOH\b\224\SOH\t\n\
-    \\r\n\
-    \\ENQ\EOT\a\b\NUL\SOH\DC2\EOT\221\SOH\SO\GS\n\
-    \\f\n\
-    \\EOT\EOT\a\STX\NUL\DC2\EOT\222\SOH\DLE&\n\
-    \\r\n\
-    \\ENQ\EOT\a\STX\NUL\ACK\DC2\EOT\222\SOH\DLE\CAN\n\
-    \\r\n\
-    \\ENQ\EOT\a\STX\NUL\SOH\DC2\EOT\222\SOH\EM!\n\
-    \\r\n\
-    \\ENQ\EOT\a\STX\NUL\ETX\DC2\EOT\222\SOH$%\n\
-    \\f\n\
-    \\EOT\EOT\a\STX\SOH\DC2\EOT\223\SOH\DLE@\n\
-    \\r\n\
-    \\ENQ\EOT\a\STX\SOH\ACK\DC2\EOT\223\SOH\DLE/\n\
-    \\r\n\
-    \\ENQ\EOT\a\STX\SOH\SOH\DC2\EOT\223\SOH0;\n\
-    \\r\n\
-    \\ENQ\EOT\a\STX\SOH\ETX\DC2\EOT\223\SOH>?\n\
-    \\SO\n\
-    \\EOT\EOT\a\ETX\NUL\DC2\ACK\226\SOH\b\229\SOH\t\n\
-    \\r\n\
-    \\ENQ\EOT\a\ETX\NUL\SOH\DC2\EOT\226\SOH\DLE\CAN\n\
-    \\SO\n\
-    \\ACK\EOT\a\ETX\NUL\STX\NUL\DC2\EOT\227\SOH\DLE+\n\
-    \\SI\n\
-    \\a\EOT\a\ETX\NUL\STX\NUL\ENQ\DC2\EOT\227\SOH\DLE\SYN\n\
-    \\SI\n\
-    \\a\EOT\a\ETX\NUL\STX\NUL\SOH\DC2\EOT\227\SOH\ETB&\n\
-    \\SI\n\
-    \\a\EOT\a\ETX\NUL\STX\NUL\ETX\DC2\EOT\227\SOH)*\n\
-    \\SO\n\
-    \\ACK\EOT\a\ETX\NUL\STX\SOH\DC2\EOT\228\SOH\DLE,\n\
-    \\SI\n\
-    \\a\EOT\a\ETX\NUL\STX\SOH\ENQ\DC2\EOT\228\SOH\DLE\SYN\n\
-    \\SI\n\
-    \\a\EOT\a\ETX\NUL\STX\SOH\SOH\DC2\EOT\228\SOH\ETB'\n\
-    \\SI\n\
-    \\a\EOT\a\ETX\NUL\STX\SOH\ETX\DC2\EOT\228\SOH*+b\ACKproto3"

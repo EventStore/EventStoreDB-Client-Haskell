@@ -1,5 +1,5 @@
 {- This file was auto-generated from gossip.proto by the proto-lens-protoc program. -}
-{-# LANGUAGE ScopedTypeVariables, DataKinds, TypeFamilies, UndecidableInstances, GeneralizedNewtypeDeriving, MultiParamTypeClasses, FlexibleContexts, FlexibleInstances, PatternSynonyms, MagicHash, NoImplicitPrelude, DataKinds, BangPatterns, TypeApplications, OverloadedStrings, DerivingStrategies#-}
+{-# LANGUAGE ScopedTypeVariables, DataKinds, TypeFamilies, UndecidableInstances, GeneralizedNewtypeDeriving, MultiParamTypeClasses, FlexibleContexts, FlexibleInstances, PatternSynonyms, MagicHash, NoImplicitPrelude, DataKinds, BangPatterns, TypeApplications#-}
 {-# OPTIONS_GHC -Wno-unused-imports#-}
 {-# OPTIONS_GHC -Wno-duplicate-exports#-}
 {-# OPTIONS_GHC -Wno-dodgy-exports#-}
@@ -41,7 +41,7 @@ import qualified Database.EventStore.Grpc.Wire.Shared
 data ClusterInfo
   = ClusterInfo'_constructor {_ClusterInfo'members :: !(Data.Vector.Vector MemberInfo),
                               _ClusterInfo'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show ClusterInfo where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -67,11 +67,6 @@ instance Data.ProtoLens.Field.HasField ClusterInfo "vec'members" (Data.Vector.Ve
 instance Data.ProtoLens.Message ClusterInfo where
   messageName _
     = Data.Text.pack "event_store.client.gossip.ClusterInfo"
-  packedMessageDescriptor _
-    = "\n\
-      \\vClusterInfo\DC2?\n\
-      \\amembers\CAN\SOH \ETX(\v2%.event_store.client.gossip.MemberInfoR\amembers"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         members__field_descriptor
@@ -178,7 +173,7 @@ data EndPoint
   = EndPoint'_constructor {_EndPoint'address :: !Data.Text.Text,
                            _EndPoint'port :: !Data.Word.Word32,
                            _EndPoint'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show EndPoint where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -199,12 +194,6 @@ instance Data.ProtoLens.Field.HasField EndPoint "port" Data.Word.Word32 where
         Prelude.id
 instance Data.ProtoLens.Message EndPoint where
   messageName _ = Data.Text.pack "event_store.client.gossip.EndPoint"
-  packedMessageDescriptor _
-    = "\n\
-      \\bEndPoint\DC2\CAN\n\
-      \\aaddress\CAN\SOH \SOH(\tR\aaddress\DC2\DC2\n\
-      \\EOTport\CAN\STX \SOH(\rR\EOTport"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         address__field_descriptor
@@ -340,7 +329,7 @@ data MemberInfo
                              _MemberInfo'isAlive :: !Prelude.Bool,
                              _MemberInfo'httpEndPoint :: !(Prelude.Maybe EndPoint),
                              _MemberInfo'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show MemberInfo where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -397,40 +386,6 @@ instance Data.ProtoLens.Field.HasField MemberInfo "maybe'httpEndPoint" (Prelude.
 instance Data.ProtoLens.Message MemberInfo where
   messageName _
     = Data.Text.pack "event_store.client.gossip.MemberInfo"
-  packedMessageDescriptor _
-    = "\n\
-      \\n\
-      \MemberInfo\DC2@\n\
-      \\vinstance_id\CAN\SOH \SOH(\v2\US.event_store.client.shared.UUIDR\n\
-      \instanceId\DC2\GS\n\
-      \\n\
-      \time_stamp\CAN\STX \SOH(\ETXR\ttimeStamp\DC2F\n\
-      \\ENQstate\CAN\ETX \SOH(\SO20.event_store.client.gossip.MemberInfo.VNodeStateR\ENQstate\DC2\EM\n\
-      \\bis_alive\CAN\EOT \SOH(\bR\aisAlive\DC2I\n\
-      \\SOhttp_end_point\CAN\ENQ \SOH(\v2#.event_store.client.gossip.EndPointR\fhttpEndPoint\"\154\STX\n\
-      \\n\
-      \VNodeState\DC2\DLE\n\
-      \\fInitializing\DLE\NUL\DC2\DC2\n\
-      \\SODiscoverLeader\DLE\SOH\DC2\v\n\
-      \\aUnknown\DLE\STX\DC2\SO\n\
-      \\n\
-      \PreReplica\DLE\ETX\DC2\SO\n\
-      \\n\
-      \CatchingUp\DLE\EOT\DC2\t\n\
-      \\ENQClone\DLE\ENQ\DC2\f\n\
-      \\bFollower\DLE\ACK\DC2\r\n\
-      \\tPreLeader\DLE\a\DC2\n\
-      \\n\
-      \\ACKLeader\DLE\b\DC2\v\n\
-      \\aManager\DLE\t\DC2\DLE\n\
-      \\fShuttingDown\DLE\n\
-      \\DC2\f\n\
-      \\bShutdown\DLE\v\DC2\SYN\n\
-      \\DC2ReadOnlyLeaderless\DLE\f\DC2\SYN\n\
-      \\DC2PreReadOnlyReplica\DLE\r\DC2\DC3\n\
-      \\SIReadOnlyReplica\DLE\SO\DC2\DC3\n\
-      \\SIResigningLeader\DLE\SI"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         instanceId__field_descriptor
@@ -656,7 +611,7 @@ instance Control.DeepSeq.NFData MemberInfo where
                          (Control.DeepSeq.deepseq (_MemberInfo'httpEndPoint x__) ())))))
 newtype MemberInfo'VNodeState'UnrecognizedValue
   = MemberInfo'VNodeState'UnrecognizedValue Data.Int.Int32
-  deriving stock (Prelude.Eq, Prelude.Ord, Prelude.Show)
+  deriving (Prelude.Eq, Prelude.Ord, Prelude.Show)
 data MemberInfo'VNodeState
   = MemberInfo'Initializing |
     MemberInfo'DiscoverLeader |
@@ -675,7 +630,7 @@ data MemberInfo'VNodeState
     MemberInfo'ReadOnlyReplica |
     MemberInfo'ResigningLeader |
     MemberInfo'VNodeState'Unrecognized !MemberInfo'VNodeState'UnrecognizedValue
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 instance Data.ProtoLens.MessageEnum MemberInfo'VNodeState where
   maybeToEnum 0 = Prelude.Just MemberInfo'Initializing
   maybeToEnum 1 = Prelude.Just MemberInfo'DiscoverLeader
@@ -832,260 +787,3 @@ instance Data.ProtoLens.Service.Types.HasMethodImpl Gossip "read" where
   type MethodInput Gossip "read" = Database.EventStore.Grpc.Wire.Shared.Empty
   type MethodOutput Gossip "read" = ClusterInfo
   type MethodStreamingType Gossip "read" = 'Data.ProtoLens.Service.Types.NonStreaming
-packedFileDescriptor :: Data.ByteString.ByteString
-packedFileDescriptor
-  = "\n\
-    \\fgossip.proto\DC2\EMevent_store.client.gossip\SUB\fshared.proto\"N\n\
-    \\vClusterInfo\DC2?\n\
-    \\amembers\CAN\SOH \ETX(\v2%.event_store.client.gossip.MemberInfoR\amembers\"8\n\
-    \\bEndPoint\DC2\CAN\n\
-    \\aaddress\CAN\SOH \SOH(\tR\aaddress\DC2\DC2\n\
-    \\EOTport\CAN\STX \SOH(\rR\EOTport\"\184\EOT\n\
-    \\n\
-    \MemberInfo\DC2@\n\
-    \\vinstance_id\CAN\SOH \SOH(\v2\US.event_store.client.shared.UUIDR\n\
-    \instanceId\DC2\GS\n\
-    \\n\
-    \time_stamp\CAN\STX \SOH(\ETXR\ttimeStamp\DC2F\n\
-    \\ENQstate\CAN\ETX \SOH(\SO20.event_store.client.gossip.MemberInfo.VNodeStateR\ENQstate\DC2\EM\n\
-    \\bis_alive\CAN\EOT \SOH(\bR\aisAlive\DC2I\n\
-    \\SOhttp_end_point\CAN\ENQ \SOH(\v2#.event_store.client.gossip.EndPointR\fhttpEndPoint\"\154\STX\n\
-    \\n\
-    \VNodeState\DC2\DLE\n\
-    \\fInitializing\DLE\NUL\DC2\DC2\n\
-    \\SODiscoverLeader\DLE\SOH\DC2\v\n\
-    \\aUnknown\DLE\STX\DC2\SO\n\
-    \\n\
-    \PreReplica\DLE\ETX\DC2\SO\n\
-    \\n\
-    \CatchingUp\DLE\EOT\DC2\t\n\
-    \\ENQClone\DLE\ENQ\DC2\f\n\
-    \\bFollower\DLE\ACK\DC2\r\n\
-    \\tPreLeader\DLE\a\DC2\n\
-    \\n\
-    \\ACKLeader\DLE\b\DC2\v\n\
-    \\aManager\DLE\t\DC2\DLE\n\
-    \\fShuttingDown\DLE\n\
-    \\DC2\f\n\
-    \\bShutdown\DLE\v\DC2\SYN\n\
-    \\DC2ReadOnlyLeaderless\DLE\f\DC2\SYN\n\
-    \\DC2PreReadOnlyReplica\DLE\r\DC2\DC3\n\
-    \\SIReadOnlyReplica\DLE\SO\DC2\DC3\n\
-    \\SIResigningLeader\DLE\SI2Z\n\
-    \\ACKGossip\DC2P\n\
-    \\EOTRead\DC2 .event_store.client.shared.Empty\SUB&.event_store.client.gossip.ClusterInfoB&\n\
-    \$com.eventstore.dbclient.proto.gossipJ\165\v\n\
-    \\ACK\DC2\EOT\NUL\NUL+\SOH\n\
-    \\b\n\
-    \\SOH\f\DC2\ETX\NUL\NUL\DC2\n\
-    \\b\n\
-    \\SOH\STX\DC2\ETX\SOH\NUL\"\n\
-    \\b\n\
-    \\SOH\b\DC2\ETX\STX\NUL=\n\
-    \\t\n\
-    \\STX\b\SOH\DC2\ETX\STX\NUL=\n\
-    \\t\n\
-    \\STX\ETX\NUL\DC2\ETX\EOT\NUL\SYN\n\
-    \\n\
-    \\n\
-    \\STX\ACK\NUL\DC2\EOT\ACK\NUL\b\SOH\n\
-    \\n\
-    \\n\
-    \\ETX\ACK\NUL\SOH\DC2\ETX\ACK\b\SO\n\
-    \\v\n\
-    \\EOT\ACK\NUL\STX\NUL\DC2\ETX\a\bI\n\
-    \\f\n\
-    \\ENQ\ACK\NUL\STX\NUL\SOH\DC2\ETX\a\f\DLE\n\
-    \\f\n\
-    \\ENQ\ACK\NUL\STX\NUL\STX\DC2\ETX\a\DC21\n\
-    \\f\n\
-    \\ENQ\ACK\NUL\STX\NUL\ETX\DC2\ETX\a<G\n\
-    \\n\
-    \\n\
-    \\STX\EOT\NUL\DC2\EOT\n\
-    \\NUL\f\SOH\n\
-    \\n\
-    \\n\
-    \\ETX\EOT\NUL\SOH\DC2\ETX\n\
-    \\b\DC3\n\
-    \\v\n\
-    \\EOT\EOT\NUL\STX\NUL\DC2\ETX\v\b(\n\
-    \\f\n\
-    \\ENQ\EOT\NUL\STX\NUL\EOT\DC2\ETX\v\b\DLE\n\
-    \\f\n\
-    \\ENQ\EOT\NUL\STX\NUL\ACK\DC2\ETX\v\DC1\ESC\n\
-    \\f\n\
-    \\ENQ\EOT\NUL\STX\NUL\SOH\DC2\ETX\v\FS#\n\
-    \\f\n\
-    \\ENQ\EOT\NUL\STX\NUL\ETX\DC2\ETX\v&'\n\
-    \\n\
-    \\n\
-    \\STX\EOT\SOH\DC2\EOT\SO\NUL\DC1\SOH\n\
-    \\n\
-    \\n\
-    \\ETX\EOT\SOH\SOH\DC2\ETX\SO\b\DLE\n\
-    \\v\n\
-    \\EOT\EOT\SOH\STX\NUL\DC2\ETX\SI\b\ESC\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\STX\NUL\ENQ\DC2\ETX\SI\b\SO\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\STX\NUL\SOH\DC2\ETX\SI\SI\SYN\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\STX\NUL\ETX\DC2\ETX\SI\EM\SUB\n\
-    \\v\n\
-    \\EOT\EOT\SOH\STX\SOH\DC2\ETX\DLE\b\CAN\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\STX\SOH\ENQ\DC2\ETX\DLE\b\SO\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\STX\SOH\SOH\DC2\ETX\DLE\SI\DC3\n\
-    \\f\n\
-    \\ENQ\EOT\SOH\STX\SOH\ETX\DC2\ETX\DLE\SYN\ETB\n\
-    \\n\
-    \\n\
-    \\STX\EOT\STX\DC2\EOT\DC3\NUL+\SOH\n\
-    \\n\
-    \\n\
-    \\ETX\EOT\STX\SOH\DC2\ETX\DC3\b\DC2\n\
-    \\f\n\
-    \\EOT\EOT\STX\EOT\NUL\DC2\EOT\DC4\b%\t\n\
-    \\f\n\
-    \\ENQ\EOT\STX\EOT\NUL\SOH\DC2\ETX\DC4\r\ETB\n\
-    \\r\n\
-    \\ACK\EOT\STX\EOT\NUL\STX\NUL\DC2\ETX\NAK\DLE!\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\NUL\SOH\DC2\ETX\NAK\DLE\FS\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\NUL\STX\DC2\ETX\NAK\US \n\
-    \\r\n\
-    \\ACK\EOT\STX\EOT\NUL\STX\SOH\DC2\ETX\SYN\DLE#\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\SOH\SOH\DC2\ETX\SYN\DLE\RS\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\SOH\STX\DC2\ETX\SYN!\"\n\
-    \\r\n\
-    \\ACK\EOT\STX\EOT\NUL\STX\STX\DC2\ETX\ETB\DLE\FS\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\STX\SOH\DC2\ETX\ETB\DLE\ETB\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\STX\STX\DC2\ETX\ETB\SUB\ESC\n\
-    \\r\n\
-    \\ACK\EOT\STX\EOT\NUL\STX\ETX\DC2\ETX\CAN\DLE\US\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\ETX\SOH\DC2\ETX\CAN\DLE\SUB\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\ETX\STX\DC2\ETX\CAN\GS\RS\n\
-    \\r\n\
-    \\ACK\EOT\STX\EOT\NUL\STX\EOT\DC2\ETX\EM\DLE\US\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\EOT\SOH\DC2\ETX\EM\DLE\SUB\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\EOT\STX\DC2\ETX\EM\GS\RS\n\
-    \\r\n\
-    \\ACK\EOT\STX\EOT\NUL\STX\ENQ\DC2\ETX\SUB\DLE\SUB\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\ENQ\SOH\DC2\ETX\SUB\DLE\NAK\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\ENQ\STX\DC2\ETX\SUB\CAN\EM\n\
-    \\r\n\
-    \\ACK\EOT\STX\EOT\NUL\STX\ACK\DC2\ETX\ESC\DLE\GS\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\ACK\SOH\DC2\ETX\ESC\DLE\CAN\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\ACK\STX\DC2\ETX\ESC\ESC\FS\n\
-    \\r\n\
-    \\ACK\EOT\STX\EOT\NUL\STX\a\DC2\ETX\FS\DLE\RS\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\a\SOH\DC2\ETX\FS\DLE\EM\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\a\STX\DC2\ETX\FS\FS\GS\n\
-    \\r\n\
-    \\ACK\EOT\STX\EOT\NUL\STX\b\DC2\ETX\GS\DLE\ESC\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\b\SOH\DC2\ETX\GS\DLE\SYN\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\b\STX\DC2\ETX\GS\EM\SUB\n\
-    \\r\n\
-    \\ACK\EOT\STX\EOT\NUL\STX\t\DC2\ETX\RS\DLE\FS\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\t\SOH\DC2\ETX\RS\DLE\ETB\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\t\STX\DC2\ETX\RS\SUB\ESC\n\
-    \\r\n\
-    \\ACK\EOT\STX\EOT\NUL\STX\n\
-    \\DC2\ETX\US\DLE\"\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\n\
-    \\SOH\DC2\ETX\US\DLE\FS\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\n\
-    \\STX\DC2\ETX\US\US!\n\
-    \\r\n\
-    \\ACK\EOT\STX\EOT\NUL\STX\v\DC2\ETX \DLE\RS\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\v\SOH\DC2\ETX \DLE\CAN\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\v\STX\DC2\ETX \ESC\GS\n\
-    \\r\n\
-    \\ACK\EOT\STX\EOT\NUL\STX\f\DC2\ETX!\DLE(\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\f\SOH\DC2\ETX!\DLE\"\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\f\STX\DC2\ETX!%'\n\
-    \\r\n\
-    \\ACK\EOT\STX\EOT\NUL\STX\r\DC2\ETX\"\DLE(\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\r\SOH\DC2\ETX\"\DLE\"\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\r\STX\DC2\ETX\"%'\n\
-    \\r\n\
-    \\ACK\EOT\STX\EOT\NUL\STX\SO\DC2\ETX#\DLE%\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\SO\SOH\DC2\ETX#\DLE\US\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\SO\STX\DC2\ETX#\"$\n\
-    \\r\n\
-    \\ACK\EOT\STX\EOT\NUL\STX\SI\DC2\ETX$\DLE%\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\SI\SOH\DC2\ETX$\DLE\US\n\
-    \\SO\n\
-    \\a\EOT\STX\EOT\NUL\STX\SI\STX\DC2\ETX$\"$\n\
-    \\v\n\
-    \\EOT\EOT\STX\STX\NUL\DC2\ETX&\b7\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\NUL\ACK\DC2\ETX&\b&\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\NUL\SOH\DC2\ETX&'2\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\NUL\ETX\DC2\ETX&56\n\
-    \\v\n\
-    \\EOT\EOT\STX\STX\SOH\DC2\ETX'\b\GS\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\SOH\ENQ\DC2\ETX'\b\r\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\SOH\SOH\DC2\ETX'\SO\CAN\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\SOH\ETX\DC2\ETX'\ESC\FS\n\
-    \\v\n\
-    \\EOT\EOT\STX\STX\STX\DC2\ETX(\b\GS\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\STX\ACK\DC2\ETX(\b\DC2\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\STX\SOH\DC2\ETX(\DC3\CAN\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\STX\ETX\DC2\ETX(\ESC\FS\n\
-    \\v\n\
-    \\EOT\EOT\STX\STX\ETX\DC2\ETX)\b\SUB\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\ETX\ENQ\DC2\ETX)\b\f\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\ETX\SOH\DC2\ETX)\r\NAK\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\ETX\ETX\DC2\ETX)\CAN\EM\n\
-    \\v\n\
-    \\EOT\EOT\STX\STX\EOT\DC2\ETX*\b$\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\EOT\ACK\DC2\ETX*\b\DLE\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\EOT\SOH\DC2\ETX*\DC1\US\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\EOT\ETX\DC2\ETX*\"#b\ACKproto3"

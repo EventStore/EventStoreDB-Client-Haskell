@@ -1,5 +1,5 @@
 {- This file was auto-generated from shared.proto by the proto-lens-protoc program. -}
-{-# LANGUAGE ScopedTypeVariables, DataKinds, TypeFamilies, UndecidableInstances, GeneralizedNewtypeDeriving, MultiParamTypeClasses, FlexibleContexts, FlexibleInstances, PatternSynonyms, MagicHash, NoImplicitPrelude, DataKinds, BangPatterns, TypeApplications, OverloadedStrings, DerivingStrategies#-}
+{-# LANGUAGE ScopedTypeVariables, DataKinds, TypeFamilies, UndecidableInstances, GeneralizedNewtypeDeriving, MultiParamTypeClasses, FlexibleContexts, FlexibleInstances, PatternSynonyms, MagicHash, NoImplicitPrelude, DataKinds, BangPatterns, TypeApplications#-}
 {-# OPTIONS_GHC -Wno-unused-imports#-}
 {-# OPTIONS_GHC -Wno-duplicate-exports#-}
 {-# OPTIONS_GHC -Wno-dodgy-exports#-}
@@ -36,7 +36,7 @@ import qualified Data.ProtoLens.Runtime.Text.Read as Text.Read
       -}
 data Empty
   = Empty'_constructor {_Empty'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show Empty where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -45,10 +45,6 @@ instance Prelude.Show Empty where
            (Data.ProtoLens.showMessageShort __x) (Prelude.showChar '}' __s))
 instance Data.ProtoLens.Message Empty where
   messageName _ = Data.Text.pack "event_store.client.shared.Empty"
-  packedMessageDescriptor _
-    = "\n\
-      \\ENQEmpty"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag = let in Data.Map.fromList []
   unknownFields
     = Lens.Family2.Unchecked.lens
@@ -98,7 +94,7 @@ instance Control.DeepSeq.NFData Empty where
 data StreamIdentifier
   = StreamIdentifier'_constructor {_StreamIdentifier'streamName :: !Data.ByteString.ByteString,
                                    _StreamIdentifier'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show StreamIdentifier where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -115,13 +111,6 @@ instance Data.ProtoLens.Field.HasField StreamIdentifier "streamName" Data.ByteSt
 instance Data.ProtoLens.Message StreamIdentifier where
   messageName _
     = Data.Text.pack "event_store.client.shared.StreamIdentifier"
-  packedMessageDescriptor _
-    = "\n\
-      \\DLEStreamIdentifier\DC2\RS\n\
-      \\n\
-      \streamName\CAN\ETX \SOH(\fR\n\
-      \streamNameJ\EOT\b\SOH\DLE\ETX"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         streamName__field_descriptor
@@ -220,7 +209,7 @@ instance Control.DeepSeq.NFData StreamIdentifier where
 data UUID
   = UUID'_constructor {_UUID'value :: !(Prelude.Maybe UUID'Value),
                        _UUID'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show UUID where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -229,7 +218,7 @@ instance Prelude.Show UUID where
            (Data.ProtoLens.showMessageShort __x) (Prelude.showChar '}' __s))
 data UUID'Value
   = UUID'Structured' !UUID'Structured | UUID'String !Data.Text.Text
-  deriving stock (Prelude.Show, Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Show, Prelude.Eq, Prelude.Ord)
 instance Data.ProtoLens.Field.HasField UUID "maybe'value" (Prelude.Maybe UUID'Value) where
   fieldOf _
     = (Prelude..)
@@ -286,19 +275,6 @@ instance Data.ProtoLens.Field.HasField UUID "string" Data.Text.Text where
            (Data.ProtoLens.maybeLens Data.ProtoLens.fieldDefault))
 instance Data.ProtoLens.Message UUID where
   messageName _ = Data.Text.pack "event_store.client.shared.UUID"
-  packedMessageDescriptor _
-    = "\n\
-      \\EOTUUID\DC2L\n\
-      \\n\
-      \structured\CAN\SOH \SOH(\v2*.event_store.client.shared.UUID.StructuredH\NULR\n\
-      \structured\DC2\CAN\n\
-      \\ACKstring\CAN\STX \SOH(\tH\NULR\ACKstring\SUBv\n\
-      \\n\
-      \Structured\DC22\n\
-      \\NAKmost_significant_bits\CAN\SOH \SOH(\ETXR\DC3mostSignificantBits\DC24\n\
-      \\SYNleast_significant_bits\CAN\STX \SOH(\ETXR\DC4leastSignificantBitsB\a\n\
-      \\ENQvalue"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         structured__field_descriptor
@@ -444,7 +420,7 @@ data UUID'Structured
   = UUID'Structured'_constructor {_UUID'Structured'mostSignificantBits :: !Data.Int.Int64,
                                   _UUID'Structured'leastSignificantBits :: !Data.Int.Int64,
                                   _UUID'Structured'_unknownFields :: !Data.ProtoLens.FieldSet}
-  deriving stock (Prelude.Eq, Prelude.Ord)
+  deriving (Prelude.Eq, Prelude.Ord)
 instance Prelude.Show UUID'Structured where
   showsPrec _ __x __s
     = Prelude.showChar
@@ -468,13 +444,6 @@ instance Data.ProtoLens.Field.HasField UUID'Structured "leastSignificantBits" Da
 instance Data.ProtoLens.Message UUID'Structured where
   messageName _
     = Data.Text.pack "event_store.client.shared.UUID.Structured"
-  packedMessageDescriptor _
-    = "\n\
-      \\n\
-      \Structured\DC22\n\
-      \\NAKmost_significant_bits\CAN\SOH \SOH(\ETXR\DC3mostSignificantBits\DC24\n\
-      \\SYNleast_significant_bits\CAN\STX \SOH(\ETXR\DC4leastSignificantBits"
-  packedFileDescriptor _ = packedFileDescriptor
   fieldsByTag
     = let
         mostSignificantBits__field_descriptor
@@ -596,113 +565,3 @@ instance Control.DeepSeq.NFData UUID'Structured where
                 (_UUID'Structured'mostSignificantBits x__)
                 (Control.DeepSeq.deepseq
                    (_UUID'Structured'leastSignificantBits x__) ()))
-packedFileDescriptor :: Data.ByteString.ByteString
-packedFileDescriptor
-  = "\n\
-    \\fshared.proto\DC2\EMevent_store.client.shared\"\239\SOH\n\
-    \\EOTUUID\DC2L\n\
-    \\n\
-    \structured\CAN\SOH \SOH(\v2*.event_store.client.shared.UUID.StructuredH\NULR\n\
-    \structured\DC2\CAN\n\
-    \\ACKstring\CAN\STX \SOH(\tH\NULR\ACKstring\SUBv\n\
-    \\n\
-    \Structured\DC22\n\
-    \\NAKmost_significant_bits\CAN\SOH \SOH(\ETXR\DC3mostSignificantBits\DC24\n\
-    \\SYNleast_significant_bits\CAN\STX \SOH(\ETXR\DC4leastSignificantBitsB\a\n\
-    \\ENQvalue\"\a\n\
-    \\ENQEmpty\"8\n\
-    \\DLEStreamIdentifier\DC2\RS\n\
-    \\n\
-    \streamName\CAN\ETX \SOH(\fR\n\
-    \streamNameJ\EOT\b\SOH\DLE\ETXB&\n\
-    \$com.eventstore.dbclient.proto.sharedJ\137\EOT\n\
-    \\ACK\DC2\EOT\NUL\NUL\NAK\SOH\n\
-    \\b\n\
-    \\SOH\f\DC2\ETX\NUL\NUL\DC2\n\
-    \\b\n\
-    \\SOH\STX\DC2\ETX\SOH\NUL\"\n\
-    \\b\n\
-    \\SOH\b\DC2\ETX\STX\NUL=\n\
-    \\t\n\
-    \\STX\b\SOH\DC2\ETX\STX\NUL=\n\
-    \\n\
-    \\n\
-    \\STX\EOT\NUL\DC2\EOT\EOT\NUL\SO\SOH\n\
-    \\n\
-    \\n\
-    \\ETX\EOT\NUL\SOH\DC2\ETX\EOT\b\f\n\
-    \\f\n\
-    \\EOT\EOT\NUL\b\NUL\DC2\EOT\ENQ\STX\b\ETX\n\
-    \\f\n\
-    \\ENQ\EOT\NUL\b\NUL\SOH\DC2\ETX\ENQ\b\r\n\
-    \\v\n\
-    \\EOT\EOT\NUL\STX\NUL\DC2\ETX\ACK\EOT\RS\n\
-    \\f\n\
-    \\ENQ\EOT\NUL\STX\NUL\ACK\DC2\ETX\ACK\EOT\SO\n\
-    \\f\n\
-    \\ENQ\EOT\NUL\STX\NUL\SOH\DC2\ETX\ACK\SI\EM\n\
-    \\f\n\
-    \\ENQ\EOT\NUL\STX\NUL\ETX\DC2\ETX\ACK\FS\GS\n\
-    \\v\n\
-    \\EOT\EOT\NUL\STX\SOH\DC2\ETX\a\EOT\SYN\n\
-    \\f\n\
-    \\ENQ\EOT\NUL\STX\SOH\ENQ\DC2\ETX\a\EOT\n\
-    \\n\
-    \\f\n\
-    \\ENQ\EOT\NUL\STX\SOH\SOH\DC2\ETX\a\v\DC1\n\
-    \\f\n\
-    \\ENQ\EOT\NUL\STX\SOH\ETX\DC2\ETX\a\DC4\NAK\n\
-    \\f\n\
-    \\EOT\EOT\NUL\ETX\NUL\DC2\EOT\n\
-    \\STX\r\ETX\n\
-    \\f\n\
-    \\ENQ\EOT\NUL\ETX\NUL\SOH\DC2\ETX\n\
-    \\n\
-    \\DC4\n\
-    \\r\n\
-    \\ACK\EOT\NUL\ETX\NUL\STX\NUL\DC2\ETX\v\EOT$\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\NUL\ENQ\DC2\ETX\v\EOT\t\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\NUL\SOH\DC2\ETX\v\n\
-    \\US\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\NUL\ETX\DC2\ETX\v\"#\n\
-    \\r\n\
-    \\ACK\EOT\NUL\ETX\NUL\STX\SOH\DC2\ETX\f\EOT%\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\SOH\ENQ\DC2\ETX\f\EOT\t\n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\SOH\SOH\DC2\ETX\f\n\
-    \ \n\
-    \\SO\n\
-    \\a\EOT\NUL\ETX\NUL\STX\SOH\ETX\DC2\ETX\f#$\n\
-    \\n\
-    \\n\
-    \\STX\EOT\SOH\DC2\EOT\SI\NUL\DLE\SOH\n\
-    \\n\
-    \\n\
-    \\ETX\EOT\SOH\SOH\DC2\ETX\SI\b\r\n\
-    \\n\
-    \\n\
-    \\STX\EOT\STX\DC2\EOT\DC2\NUL\NAK\SOH\n\
-    \\n\
-    \\n\
-    \\ETX\EOT\STX\SOH\DC2\ETX\DC2\b\CAN\n\
-    \\n\
-    \\n\
-    \\ETX\EOT\STX\t\DC2\ETX\DC3\STX\DC2\n\
-    \\v\n\
-    \\EOT\EOT\STX\t\NUL\DC2\ETX\DC3\v\DC1\n\
-    \\f\n\
-    \\ENQ\EOT\STX\t\NUL\SOH\DC2\ETX\DC3\v\f\n\
-    \\f\n\
-    \\ENQ\EOT\STX\t\NUL\STX\DC2\ETX\DC3\DLE\DC1\n\
-    \\v\n\
-    \\EOT\EOT\STX\STX\NUL\DC2\ETX\DC4\STX\ETB\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\NUL\ENQ\DC2\ETX\DC4\STX\a\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\NUL\SOH\DC2\ETX\DC4\b\DC2\n\
-    \\f\n\
-    \\ENQ\EOT\STX\STX\NUL\ETX\DC2\ETX\DC4\NAK\SYNb\ACKproto3"

@@ -1,3 +1,4 @@
+{-# LANGUAGE StrictData #-}
 --------------------------------------------------------------------------------
 -- |
 -- Module : Database.EventStore.Grpc.Types
@@ -20,7 +21,11 @@ import Data.Map (Map)
 import Data.Text (Text)
 import Data.UUID (UUID)
 --------------------------------------------------------------------------------
-data WriteResult = WriteResult
+data WriteResult =
+  WriteResult
+  { writeResultCurrentRevision :: CurrentRevision
+  , writeResultPosition :: Maybe Position
+  }
 
 --------------------------------------------------------------------------------
 -- | Contains event information like its type and data. Only used for write
@@ -46,8 +51,46 @@ data ProposedMessage
 --   EventStore will do its best to assure idempotency but will not guarantee
 --   idempotency.
 data ExpectedStreamRevision
-    = Any
-    | NoStream
-    | Exact Int64
-    | StreamExists
-    deriving (Eq, Show)
+  = Any
+  | NoStream
+  | Exact Int64
+  | StreamExists
+  deriving (Eq, Show)
+
+--------------------------------------------------------------------------------
+data CurrentRevision
+  = CurrentRevision Int64
+  | CurrentRevisionNoStream
+
+--------------------------------------------------------------------------------
+-- | A structure referring to a potential logical record position in the
+--   EventStore transaction file.
+data Position
+    = Position
+      { positionCommit :: Int64 -- ^ Commit position of the record
+      , positionPrepare :: Int64 -- ^ Prepare position of the record
+      }
+    deriving Show
+
+--------------------------------------------------------------------------------
+instance Eq Position where
+    Position ac aap == Position bc bp = ac == bc && aap == bp
+
+--------------------------------------------------------------------------------
+instance Ord Position where
+    compare (Position ac aap) (Position bc bp) =
+        if ac < bc || (ac == bc && aap < bp)
+        then LT
+        else if ac > bc || (ac == bc && aap > bp)
+             then GT
+             else EQ
+
+--------------------------------------------------------------------------------
+-- | Representing the start of the transaction file.
+positionStart :: Position
+positionStart = Position 0 0
+
+--------------------------------------------------------------------------------
+-- | Representing the end of the transaction file.
+positionEnd :: Position
+positionEnd = Position (-1) (-1)

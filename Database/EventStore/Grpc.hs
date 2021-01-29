@@ -1,3 +1,4 @@
+{-# LANGUAGE DataKinds #-}
 {-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE NumericUnderscores #-}
 {-# LANGUAGE StrictData #-}
@@ -19,6 +20,7 @@ module Database.EventStore.Grpc where
 import Control.Exception (Exception(..), throwIO)
 import Control.Monad.IO.Class (liftIO)
 import Data.String (fromString)
+import Data.Word (Word64)
 import Prelude
 
 --------------------------------------------------------------------------------
@@ -29,8 +31,8 @@ import Data.ProtoLens (defMessage)
 import Data.Text (Text)
 import Data.Text.Encoding (encodeUtf8)
 import qualified Data.UUID as UUID
-import Lens.Micro ((&), (^.), (^?), (.~), (?~), to, _Right, _1, _2, _3, non)
-import Network.GRPC.Client (open, singleRequest, streamReply, streamRequest, uncompressed, Timeout(..), StreamDone(..), CompressMode(..), RPCCall)
+import Lens.Micro ((&), (^.), (^?), (.~), (?~), to, _Right, _1, _2, _3, non, singular, traversed)
+import Network.GRPC.Client (RawReply, open, singleRequest, streamReply, streamRequest, uncompressed, Timeout(..), StreamDone(..), CompressMode(..), RPCCall)
 import qualified Network.HTTP2.Client as Client
 import qualified Network.GRPC.Client.Helpers as Client
 import qualified Network.GRPC.HTTP2.Types as Http2Types
@@ -45,7 +47,7 @@ import qualified Database.EventStore.Grpc.Wire.Streams as Streams
 import qualified Database.EventStore.Grpc.Wire.Streams_Fields as Streams_Fields
 
 --------------------------------------------------------------------------------
-data ShowableException = forall e. Show e => ShowableException e 
+data ShowableException = forall e. Show e => ShowableException e
 
 deriving instance Show ShowableException
 instance Exception ShowableException
@@ -87,7 +89,7 @@ executeCall c call = do
       (Timeout maxBound)
       (Http2Types.Encoding uncompressed)
       (Http2Types.Decoding uncompressed) call
-  
+
   case res of
     Left e -> throwIO e
     Right res2 ->
@@ -96,15 +98,40 @@ executeCall c call = do
         Right a -> pure a
 
 --------------------------------------------------------------------------------
-appendToStream :: Client -> Text -> [Types.ProposedMessage] -> AppendStreamOptions -> IO Types.WriteResult
+handleReply :: RawReply a -> IO a
+handleReply = undefined
+
+--------------------------------------------------------------------------------
+appendToStream :: Client
+               -> Text
+               -> [Types.ProposedMessage]
+               -> AppendStreamOptions
+               -> IO Types.WriteResult
 appendToStream c streamName events opts = do
-    executeCall c (streamRequest Streams_Fields.)
+    (_, resp) <- executeCall c (streamRequest appendReqRPC (options : fmap toMessage events) go)
+    wireResp <- handleReply resp
+    let Just result = wireResp ^. Streams_Fields.maybe'result
+    case result of
+      Streams.AppendResp'Success' success ->
+        let currentRevision = success ^. Streams_Fields.maybe'currentRevision.to toExpectedRev
+            position = success ^. Streams_Fields.maybe'position.to (fmap toPosition)
+            writeResult =
+              Types.WriteResult
+              { writeResultCurrentRevision = currentRevision,
+                writeResultPosition = position
+              } in
+        pure writeResult
+      Streams.AppendResp'WrongExpectedVersion' _ ->
+        pure undefined
   where
+    go []     = pure ([], Left StreamDone)
+    go (x:xs) = pure (xs, Right (Uncompressed, x))
+
     expectation =
       case appendStreamOptionsExpectedRevision opts of
         Types.Any -> Streams.AppendReq'Options'Any defMessage
         Types.NoStream -> Streams.AppendReq'Options'NoStream defMessage
-        Types.StreamExists -> Streams.AppendReq'Options'StreamExists defMessage 
+        Types.StreamExists -> Streams.AppendReq'Options'StreamExists defMessage
         Types.Exact rev -> Streams.AppendReq'Options'Revision (fromIntegral rev)
 
     options :: Streams.AppendReq
@@ -127,8 +154,19 @@ appendToStream c streamName events opts = do
       , ("content-type", contentType msg)
       ]
 
-    message :: Types.ProposedMessage -> Streams.AppendReq
-    message msg =
+    toExpectedRev :: Maybe Word64 -> Types.CurrentRevision
+    toExpectedRev Nothing = Types.CurrentRevisionNoStream
+    toExpectedRev (Just rev) = Types.CurrentRevision (fromIntegral rev)
+
+    toPosition :: Streams.AppendResp'Position -> Types.Position
+    toPosition p =
+      Types.Position
+      { positionCommit = p ^. Streams_Fields.commitPosition.to fromIntegral
+      , positionPrepare = p ^. Streams_Fields.preparePosition.to fromIntegral
+      }
+
+    toMessage :: Types.ProposedMessage -> Streams.AppendReq
+    toMessage msg =
       let content =
             defMessage
               & Streams_Fields.data' .~ Types.proposedMessageData msg
@@ -140,4 +178,3 @@ appendToStream c streamName events opts = do
               Just uid -> content & Streams_Fields.maybe'id.non defMessage.Shared_Fields.string .~ UUID.toText uid in
       defMessage
         & Streams_Fields.maybe'proposedMessage ?~ final
-    
