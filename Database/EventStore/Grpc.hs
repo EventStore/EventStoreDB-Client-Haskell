@@ -3,6 +3,8 @@
 {-# LANGUAGE NumericUnderscores #-}
 {-# LANGUAGE StrictData #-}
 {-# LANGUAGE ExistentialQuantification #-}
+{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE OverloadedStrings #-}
 --------------------------------------------------------------------------------
 -- |
 -- Module : Database.EventStore.Grpc
@@ -21,11 +23,16 @@ import Control.Exception (Exception(..), throwIO)
 import Control.Monad.IO.Class (liftIO)
 import Data.String (fromString)
 import Data.Word (Word64)
+import GHC.Generics (Generic)
 import Prelude
 
 --------------------------------------------------------------------------------
+import Data.Aeson (ToJSON)
+import qualified Data.Aeson as Aeson
 import Data.ByteString (ByteString)
+import Data.ByteString.Lazy (toStrict)
 import Data.ByteString.Base64 as Base64
+import Data.Default.Class (Default(..))
 import qualified Data.Map as Map
 import Data.ProtoLens (defMessage)
 import Data.Text (Text)
@@ -69,6 +76,36 @@ data AppendStreamOptions =
   { appendStreamOptionsExpectedRevision :: Types.ExpectedStreamRevision }
 
 --------------------------------------------------------------------------------
+instance Default AppendStreamOptions where
+  def =
+    AppendStreamOptions
+    { appendStreamOptionsExpectedRevision = Types.Any }
+
+--------------------------------------------------------------------------------
+data Foo = Foo { _fooValue :: Int } deriving (Generic)
+
+--------------------------------------------------------------------------------
+instance ToJSON Foo
+
+--------------------------------------------------------------------------------
+testGrpc :: IO ()
+testGrpc = do
+  Right conn <- createConn "127.0.0.1" 2113
+  let message =
+        Types.ProposedMessage
+        { proposedMessageType = "tested-event"
+        , proposedMessageId = Nothing
+        , proposedMessageMetadata = Map.empty
+        , proposedMessageData = toStrict . Aeson.encode $ Foo 4
+        , proposedMessageCustomMetadata = ""
+        , proposedMessageIsJson = True
+        }
+
+  res <- appendToStream conn "test-grpc-haskell" [message] def
+  print res
+
+
+--------------------------------------------------------------------------------
 createConn :: Client.HostName -> Client.PortNumber -> IO (Either Client.ClientError Client)
 createConn hostname port = Client.runClientIO $ do
     conn <- Client.newHttp2FrameConnection hostname port Nothing
@@ -99,14 +136,21 @@ executeCall c call = do
 
 --------------------------------------------------------------------------------
 handleReply :: RawReply a -> IO a
-handleReply = undefined
+handleReply (Left code) = throwIO (ShowableException $ "Error code: " ++ show code)
+handleReply (Right (a, b, res)) =
+  case res of
+    Left e -> do
+      print a
+      print b
+      throwIO (ShowableException e)
+    Right a -> pure a
 
 --------------------------------------------------------------------------------
 appendToStream :: Client
                -> Text
                -> [Types.ProposedMessage]
                -> AppendStreamOptions
-               -> IO Types.WriteResult
+               -> IO (Either Types.WrongExpectedVersion Types.WriteResult)
 appendToStream c streamName events opts = do
     (_, resp) <- executeCall c (streamRequest appendReqRPC (options : fmap toMessage events) go)
     wireResp <- handleReply resp
@@ -120,9 +164,15 @@ appendToStream c streamName events opts = do
               { writeResultCurrentRevision = currentRevision,
                 writeResultPosition = position
               } in
-        pure writeResult
-      Streams.AppendResp'WrongExpectedVersion' _ ->
-        pure undefined
+        pure $ Right writeResult
+      Streams.AppendResp'WrongExpectedVersion' wireExp ->
+        let currentVersion = wireExp ^. Streams_Fields.maybe'currentRevision.to toExpectedRev
+            Just expectedVersion = wireExp ^. Streams_Fields.maybe'expectedRevisionOption.to (fmap toExpectedVersion)
+            wrongVersion =
+              Types.WrongExpectedVersion
+              { wrongExpectedCurrent = currentVersion
+              , wrongExpectedVersion = expectedVersion } in
+        pure $ Left wrongVersion
   where
     go []     = pure ([], Left StreamDone)
     go (x:xs) = pure (xs, Right (Uncompressed, x))
@@ -133,6 +183,11 @@ appendToStream c streamName events opts = do
         Types.NoStream -> Streams.AppendReq'Options'NoStream defMessage
         Types.StreamExists -> Streams.AppendReq'Options'StreamExists defMessage
         Types.Exact rev -> Streams.AppendReq'Options'Revision (fromIntegral rev)
+
+    toExpectedVersion :: Streams.AppendResp'WrongExpectedVersion'ExpectedRevisionOption -> Types.ExpectedStreamRevision
+    toExpectedVersion (Streams.AppendResp'WrongExpectedVersion'ExpectedRevision v) = Types.Exact (fromIntegral v)
+    toExpectedVersion (Streams.AppendResp'WrongExpectedVersion'Any _) = Types.Any
+    toExpectedVersion (Streams.AppendResp'WrongExpectedVersion'StreamExists _) = Types.StreamExists
 
     options :: Streams.AppendReq
     options =

@@ -47,6 +47,7 @@ dependencies:
   - microlens
   - base64-bytestring >= 1.2
   - http2-grpc-proto-lens #==0.1.*
+  - data-default-class
 
 extra-source-files:
   - README.md

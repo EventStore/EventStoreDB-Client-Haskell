@@ -25,7 +25,7 @@ data WriteResult =
   WriteResult
   { writeResultCurrentRevision :: CurrentRevision
   , writeResultPosition :: Maybe Position
-  }
+  } deriving (Show)
 
 --------------------------------------------------------------------------------
 -- | Contains event information like its type and data. Only used for write
@@ -61,16 +61,16 @@ data ExpectedStreamRevision
 data CurrentRevision
   = CurrentRevision Int64
   | CurrentRevisionNoStream
+  deriving (Show)
 
 --------------------------------------------------------------------------------
 -- | A structure referring to a potential logical record position in the
 --   EventStore transaction file.
-data Position
-    = Position
-      { positionCommit :: Int64 -- ^ Commit position of the record
-      , positionPrepare :: Int64 -- ^ Prepare position of the record
-      }
-    deriving Show
+data Position =
+  Position
+  { positionCommit :: Int64 -- ^ Commit position of the record
+  , positionPrepare :: Int64 -- ^ Prepare position of the record
+  } deriving Show
 
 --------------------------------------------------------------------------------
 instance Eq Position where
@@ -94,3 +94,10 @@ positionStart = Position 0 0
 -- | Representing the end of the transaction file.
 positionEnd :: Position
 positionEnd = Position (-1) (-1)
+
+--------------------------------------------------------------------------------
+data WrongExpectedVersion =
+  WrongExpectedVersion
+  { wrongExpectedCurrent :: CurrentRevision
+  , wrongExpectedVersion :: ExpectedStreamRevision
+  } deriving (Show)

@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e2066863ea1eaeb64635b118502cb4a01df1dc7b5faf9062fd582764ebf3daf4
+-- hash: a9f3bb559495ca66c33cf168008df9bed78a08326558ac33cd4ec94a8f51c12c
 
 name:           eventstore
 version:        1.4.1
@@ -107,6 +107,7 @@ library
     , clock
     , connection >=0.2
     , containers
+    , data-default-class
     , dns >=3.0.1
     , dotnet-timespan
     , exceptions
@@ -169,6 +170,7 @@ test-suite eventstore-tests
     , cereal
     , connection >=0.2
     , containers
+    , data-default-class
     , dotnet-timespan
     , eventstore
     , exceptions
