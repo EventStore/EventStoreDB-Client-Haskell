@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ce06cc20eb2ef61c0d52dc888830182016c2f8c1d036e25d6e481d12b9d0ae76
+-- hash: a9f3bb559495ca66c33cf168008df9bed78a08326558ac33cd4ec94a8f51c12c
 
 name:           eventstore
 version:        1.4.1
@@ -33,6 +33,16 @@ library
       Database.EventStore.Streaming
       Database.EventStore.Internal.Test
   other-modules:
+      Database.EventStore.Grpc
+      Database.EventStore.Grpc.Types
+      Database.EventStore.Grpc.Wire.Gossip
+      Database.EventStore.Grpc.Wire.Gossip_Fields
+      Database.EventStore.Grpc.Wire.Persistent
+      Database.EventStore.Grpc.Wire.Persistent_Fields
+      Database.EventStore.Grpc.Wire.Shared
+      Database.EventStore.Grpc.Wire.Shared_Fields
+      Database.EventStore.Grpc.Wire.Streams
+      Database.EventStore.Grpc.Wire.Streams_Fields
       Database.EventStore.Internal
       Database.EventStore.Internal.Command
       Database.EventStore.Internal.Communication
@@ -90,25 +100,35 @@ library
       aeson >=0.8
     , array
     , base >=4.7 && <5
+    , base64-bytestring >=1.2
     , bifunctors
     , bytestring
     , cereal >=0.4 && <0.6
     , clock
     , connection >=0.2
     , containers
+    , data-default-class
     , dns >=3.0.1
     , dotnet-timespan
     , exceptions
     , fast-logger
     , hashable
     , http-client >=0.5
+    , http2 >=1.6
+    , http2-client >=0.9
+    , http2-client-grpc >=0.8
+    , http2-grpc-proto-lens
+    , http2-grpc-types >=0.5
     , interpolate
     , lifted-async
     , lifted-base
+    , microlens
     , monad-control
     , monad-logger >=0.3.20
     , mono-traversable ==1.*
     , mtl
+    , proto-lens ==0.6.*
+    , proto-lens-runtime
     , protobuf >=0.2.1.1 && <0.3
     , random ==1.*
     , safe
@@ -145,20 +165,30 @@ test-suite eventstore-tests
       aeson
     , async
     , base >=4.7 && <5
+    , base64-bytestring >=1.2
     , bytestring
     , cereal
     , connection >=0.2
     , containers
+    , data-default-class
     , dotnet-timespan
     , eventstore
     , exceptions
     , fast-logger
     , file-embed
     , hashable
+    , http2 >=1.6
+    , http2-client >=0.9
+    , http2-client-grpc >=0.8
+    , http2-grpc-proto-lens
+    , http2-grpc-types >=0.5
     , lifted-async
     , lifted-base
+    , microlens
     , monad-control
     , mono-traversable ==1.*
+    , proto-lens ==0.6.*
+    , proto-lens-runtime
     , protobuf
     , safe
     , safe-exceptions
