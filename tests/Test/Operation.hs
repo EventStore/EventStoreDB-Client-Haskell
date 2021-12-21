@@ -19,6 +19,7 @@ import Database.EventStore.Internal.Test hiding (i)
 --------------------------------------------------------------------------------
 import Test.Bogus.Connection
 import Test.Common
+import Test.Hspec (Spec, beforeAll, specify, shouldBe)
 import Test.Tasty.Hspec
 
 --------------------------------------------------------------------------------

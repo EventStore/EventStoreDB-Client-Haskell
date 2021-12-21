@@ -31,8 +31,8 @@ import Numeric.Natural (Natural)
 import           Control.Monad.Reader
 import qualified Data.Aeson as A
 import           Data.Aeson.Types (Object, ToJSON(..), Pair, Parser, (.=))
+import qualified Data.Aeson.KeyMap as KeyMap
 import           Data.DotNet.TimeSpan
-import           Data.HashMap.Strict (filterWithKey)
 import           Data.ProtocolBuffers
 import           Data.Time (NominalDiffTime)
 import           Data.Time.Clock.POSIX
@@ -722,14 +722,14 @@ data StreamMetadata
 
 --------------------------------------------------------------------------------
 -- | Gets a custom property value from metadata.
-getCustomPropertyValue :: StreamMetadata -> Text -> Maybe A.Value
-getCustomPropertyValue s k = lookup k obj
+getCustomPropertyValue :: StreamMetadata -> A.Key -> Maybe A.Value
+getCustomPropertyValue s k = KeyMap.lookup k obj
   where
     obj = streamMetadataCustom s
 
 --------------------------------------------------------------------------------
 -- | Get a custom property value from metadata.
-getCustomProperty :: A.FromJSON a => StreamMetadata -> Text -> Maybe a
+getCustomProperty :: A.FromJSON a => StreamMetadata -> A.Key -> Maybe a
 getCustomProperty s k = do
     v <- getCustomPropertyValue s k
     case A.fromJSON v of
@@ -760,7 +760,7 @@ emptyStreamMetadata = StreamMetadata
 --------------------------------------------------------------------------------
 -- | Maps an 'Object' to a list of 'Pair' to ease the 'StreamMetadata'.
 customMetaToPairs :: Object -> [Pair]
-customMetaToPairs = fmap go . mapToList
+customMetaToPairs = fmap go . KeyMap.toList
   where
     go (k,v) = k .= v
 
@@ -814,60 +814,60 @@ streamMetadataJSON StreamMetadata{..} =
 -- Stream ACL Properties
 --------------------------------------------------------------------------------
 -- | Read ACL property.
-p_readRoles :: Text
+p_readRoles :: A.Key
 p_readRoles = "$r"
 
 --------------------------------------------------------------------------------
 -- | Write ACL property.
-p_writeRoles :: Text
+p_writeRoles :: A.Key
 p_writeRoles = "$w"
 
 --------------------------------------------------------------------------------
 -- | Delete ACL property.
-p_deleteRoles :: Text
+p_deleteRoles :: A.Key
 p_deleteRoles = "$d"
 
 --------------------------------------------------------------------------------
 -- | Metadata read ACL property.
-p_metaReadRoles :: Text
+p_metaReadRoles :: A.Key
 p_metaReadRoles = "$mr"
 
 --------------------------------------------------------------------------------
 -- | Metadata write ACL property.
-p_metaWriteRoles :: Text
+p_metaWriteRoles :: A.Key
 p_metaWriteRoles = "$mw"
 
 --------------------------------------------------------------------------------
 -- Internal MetaData Properties
 --------------------------------------------------------------------------------
 -- | Max age metadata property.
-p_maxAge :: Text
+p_maxAge :: A.Key
 p_maxAge = "$maxAge"
 
 --------------------------------------------------------------------------------
 -- | Max count metadata property.
-p_maxCount :: Text
+p_maxCount :: A.Key
 p_maxCount = "$maxCount"
 
 --------------------------------------------------------------------------------
 -- | truncated before metadata property.
-p_truncateBefore :: Text
+p_truncateBefore :: A.Key
 p_truncateBefore = "$tb"
 
 --------------------------------------------------------------------------------
 -- | Cache control metadata property.
-p_cacheControl :: Text
+p_cacheControl :: A.Key
 p_cacheControl = "$cacheControl"
 
 --------------------------------------------------------------------------------
 -- | ACL metadata property.
-p_acl :: Text
+p_acl :: A.Key
 p_acl = "$acl"
 
 --------------------------------------------------------------------------------
 -- | Gathers every internal metadata properties into a 'Set'. It used to safely
 --   'StreamMetadata' in JSON.
-internalMetaProperties :: Set Text
+internalMetaProperties :: Set A.Key
 internalMetaProperties =
     setFromList [ p_maxAge
                 , p_maxCount
@@ -879,13 +879,13 @@ internalMetaProperties =
 --------------------------------------------------------------------------------
 -- | Only keeps the properties the users has set.
 keepUserProperties :: Object -> Object
-keepUserProperties = filterWithKey go
+keepUserProperties = KeyMap.filterWithKey go
   where
     go k _ = notMember k internalMetaProperties
 
 --------------------------------------------------------------------------------
 -- | Parses a 'NominalDiffTime' from an 'Object' given a JSON property.
-parseNominalDiffTime :: Text -> Object -> Parser (Maybe NominalDiffTime)
+parseNominalDiffTime :: A.Key -> Object -> Parser (Maybe NominalDiffTime)
 parseNominalDiffTime k m = fmap (fmap go) (m A..: k)
   where
     go n = (realToFrac $ CTime n)
@@ -903,7 +903,7 @@ parseStreamACL (A.Object m) =
 parseStreamACL _ = mzero
 
 --------------------------------------------------------------------------------
-parseSingleOrMultiple :: A.Object -> Text -> Parser (Maybe [Text])
+parseSingleOrMultiple :: A.Object -> A.Key -> Parser (Maybe [Text])
 parseSingleOrMultiple obj name = multiple <|> single
   where
     single = do
@@ -924,7 +924,7 @@ parseStreamMetadata (A.Object m) =
         <*> ((m A..: p_acl >>= traverse parseStreamACL) <|> pure Nothing)
         <*> pure (keepUserProperties m)
   where
-    parseTimeSpan ::  Text -> Parser (Maybe TimeSpan)
+    parseTimeSpan ::  A.Key -> Parser (Maybe TimeSpan)
     parseTimeSpan prop = do
         (secs :: Maybe Int64) <- m A..: prop
         return $ fmap (fromSeconds . realToFrac) secs
@@ -1044,10 +1044,10 @@ modifyACL b = Endo $ \s ->
 
 --------------------------------------------------------------------------------
 -- | Sets a custom metadata property.
-setCustomProperty :: ToJSON a => Text -> a -> StreamMetadataBuilder
+setCustomProperty :: ToJSON a => A.Key -> a -> StreamMetadataBuilder
 setCustomProperty k v = Endo $ \s ->
     let m  = streamMetadataCustom s
-        m' = insertMap k (toJSON v) m in
+        m' = KeyMap.insert k (toJSON v) m in
      s { streamMetadataCustom = m' }
 
 --------------------------------------------------------------------------------

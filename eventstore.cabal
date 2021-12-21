@@ -1,13 +1,11 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.33.0.
+-- This file has been generated from package.yaml by hpack version 0.34.4.
 --
 -- see: https://github.com/sol/hpack
---
--- hash: ce06cc20eb2ef61c0d52dc888830182016c2f8c1d036e25d6e481d12b9d0ae76
 
 name:           eventstore
-version:        1.4.1
+version:        1.4.2
 synopsis:       EventStore TCP Client
 description:    EventStore TCP Client <https://eventstore.com>
 category:       Database
@@ -17,8 +15,9 @@ maintainer:     yo.eight@gmail.com
 copyright:      Yorick Laupa
 license:        BSD3
 license-file:   LICENSE
-tested-with:    GHC >= 8.0 && <= 8.8
 build-type:     Simple
+tested-with:
+    GHC >= 8.0 && <= 8.8
 extra-source-files:
     README.md
     CHANGELOG.markdown
@@ -84,8 +83,19 @@ library
       Database.EventStore.Internal.Utils
       Paths_eventstore
   hs-source-dirs:
-      ./.
-  default-extensions: NoImplicitPrelude OverloadedStrings LambdaCase RecordWildCards RankNTypes TemplateHaskell QuasiQuotes FlexibleContexts MultiParamTypeClasses TypeFamilies ConstraintKinds
+      ./
+  default-extensions:
+      NoImplicitPrelude
+      OverloadedStrings
+      LambdaCase
+      RecordWildCards
+      RankNTypes
+      TemplateHaskell
+      QuasiQuotes
+      FlexibleContexts
+      MultiParamTypeClasses
+      TypeFamilies
+      ConstraintKinds
   build-depends:
       aeson >=0.8
     , array
@@ -139,7 +149,18 @@ test-suite eventstore-tests
       Paths_eventstore
   hs-source-dirs:
       tests
-  default-extensions: NoImplicitPrelude OverloadedStrings LambdaCase RecordWildCards RankNTypes TemplateHaskell QuasiQuotes FlexibleContexts MultiParamTypeClasses TypeFamilies ConstraintKinds
+  default-extensions:
+      NoImplicitPrelude
+      OverloadedStrings
+      LambdaCase
+      RecordWildCards
+      RankNTypes
+      TemplateHaskell
+      QuasiQuotes
+      FlexibleContexts
+      MultiParamTypeClasses
+      TypeFamilies
+      ConstraintKinds
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
@@ -155,6 +176,7 @@ test-suite eventstore-tests
     , fast-logger
     , file-embed
     , hashable
+    , hspec
     , lifted-async
     , lifted-base
     , monad-control
