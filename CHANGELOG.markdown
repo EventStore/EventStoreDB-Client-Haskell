@@ -1,3 +1,7 @@
+1.4.2
+-----
+Bump `aeson` to >= 2.
+
 1.4.1
 -----
 * Update EventStore website link in documentation.
