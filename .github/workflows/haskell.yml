@@ -8,16 +8,16 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: haskell:8.8
+      image: haskell:8.10
 
     services:
       eventstore:
-        image: eventstore/eventstore:latest
+        image: eventstore/eventstore:release-5.0.11
         ports:
           - 1113/tcp
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Install dependencies
       run: |
         cabal --version

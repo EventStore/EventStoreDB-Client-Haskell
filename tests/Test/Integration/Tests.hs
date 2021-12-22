@@ -20,6 +20,7 @@ module Test.Integration.Tests (spec) where
 import Prelude (fail)
 import Control.Concurrent.Async (wait)
 import Data.Aeson
+import qualified Data.Aeson.Key as Key
 import Data.DotNet.TimeSpan
 import Data.FileEmbed (embedFile)
 import Data.Maybe (fromMaybe)
@@ -27,6 +28,7 @@ import Data.UUID hiding (null)
 import Data.UUID.V4
 import qualified Streaming.Prelude as Streaming
 import System.Environment (lookupEnv)
+import Test.Hspec (Spec, it, afterAll, beforeAll, describe, parallel)
 import Test.Tasty.HUnit
 import Test.Tasty.Hspec
 
@@ -552,7 +554,7 @@ generateEvents n = take n $ fmap toObj [1..]
 
 --------------------------------------------------------------------------------
 toObj :: Int -> Value
-toObj n = object [ pack (show n) .= n ]
+toObj n = object [ Key.fromString (show n) .= n ]
 
 --------------------------------------------------------------------------------
 streamRegularStreamForwardTest :: Connection -> IO ()

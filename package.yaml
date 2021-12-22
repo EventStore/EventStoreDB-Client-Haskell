@@ -1,5 +1,5 @@
 name: eventstore
-version: 1.4.1
+version: 1.4.2
 homepage: https://github.com/YoEight/eventstore
 tested-with: GHC >= 8.0 && <= 8.8
 synopsis: EventStore TCP Client
@@ -88,6 +88,7 @@ tests:
       - tasty
       - tasty-hunit
       - tasty-hspec
+      - hspec
       - aeson
       - text
       - protobuf
