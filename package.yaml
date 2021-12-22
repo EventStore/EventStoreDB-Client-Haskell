@@ -1,6 +1,6 @@
 name: eventstore
 version: 1.4.2
-homepage: https://github.com/YoEight/eventstore
+homepage: https://github.com/EventStore/EventStoreDB-Client-Haskell
 tested-with: GHC >= 8.0 && <= 8.8
 synopsis: EventStore TCP Client
 description: EventStore TCP Client <https://eventstore.com>
@@ -10,7 +10,7 @@ author: Yorick Laupa
 maintainer: yo.eight@gmail.com
 copyright: Yorick Laupa
 category: Database
-git: https://github.com/YoEight/eventstore.git
+git: https://github.com/EventStore/EventStoreDB-Client-Haskell.git
 
 dependencies:
   - base >=4.7 && <5
