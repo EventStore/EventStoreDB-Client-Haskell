@@ -15,6 +15,7 @@ git: https://github.com/EventStore/EventStoreDB-Client-Haskell.git
 dependencies:
   - base >=4.7 && <5
   - aeson >=2
+  - attoparsec >= 0.14
   - mono-traversable ==1.*
   - connection >=0.2
   - containers

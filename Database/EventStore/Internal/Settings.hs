@@ -12,7 +12,12 @@
 module Database.EventStore.Internal.Settings where
 
 --------------------------------------------------------------------------------
+import qualified Data.Char as Char
+import Data.Functor (($>))
+
+--------------------------------------------------------------------------------
 import Network.Connection (TLSSettings)
+import qualified Data.Attoparsec.Text as Atto
 
 --------------------------------------------------------------------------------
 import Database.EventStore.Internal.Logger
@@ -143,6 +148,55 @@ defaultSettings  = Settings
                    , s_defaultConnectionName  = Nothing
                    , s_defaultUserCredentials = Nothing
                    }
+--------------------------------------------------------------------------------
+data ConnectionMode = ConnectionSimpleMode | ConnectionDiscoveryMode
+
+--------------------------------------------------------------------------------
+parseSettings :: Atto.Parser Settings
+parseSettings = do
+  mode <- parseConnectionMode
+  creds <- (fmap Just $ parseCredentials <* Atto.char '@') <|> pure Nothing
+  undefined
+
+--------------------------------------------------------------------------------
+parseConnectionMode :: Atto.Parser ConnectionMode
+parseConnectionMode =
+  (Atto.string "esdb+discover" $> ConnectionDiscoveryMode)
+    <|> (Atto.string "esdb" $> ConnectionSimpleMode)
+
+--------------------------------------------------------------------------------
+parseLogin :: Atto.Parser Text
+parseLogin = Atto.takeWhile1 valid
+  where
+    valid c =  Char.isAscii c && c /= ':'
+
+--------------------------------------------------------------------------------
+parseCredentials :: Atto.Parser Credentials
+parseCredentials = do
+  login <- parseLogin
+  Atto.char ':'
+  passw <- parsePassw
+  pure $ Credentials (encodeUtf8 login) (encodeUtf8 passw)
+
+--------------------------------------------------------------------------------
+parsePassw :: Atto.Parser Text
+parsePassw = Atto.takeWhile1 valid
+  where
+    valid c = c /= '@'
+
+--------------------------------------------------------------------------------
+parseSeed :: Atto.Parser (Text, Int)
+parseSeed = (,) <$> parseHost <*> (Atto.option 2113 parsePort)
+
+--------------------------------------------------------------------------------
+parseHost :: Atto.Parser Text
+parseHost = Atto.takeWhile1 valid
+  where
+    valid c = Char.isAlpha c || c == '_' || c == '-' || c == '.'
+
+--------------------------------------------------------------------------------
+parsePort :: Atto.Parser Int
+parsePort = Atto.char ':' *> Atto.decimal
 
 --------------------------------------------------------------------------------
 -- | Default SSL settings based on 'defaultSettings'.
