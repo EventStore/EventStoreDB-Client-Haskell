@@ -156,6 +156,7 @@ parseSettings :: Atto.Parser Settings
 parseSettings = do
   mode <- parseConnectionMode
   creds <- (fmap Just $ parseCredentials <* Atto.char '@') <|> pure Nothing
+  seeds <- Atto.sepBy1 parseSeed (Atto.char ',')
   undefined
 
 --------------------------------------------------------------------------------
