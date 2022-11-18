@@ -147,6 +147,7 @@ test-suite eventstore-tests
       Test.Integration
       Test.Integration.Tests
       Test.Operation
+      Test.Settings
       Paths_eventstore
   hs-source-dirs:
       tests

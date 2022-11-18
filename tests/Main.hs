@@ -22,6 +22,7 @@ import qualified Test.Bus         as Bus
 import qualified Test.Connection  as Connection
 import qualified Test.Integration as Integration
 import qualified Test.Operation   as Operation
+import qualified Test.Settings    as Settings
 
 --------------------------------------------------------------------------------
 main :: IO ()
@@ -32,9 +33,11 @@ main = do
                        ]
 
   integration <- Integration.tests
+  settings <- testSpecs Settings.spec
 
-  let tree = [ testGroup "Internal" internal
-             , testGroup "Integration" integration
+  let tree = [ testGroup "Settings" settings
+            --  , testGroup "Internal" internal
+            --  , testGroup "Integration" integration
              ]
 
   defaultMain (testGroup "EventStore tests" tree)

@@ -13,6 +13,7 @@ module Database.EventStore.Internal.Settings where
 
 --------------------------------------------------------------------------------
 import qualified Data.Char as Char
+import Data.Bifunctor (first)
 import Data.Functor (($>))
 
 --------------------------------------------------------------------------------
@@ -73,6 +74,21 @@ atMost = AtMost
 --   Universe.
 keepRetrying :: Retry
 keepRetrying = KeepRetrying
+
+--------------------------------------------------------------------------------
+-- | Gathers every connection type handled by the client.
+data DiscoveryMode
+    = Static Text Int
+      -- ^ HostName and Port.
+    | Cluster [GossipSeedEndpoint]
+      -- ^ Domain name, optional DNS server and port.
+
+--------------------------------------------------------------------------------
+data GossipSeedEndpoint
+  = GossipSeedEndpoint
+  { gossipSeedEndpointHost :: Text
+  , gossipSeedEndpointPort :: Int
+  } deriving (Eq)
 
 --------------------------------------------------------------------------------
 -- | Global 'Connection' settings
@@ -150,6 +166,10 @@ defaultSettings  = Settings
                    }
 --------------------------------------------------------------------------------
 data ConnectionMode = ConnectionSimpleMode | ConnectionDiscoveryMode
+
+--------------------------------------------------------------------------------
+runConnectionStringParser :: Text -> Either Text Settings
+runConnectionStringParser = first fromString . Atto.parseOnly parseSettings
 
 --------------------------------------------------------------------------------
 parseSettings :: Atto.Parser Settings
