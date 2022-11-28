@@ -12,6 +12,7 @@
 module Database.EventStore.Internal.Settings where
 
 --------------------------------------------------------------------------------
+import Control.Monad.Fail (fail)
 import qualified Data.Char as Char
 import Data.Bifunctor (first)
 import Data.Functor (($>))
@@ -78,17 +79,28 @@ keepRetrying = KeepRetrying
 --------------------------------------------------------------------------------
 -- | Gathers every connection type handled by the client.
 data DiscoveryMode
-    = Static Text Int
+    = StaticDiscovery GossipSeedEndpoint
       -- ^ HostName and Port.
-    | Cluster [GossipSeedEndpoint]
+    | ClusterDiscovery [GossipSeedEndpoint]
       -- ^ Domain name, optional DNS server and port.
+    deriving Show
 
 --------------------------------------------------------------------------------
 data GossipSeedEndpoint
   = GossipSeedEndpoint
   { gossipSeedEndpointHost :: Text
   , gossipSeedEndpointPort :: Int
-  } deriving (Eq)
+  } deriving (Eq, Show)
+
+--------------------------------------------------------------------------------
+data NewSettings =
+  NewSettings
+  { newSettingsDiscovery :: DiscoveryMode
+  , newSettingsOld       :: Settings
+  }
+--------------------------------------------------------------------------------
+instance Show NewSettings where
+  show (NewSettings disc _) = show disc
 
 --------------------------------------------------------------------------------
 -- | Global 'Connection' settings
@@ -168,16 +180,27 @@ defaultSettings  = Settings
 data ConnectionMode = ConnectionSimpleMode | ConnectionDiscoveryMode
 
 --------------------------------------------------------------------------------
-runConnectionStringParser :: Text -> Either Text Settings
+runConnectionStringParser :: Text -> Either Text NewSettings
 runConnectionStringParser = first fromString . Atto.parseOnly parseSettings
 
 --------------------------------------------------------------------------------
-parseSettings :: Atto.Parser Settings
+parseSettings :: Atto.Parser NewSettings
 parseSettings = do
   mode <- parseConnectionMode
   creds <- (fmap Just $ parseCredentials <* Atto.char '@') <|> pure Nothing
-  seeds <- Atto.sepBy1 parseSeed (Atto.char ',')
-  undefined
+  out <- go creds mode =<< Atto.sepBy1 parseSeed (Atto.char ',')
+  Atto.endOfInput
+  pure out
+  where
+    go creds ConnectionSimpleMode xss@(x:xs) =
+      let setts = defaultSettings { s_defaultUserCredentials = creds } in
+      case xs of
+        [] -> pure $ NewSettings (StaticDiscovery x) setts
+        _ -> pure $ NewSettings (ClusterDiscovery xss) setts
+    go creds ConnectionDiscoveryMode [x] =
+      let setts = defaultSettings { s_defaultUserCredentials = creds } in
+      pure $ NewSettings (ClusterDiscovery [x]) setts
+    go _ _ _ = fail "You can't have both discovery enable and multiple gossip seeds"
 
 --------------------------------------------------------------------------------
 parseConnectionMode :: Atto.Parser ConnectionMode
@@ -206,8 +229,8 @@ parsePassw = Atto.takeWhile1 valid
     valid c = c /= '@'
 
 --------------------------------------------------------------------------------
-parseSeed :: Atto.Parser (Text, Int)
-parseSeed = (,) <$> parseHost <*> (Atto.option 2113 parsePort)
+parseSeed :: Atto.Parser GossipSeedEndpoint
+parseSeed = GossipSeedEndpoint <$> parseHost <*> (Atto.option 2113 parsePort)
 
 --------------------------------------------------------------------------------
 parseHost :: Atto.Parser Text
