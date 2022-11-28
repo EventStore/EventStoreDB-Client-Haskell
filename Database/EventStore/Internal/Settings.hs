@@ -12,7 +12,14 @@
 module Database.EventStore.Internal.Settings where
 
 --------------------------------------------------------------------------------
+import Control.Monad.Fail (fail)
+import qualified Data.Char as Char
+import Data.Bifunctor (first)
+import Data.Functor (($>))
+
+--------------------------------------------------------------------------------
 import Network.Connection (TLSSettings)
+import qualified Data.Attoparsec.Text as Atto
 
 --------------------------------------------------------------------------------
 import Database.EventStore.Internal.Logger
@@ -68,6 +75,32 @@ atMost = AtMost
 --   Universe.
 keepRetrying :: Retry
 keepRetrying = KeepRetrying
+
+--------------------------------------------------------------------------------
+-- | Gathers every connection type handled by the client.
+data DiscoveryMode
+    = StaticDiscovery GossipSeedEndpoint
+      -- ^ HostName and Port.
+    | ClusterDiscovery [GossipSeedEndpoint]
+      -- ^ Domain name, optional DNS server and port.
+    deriving Show
+
+--------------------------------------------------------------------------------
+data GossipSeedEndpoint
+  = GossipSeedEndpoint
+  { gossipSeedEndpointHost :: Text
+  , gossipSeedEndpointPort :: Int
+  } deriving (Eq, Show)
+
+--------------------------------------------------------------------------------
+data NewSettings =
+  NewSettings
+  { newSettingsDiscovery :: DiscoveryMode
+  , newSettingsOld       :: Settings
+  }
+--------------------------------------------------------------------------------
+instance Show NewSettings where
+  show (NewSettings disc _) = show disc
 
 --------------------------------------------------------------------------------
 -- | Global 'Connection' settings
@@ -143,6 +176,76 @@ defaultSettings  = Settings
                    , s_defaultConnectionName  = Nothing
                    , s_defaultUserCredentials = Nothing
                    }
+--------------------------------------------------------------------------------
+data ConnectionMode = ConnectionSimpleMode | ConnectionDiscoveryMode
+
+--------------------------------------------------------------------------------
+runConnectionStringParser :: Text -> Either Text NewSettings
+runConnectionStringParser = first fromString . Atto.parseOnly parseSettings
+
+--------------------------------------------------------------------------------
+parseSettings :: Atto.Parser NewSettings
+parseSettings = do
+  mode <- parseConnectionMode
+  Atto.string "://"
+  creds <- (fmap Just $ parseCredentials) <|> pure Nothing
+  out <- go creds mode =<< Atto.sepBy1 parseSeed (Atto.char ',')
+  -- Atto.endOfInput TODO: re-estate as soon as we are able to parse query strings.
+  pure out
+  where
+    go creds ConnectionSimpleMode xss@(x:xs) =
+      let setts = defaultSettings { s_defaultUserCredentials = creds } in
+      case xs of
+        [] -> pure $ NewSettings (StaticDiscovery x) setts
+        _ -> pure $ NewSettings (ClusterDiscovery xss) setts
+    go creds ConnectionDiscoveryMode [x] =
+      let setts = defaultSettings { s_defaultUserCredentials = creds } in
+      pure $ NewSettings (ClusterDiscovery [x]) setts
+    go _ _ _ = fail "You can't have both discovery enable and multiple gossip seeds"
+
+--------------------------------------------------------------------------------
+parseConnectionMode :: Atto.Parser ConnectionMode
+parseConnectionMode =
+  (Atto.string "esdb+discover" $> ConnectionDiscoveryMode)
+    <|> (Atto.string "esdb" $> ConnectionSimpleMode)
+
+--------------------------------------------------------------------------------
+parseLogin :: Atto.Parser Text
+parseLogin = Atto.takeWhile1 valid
+  where
+    valid c =  Char.isAscii c && c /= ':'
+
+--------------------------------------------------------------------------------
+parseCredentials :: Atto.Parser Credentials
+parseCredentials = do
+  login <- parseLogin
+  Atto.char ':'
+  passw <- parsePassw
+  Atto.char '@'
+  pure $ Credentials (encodeUtf8 login) (encodeUtf8 passw)
+
+--------------------------------------------------------------------------------
+parsePassw :: Atto.Parser Text
+parsePassw = Atto.takeWhile1 valid
+  where
+    valid c = c /= '@'
+
+--------------------------------------------------------------------------------
+parseSeed :: Atto.Parser GossipSeedEndpoint
+parseSeed =
+  GossipSeedEndpoint
+    <$> parseHost
+    <*> (Atto.option 2113 parsePort)
+
+--------------------------------------------------------------------------------
+parseHost :: Atto.Parser Text
+parseHost = Atto.takeWhile1 valid
+  where
+    valid c = Char.isAlphaNum c || c == '_' || c == '-' || c == '.'
+
+--------------------------------------------------------------------------------
+parsePort :: Atto.Parser Int
+parsePort = Atto.char ':' *> Atto.decimal
 
 --------------------------------------------------------------------------------
 -- | Default SSL settings based on 'defaultSettings'.

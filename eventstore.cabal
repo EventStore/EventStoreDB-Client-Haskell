@@ -1,6 +1,6 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.34.4.
+-- This file has been generated from package.yaml by hpack version 0.35.0.
 --
 -- see: https://github.com/sol/hpack
 
@@ -99,6 +99,7 @@ library
   build-depends:
       aeson >=2
     , array
+    , attoparsec >=0.14
     , base >=4.7 && <5
     , bifunctors
     , bytestring
@@ -146,6 +147,7 @@ test-suite eventstore-tests
       Test.Integration
       Test.Integration.Tests
       Test.Operation
+      Test.Settings
       Paths_eventstore
   hs-source-dirs:
       tests
@@ -165,6 +167,7 @@ test-suite eventstore-tests
   build-depends:
       aeson
     , async
+    , attoparsec >=0.14
     , base >=4.7 && <5
     , bytestring
     , cereal
