@@ -30,4 +30,4 @@ spec = do
         let out = runConnectionStringParser "esdb://admin:changeit@node1:2113,node2:2113,node3:2113?tls=true"
         case out of
             Left s -> fail $ show s
-            _ -> pure ()
+            Right setts -> print setts

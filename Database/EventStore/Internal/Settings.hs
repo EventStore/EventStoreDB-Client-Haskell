@@ -187,9 +187,10 @@ runConnectionStringParser = first fromString . Atto.parseOnly parseSettings
 parseSettings :: Atto.Parser NewSettings
 parseSettings = do
   mode <- parseConnectionMode
-  creds <- (fmap Just $ parseCredentials <* Atto.char '@') <|> pure Nothing
+  Atto.string "://"
+  creds <- (fmap Just $ parseCredentials) <|> pure Nothing
   out <- go creds mode =<< Atto.sepBy1 parseSeed (Atto.char ',')
-  Atto.endOfInput
+  -- Atto.endOfInput TODO: re-estate as soon as we are able to parse query strings.
   pure out
   where
     go creds ConnectionSimpleMode xss@(x:xs) =
@@ -220,6 +221,7 @@ parseCredentials = do
   login <- parseLogin
   Atto.char ':'
   passw <- parsePassw
+  Atto.char '@'
   pure $ Credentials (encodeUtf8 login) (encodeUtf8 passw)
 
 --------------------------------------------------------------------------------
@@ -230,7 +232,10 @@ parsePassw = Atto.takeWhile1 valid
 
 --------------------------------------------------------------------------------
 parseSeed :: Atto.Parser GossipSeedEndpoint
-parseSeed = GossipSeedEndpoint <$> parseHost <*> (Atto.option 2113 parsePort)
+parseSeed =
+  GossipSeedEndpoint
+    <$> parseHost
+    <*> (Atto.option 2113 parsePort)
 
 --------------------------------------------------------------------------------
 parseHost :: Atto.Parser Text
