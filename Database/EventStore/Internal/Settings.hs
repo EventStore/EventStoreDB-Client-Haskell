@@ -241,7 +241,7 @@ parseSeed =
 parseHost :: Atto.Parser Text
 parseHost = Atto.takeWhile1 valid
   where
-    valid c = Char.isAlpha c || c == '_' || c == '-' || c == '.'
+    valid c = Char.isAlphaNum c || c == '_' || c == '-' || c == '.'
 
 --------------------------------------------------------------------------------
 parsePort :: Atto.Parser Int
