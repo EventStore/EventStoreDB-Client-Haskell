@@ -1,5 +1,5 @@
 name: eventstore
-version: 1.4.2
+version: 1.4.3
 homepage: https://github.com/EventStore/EventStoreDB-Client-Haskell
 tested-with: GHC >= 8.0 && <= 8.8
 synopsis: EventStore TCP Client
@@ -16,7 +16,7 @@ dependencies:
   - base >=4.7 && <5
   - aeson >=2
   - mono-traversable ==1.*
-  - connection >=0.2
+  - crypton-connection >=0.3
   - containers
   - dotnet-timespan
   - stm
