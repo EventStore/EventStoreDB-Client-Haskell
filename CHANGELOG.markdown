@@ -1,3 +1,7 @@
+1.4.3
+-----
+Move to `crypton-connection` to 0.3.1.
+
 1.4.2
 -----
 Bump `aeson` to >= 2.
