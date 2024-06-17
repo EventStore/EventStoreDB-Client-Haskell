@@ -26,10 +26,11 @@ module Database.EventStore.Internal.Connection
   ) where
 
 --------------------------------------------------------------------------------
-import Prelude (String)
+import Prelude (String, fail)
 import Text.Printf
 
 --------------------------------------------------------------------------------
+import           Control.Monad.Fix
 import           Control.Monad.Reader
 import           Data.Serialize
 import           Data.UUID

@@ -63,6 +63,7 @@ import GHC.Fingerprint
 #endif
 
 --------------------------------------------------------------------------------
+import Control.Monad.Fix
 import Control.Monad.Reader
 import Data.UUID
 import Data.UUID.V4
