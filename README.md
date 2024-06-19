@@ -1,3 +1,7 @@
+> [!WARNING]
+> **DEPRECATION NOTICE**: 
+> * EventStoreDB version 23.10.x is the last OSS version to support the tcp protocol based client.
+
 EventStore Haskell TCP client
 =============================
 
